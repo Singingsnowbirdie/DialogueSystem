@@ -1,17 +1,27 @@
-﻿namespace UI
+﻿using Gameplay.UI.ReactiveViews;
+using UniRx;
+using UnityEngine;
+
+namespace UI
 {
     public class InteractionPromptView : UIView
     {
+        [SerializeField] private TextMeshProReactiveStringView _promptTF;
 
-        //public void ShowInteractionPrompt(string message)
-        //{
-        //    InteractionText.text = message;
-        //    InteractionText.gameObject.SetActive(true);
-        //}
+        public override void OnSetModel(UIModel uiModel)
+        {
+            InteractionPromptUIModel model = uiModel as InteractionPromptUIModel;
 
-        //public void HideInteractionPrompt()
-        //{
-        //    InteractionText.gameObject.SetActive(false);
-        //}
+            _promptTF.SetUIModel(model.PromptText);
+
+            model.PromptText
+                .Subscribe(val => OnPromptTextUpdated(val))
+                .AddTo(gameObject);
+        }
+
+        private void OnPromptTextUpdated(string val)
+        {
+            gameObject.SetActive(!string.IsNullOrEmpty(val));
+        }
     }
 }

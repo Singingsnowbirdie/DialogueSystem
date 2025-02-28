@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.UI.General.ReactiveViews
+namespace Gameplay.UI.ReactiveViews
 {
     public abstract class TextMeshProReactiveNumber<T> : TextMeshProReactiveView<T>
     {

@@ -17,8 +17,8 @@ namespace Player
         public ReactiveProperty<Vector3> Velocity = new ReactiveProperty<Vector3>();
 
         // Look Parameters
-        public float LookSpeedX { get; } = 2.0f;
-        public float LookSpeedY { get; } = 2.0f;
+        public float LookSpeedX { get; } = 0.5f;
+        public float LookSpeedY { get; } = 0.5f;
         public float UpperLookLimit { get; } = 80.0f;
         public float LowerLookLimit { get; } = 80.0f;
 

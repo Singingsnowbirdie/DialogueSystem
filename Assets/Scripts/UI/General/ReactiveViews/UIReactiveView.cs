@@ -1,7 +1,8 @@
-﻿using UniRx;
+﻿using Gameplay.UI.General.ReactiveViews;
+using UniRx;
 using UnityEngine;
 
-namespace Gameplay.UI.General.ReactiveViews
+namespace Gameplay.UI.ReactiveViews
 {
     public abstract class UIReactiveView<T> : MonoBehaviour, IUIReactiveView<T>
     {

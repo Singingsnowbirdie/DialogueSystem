@@ -17,7 +17,7 @@ namespace Player
             _playerInput.actions["Look"].performed += OnLook;
             _playerInput.actions["Move"].performed += OnMove;
             _playerInput.actions["Move"].canceled += OnMoveCanceled;
-            _playerInput.actions["Jump"].performed += OnJump;
+            _playerInput.actions["Jump"].started += OnJump;
 
             _model.LookRotation
                 .Subscribe(_ => _view.UpdateRotation(_model.LookRotation.Value, _model.RotationX.Value))

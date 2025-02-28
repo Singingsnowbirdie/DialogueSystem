@@ -1,9 +1,9 @@
 ﻿using TMPro;
 using UniRx;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Gameplay.UI.General.ReactiveViews
+namespace Gameplay.UI.ReactiveViews
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public abstract class TextMeshProReactiveView<T> : UIReactiveView<IReadOnlyReactiveProperty<T>>
@@ -31,7 +31,7 @@ namespace Gameplay.UI.General.ReactiveViews
 
             if (AutoResize)
             {
-                LayoutRebuilder.ForceRebuildLayoutImmediate(this.transform.parent.GetComponent<RectTransform>());
+                LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
             }
         }
 
