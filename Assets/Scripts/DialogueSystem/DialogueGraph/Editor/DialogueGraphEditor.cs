@@ -23,7 +23,7 @@ namespace DialogueSystem.DialogueEditor
             if (_dialogueGraph == null)
                 _dialogueGraph = target as DialogueGraph;
 
-            if (type == typeof(StartNode) && _dialogueGraph.GetStartNode() != null)
+            if (type == typeof(StartNode) && _dialogueGraph.StartNode != null)
                 return null;
 
             return base.CreateNode(type, position);
