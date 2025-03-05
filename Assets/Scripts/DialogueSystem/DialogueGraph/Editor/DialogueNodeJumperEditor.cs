@@ -4,10 +4,10 @@ using XNodeEditor;
 
 namespace DialogueSystem.DialogueEditor
 {
-    [CustomNodeEditor(typeof(DialogueNodeJumper))]
+    [CustomNodeEditor(typeof(SpeakerNodeJumper))]
     public class DialogueNodeJumperEditor : NodeJumperEditor
     {
-        private DialogueNodeJumper _nodeJumper => (DialogueNodeJumper)nodeJumper;
+        private SpeakerNodeJumper _nodeJumper => (SpeakerNodeJumper)nodeJumper;
 
         protected override void ShowConnectedNode()
         {

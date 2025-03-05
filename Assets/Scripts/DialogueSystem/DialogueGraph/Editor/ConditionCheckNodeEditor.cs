@@ -5,7 +5,7 @@ using XNode;
 namespace DialogueSystem.DialogueEditor
 {
     [CustomNodeEditor(typeof(ConditionCheckNode))]
-    public class ConditionCheckNodeEditor : BaseDialogueNodeEditor
+    public class ConditionCheckNodeEditor : DialogueNodeEditor
     {
         private ConditionCheckNode _conditionCheckNode;
         private DialogueGraph _dialogueGraph;
@@ -185,11 +185,11 @@ namespace DialogueSystem.DialogueEditor
         private bool FitsToConnect(Node connectedNode)
         {
             return connectedNode is ConditionCheckNode
-                || connectedNode is DialogueNodeJumper
+                || connectedNode is SpeakerNodeJumper
                 || connectedNode is PlayerResponseNode
                 || connectedNode is PlayerResponseNodeJumper
                 || connectedNode is DialogueEventNode
-                || connectedNode is DialogueNode;
+                || connectedNode is SpeakerNode;
         }
     }
 

@@ -1,54 +1,48 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XNode;
 
 namespace DialogueSystem.DialogueEditor
 {
-    [NodeTint("#656475")]
-    [CreateNodeMenu("Dialogue Node/Dialogue", 0)]
-
-    public class DialogueNode : BaseDialogueNode
+    public abstract class DialogueNode : Node
     {
-        [field: SerializeField, Input(backingValue = ShowBackingValue.Never)] public Node Input { get; set; }
-        [field: SerializeField, Output(backingValue = ShowBackingValue.Never)] public Node Output { get; set; }
-        [field: SerializeField, Output(backingValue = ShowBackingValue.Never), HideInInspector] public Node Events { get; set; }
-        [field: SerializeField, HideInInspector] public string DialogueLine { get; set; }
-        [field: SerializeField, HideInInspector] public List<DialogueNodeJumper> ConnectedJumpers { get; set; } = new List<DialogueNodeJumper>();
-        [field: SerializeField, HideInInspector] public int SelectedIndex { get; set; }
-        [field: SerializeField, HideInInspector] public int SpeakerKey { get; set; }
-
-        public void RemoveFromJumpers()
+        public bool TryGetConnectedNode(out DialogueNode node)
         {
-            foreach (var item in ConnectedJumpers)
+            if (TryGetConnectedNodes(out List<DialogueNode> nodes))
             {
-                item.TargetNode = null;
+                node = nodes[0];
+                return true;
             }
+
+            node = null;
+            return false;
         }
 
-        public void RemoveJumper(DialogueNodeJumper jumper)
+        public bool TryGetConnectedNodes(out List<DialogueNode> dialogueNodes)
         {
-            foreach (var item in ConnectedJumpers)
-            {
-                if (item == jumper)
-                {
-                    ConnectedJumpers.Remove(item);
-                    break;
-                }
-            }
-        }
+            NodePort[] connectedPorts = GetConnectedOutputs(0);
 
-        internal bool HasEvents(out List<Node> events)
-        {
-            List<Node> nodes = new();
-
-            NodePort[] connectedPorts = GetConnectedOutputs(1);
+            List<DialogueNode> nodes = new();
 
             foreach (NodePort item in connectedPorts)
             {
-                nodes.Add(item.node);
+                if (item.node is DialogueNode dialogueNode)
+                    nodes.Add(dialogueNode);
             }
-            events = nodes;
-            return events.Count > 0;
+
+            dialogueNodes = nodes;
+
+            if (dialogueNodes.Count > 0)
+                return true;
+
+            return false;
+        }
+
+        public NodePort[] GetConnectedOutputs(int index)
+        {
+            NodePort outputPort = Outputs.ElementAt(index);
+            return outputPort.GetConnections().ToArray();
         }
     }
 }

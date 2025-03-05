@@ -7,20 +7,20 @@ using XNodeEditor;
 namespace DialogueSystem.DialogueEditor
 {
     [CustomNodeEditor(typeof(StartNode))]
-    public class DialogueStartNodeEditor : BaseDialogueNodeEditor
+    public class DialogueStartNodeEditor : DialogueNodeEditor
     {
         public override void OnCreate()
         {
             base.OnCreate();
-            GenerateGUID();
+            SetKey();
         }
 
-        private void GenerateGUID()
+        private void SetKey()
         {
             StartNode startNode = target as StartNode;
 
-            startNode.Guid = Guid.NewGuid().ToString();
-            startNode.GuidLabel = "GUID: " + startNode.Guid;
+            startNode.Key = startNode.graph.name;
+            startNode.DialogueKeyLabel = "KEY: " + startNode.Key;
         }
 
         public override void AddContextMenuItems(GenericMenu menu)
@@ -49,10 +49,10 @@ namespace DialogueSystem.DialogueEditor
             StartNode startNode = target as StartNode;
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.TextField("Dialogue GUID", startNode.Guid, GUILayout.ExpandWidth(true));
+            EditorGUILayout.TextField("Dialogue KEY:", startNode.Key, GUILayout.ExpandWidth(true));
             if (GUILayout.Button("Copy", GUILayout.Width(50)))
             {
-                GUIUtility.systemCopyBuffer = startNode.Guid;
+                GUIUtility.systemCopyBuffer = startNode.Key;
             }
             EditorGUILayout.EndHorizontal();
 
@@ -82,9 +82,9 @@ namespace DialogueSystem.DialogueEditor
 
         private bool FitsToConnect(Node connectedNode)
         {
-            return connectedNode is DialogueNode
+            return connectedNode is SpeakerNode
                 || connectedNode is ConditionCheckNode
-                || connectedNode is DialogueNodeJumper;
+                || connectedNode is SpeakerNodeJumper;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace DialogueSystem.DialogueEditor
 {
     [NodeTint("#502e0e")]
     [CreateNodeMenu("Dialogue Node/Player Response", 0)]
-    public class PlayerResponseNode : BaseDialogueNode
+    public class PlayerResponseNode : DialogueNode
     {
         [field: SerializeField, Input(backingValue = ShowBackingValue.Never)] public Node Input { get; set; }
         [field: SerializeField, Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)] public Node Output { get; set; }

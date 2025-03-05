@@ -7,7 +7,7 @@ using XNodeEditor;
 namespace DialogueSystem.DialogueEditor
 {
     [CustomNodeEditor(typeof(PlayerResponseNode))]
-    public class PlayerResponseNodeEditor : BaseDialogueNodeEditor
+    public class PlayerResponseNodeEditor : DialogueNodeEditor
     {
         private PlayerResponseNode _playerResponseNode;
 
@@ -111,9 +111,9 @@ namespace DialogueSystem.DialogueEditor
 
         private bool FitsToNodePort(Node connectedNode)
         {
-            return connectedNode is DialogueNode
+            return connectedNode is SpeakerNode
                 || connectedNode is ConditionCheckNode
-                || connectedNode is DialogueNodeJumper;
+                || connectedNode is SpeakerNodeJumper;
         }
 
         private bool FitsToEventsPort(Node connectedNode)

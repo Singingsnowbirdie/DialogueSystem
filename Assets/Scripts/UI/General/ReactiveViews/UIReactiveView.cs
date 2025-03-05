@@ -25,5 +25,4 @@ namespace Gameplay.UI.ReactiveViews
 
         protected abstract void OnSetModel(T viewModel);
     }
-
 }

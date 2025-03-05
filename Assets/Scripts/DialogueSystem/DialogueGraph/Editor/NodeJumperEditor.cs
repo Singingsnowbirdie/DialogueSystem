@@ -4,7 +4,7 @@ using UnityEngine;
 namespace DialogueSystem.DialogueEditor
 {
     [CustomNodeEditor(typeof(NodeJumper))]
-    public abstract class NodeJumperEditor : BaseDialogueNodeEditor
+    public abstract class NodeJumperEditor : DialogueNodeEditor
     {
         protected NodeJumper nodeJumper => target as NodeJumper;
 

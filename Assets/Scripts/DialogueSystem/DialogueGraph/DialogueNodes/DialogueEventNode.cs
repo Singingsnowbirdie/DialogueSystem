@@ -7,7 +7,7 @@ namespace DialogueSystem.DialogueEditor
     [NodeTint("#131959"), NodeWidth(300)]
     [CreateNodeMenu("Dialogue Node/Event", 0)]
 
-    public partial class DialogueEventNode : BaseDialogueNode
+    public partial class DialogueEventNode : DialogueNode
     {
         [HideInInspector] public List<int> InvolvedNpcs = new();
 

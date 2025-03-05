@@ -7,7 +7,7 @@ namespace DialogueSystem.DialogueEditor
 {
     [NodeTint("#194d2d")]
     [CreateNodeMenu("Dialogue Node/Condition Check", 0)]
-    public partial class ConditionCheckNode : BaseDialogueNode
+    public partial class ConditionCheckNode : DialogueNode
     {
         // General
         [field: SerializeField, Input(backingValue = ShowBackingValue.Never)] public Node Input { get; set; }

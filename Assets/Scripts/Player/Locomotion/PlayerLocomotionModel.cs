@@ -5,6 +5,9 @@ namespace Player
 {
     public class PlayerLocomotionModel
     {
+        // General
+        public bool CanMove = true;
+
         // Look Related
         public ReactiveProperty<Quaternion> LookRotation = new ReactiveProperty<Quaternion>();
         public ReactiveProperty<float> RotationX = new ReactiveProperty<float>();

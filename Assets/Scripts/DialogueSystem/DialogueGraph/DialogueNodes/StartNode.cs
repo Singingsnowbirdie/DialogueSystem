@@ -6,14 +6,14 @@ namespace DialogueSystem.DialogueEditor
 {
     [NodeTint("#800000"), NodeWidth(450)]
     [CreateNodeMenu("Dialogue Node/Start", 0)]
-    public class StartNode : BaseDialogueNode
+    public class StartNode : DialogueNode
     {
         [field: SerializeField, Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
         public Node Output { get; set; }
 
-        [SerializeField, HideInInspector] public string Guid;
+        [SerializeField, HideInInspector] public string Key;
 
-        [NonSerialized] public string GuidLabel;
+        [NonSerialized] public string DialogueKeyLabel;
     }
 
 }

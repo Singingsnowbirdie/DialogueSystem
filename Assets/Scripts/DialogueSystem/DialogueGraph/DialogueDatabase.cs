@@ -7,9 +7,9 @@ namespace Database
     [CreateAssetMenu(fileName = "DialogueDatabase", menuName = "Database/Dialogue Database")]
     public class DialogueDatabase : ScriptableObject
     {
-        [SerializeField] private DialogueGraph[] dialogueGraphs; 
+        [SerializeField] private DialogueGraph[] dialogueGraphs;
 
-        private Dictionary<string, DialogueGraph> _dialogueDictionary; 
+        private Dictionary<string, DialogueGraph> _dialogueDictionary;
 
         private void InitializeDictionary()
         {
@@ -17,31 +17,33 @@ namespace Database
 
             foreach (var graph in dialogueGraphs)
             {
-                if (graph.StartNode != null && !string.IsNullOrEmpty(graph.StartNode.GuidLabel))
+                if (graph.StartNode != null && !string.IsNullOrEmpty(graph.StartNode.Key))
                 {
-                    _dialogueDictionary[graph.StartNode.GuidLabel] = graph;
+                    _dialogueDictionary.Add(graph.StartNode.Key, graph);
                 }
                 else
                 {
                     Debug.LogWarning($"Graph {graph.name} does not have a GuidLabel or start node.");
                 }
             }
+
         }
 
-        public DialogueGraph GetDialogueGraph(string guidLabel)
+        internal bool TryGetDialogueGraph(string dialogueID, out DialogueGraph graph)
         {
             if (_dialogueDictionary == null)
             {
-                InitializeDictionary(); 
+                InitializeDictionary();
             }
 
-            if (_dialogueDictionary.TryGetValue(guidLabel, out var graph))
+            if (_dialogueDictionary.TryGetValue(dialogueID, out graph))
             {
-                return graph;
+                return true;
             }
 
-            Debug.LogWarning($"DialogueGraph with GuidLabel {guidLabel} not found.");
-            return null;
+            Debug.LogWarning($"DialogueGraph with Guid {dialogueID} not found.");
+            graph = null;
+            return false;
         }
     }
 }

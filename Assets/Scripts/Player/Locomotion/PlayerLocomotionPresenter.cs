@@ -1,3 +1,4 @@
+using System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,8 @@ namespace Player
 {
     public class PlayerLocomotionPresenter : IStartable
     {
-        [Inject] private readonly PlayerLocomotionModel _model;
+        [Inject] private readonly PlayerLocomotionModel _locomotionModel;
+        [Inject] private readonly PlayerInteractionModel _interactionModel;
         [Inject] private readonly PlayerView _view;
         [Inject] private readonly PlayerInput _playerInput;
 
@@ -19,12 +21,12 @@ namespace Player
             _playerInput.actions["Move"].canceled += OnMoveCanceled;
             _playerInput.actions["Jump"].started += OnJump;
 
-            _model.LookRotation
-                .Subscribe(_ => _view.UpdateRotation(_model.LookRotation.Value, _model.RotationX.Value))
+            _locomotionModel.LookRotation
+                .Subscribe(_ => _view.UpdateRotation(_locomotionModel.LookRotation.Value, _locomotionModel.RotationX.Value))
                 .AddTo(_view);
 
-            _model.RotationX
-                .Subscribe(_ => _view.UpdateRotation(_model.LookRotation.Value, _model.RotationX.Value))
+            _locomotionModel.RotationX
+                .Subscribe(_ => _view.UpdateRotation(_locomotionModel.LookRotation.Value, _locomotionModel.RotationX.Value))
                 .AddTo(_view);
 
             Observable.EveryUpdate()
@@ -33,33 +35,46 @@ namespace Player
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            _interactionModel.IsInteracting
+                .Subscribe(val => OnInteracting(val))
+                .AddTo(_view);
+        }
+
+        private void OnInteracting(bool val)
+        {
+            _locomotionModel.CanMove = !val;
+
+            if (!_locomotionModel.CanMove)
+                _locomotionModel.MoveInput.Value = Vector2.zero;
         }
 
         private void OnMove(InputAction.CallbackContext context)
         {
-            _model.MoveInput.Value = context.ReadValue<Vector2>();
+            if (_locomotionModel.CanMove)
+                _locomotionModel.MoveInput.Value = context.ReadValue<Vector2>();
         }
 
         private void OnMoveCanceled(InputAction.CallbackContext context)
         {
-            _model.MoveInput.Value = Vector2.zero;
+            _locomotionModel.MoveInput.Value = Vector2.zero;
         }
 
         private void OnJump(InputAction.CallbackContext context)
         {
-            if (_view.IsGrounded)
-                _model.Velocity.Value = new Vector3(_model.Velocity.Value.x, Mathf.Sqrt(_model.JumpHeight * -2f * _model.Gravity), _model.Velocity.Value.z);
+            if (_locomotionModel.CanMove && _view.IsGrounded)
+                _locomotionModel.Velocity.Value = new Vector3(_locomotionModel.Velocity.Value.x, Mathf.Sqrt(_locomotionModel.JumpHeight * -2f * _locomotionModel.Gravity), _locomotionModel.Velocity.Value.z);
         }
 
         private void UpdateMovement()
         {
-            if (_view.IsGrounded && _model.Velocity.Value.y < 0)
-                _model.Velocity.Value = new Vector3(_model.Velocity.Value.x, -2f, _model.Velocity.Value.z);
+            if (_view.IsGrounded && _locomotionModel.Velocity.Value.y < 0)
+                _locomotionModel.Velocity.Value = new Vector3(_locomotionModel.Velocity.Value.x, -2f, _locomotionModel.Velocity.Value.z);
             else
-                _model.Velocity.Value += Vector3.up * _model.Gravity * Time.deltaTime;
+                _locomotionModel.Velocity.Value += Vector3.up * _locomotionModel.Gravity * Time.deltaTime;
 
-            Vector3 moveDirection = CalculateMovement(_model.MoveInput.Value);
-            _view.Move((moveDirection + _model.Velocity.Value) * Time.deltaTime);
+            Vector3 moveDirection = CalculateMovement(_locomotionModel.MoveInput.Value);
+            _view.Move((moveDirection + _locomotionModel.Velocity.Value) * Time.deltaTime);
         }
 
         private Vector3 CalculateMovement(Vector2 input)
@@ -72,15 +87,18 @@ namespace Player
             forward.Normalize();
             right.Normalize();
 
-            return (forward * input.y + right * input.x) * _model.CurrentSpeed.Value;
+            return (forward * input.y + right * input.x) * _locomotionModel.CurrentSpeed.Value;
         }
 
         private void OnLook(InputAction.CallbackContext context)
         {
-            Vector2 input = context.ReadValue<Vector2>();
-            _model.RotationX.Value -= input.y * _model.LookSpeedY;
-            _model.RotationX.Value = Mathf.Clamp(_model.RotationX.Value, -_model.UpperLookLimit, _model.LowerLookLimit);
-            _model.LookRotation.Value = Quaternion.Euler(0, input.x * _model.LookSpeedX, 0);
+            if (_locomotionModel.CanMove)
+            {
+                Vector2 input = context.ReadValue<Vector2>();
+                _locomotionModel.RotationX.Value -= input.y * _locomotionModel.LookSpeedY;
+                _locomotionModel.RotationX.Value = Mathf.Clamp(_locomotionModel.RotationX.Value, -_locomotionModel.UpperLookLimit, _locomotionModel.LowerLookLimit);
+                _locomotionModel.LookRotation.Value = Quaternion.Euler(0, input.x * _locomotionModel.LookSpeedX, 0);
+            }
         }
     }
 }

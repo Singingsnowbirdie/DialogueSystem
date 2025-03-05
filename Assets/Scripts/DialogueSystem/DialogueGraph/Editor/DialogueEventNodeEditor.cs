@@ -4,7 +4,7 @@ using UnityEngine;
 namespace DialogueSystem.DialogueEditor
 {
     [CustomNodeEditor(typeof(DialogueEventNode))]
-    public class DialogueEventNodeEditor : BaseDialogueNodeEditor
+    public class DialogueEventNodeEditor : DialogueNodeEditor
     {
         private DialogueEventNode _eventNode;
         private DialogueGraph _dialogueGraph;
