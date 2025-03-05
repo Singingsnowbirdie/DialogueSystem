@@ -19,8 +19,6 @@ namespace DialogueSystem
             {
                 if (node is SpeakerNode speakerNode)
                     _dialogueModel.CurrentNode.Value = speakerNode;
-                else if (node is SpeakerNodeJumper jumper)
-                    HandleSpeakerNodeJumper(jumper);
                 else if (node is ConditionCheckNode conditionCheckNode)
                     HandleSpeakerNodeCondition(conditionCheckNode);
                 else
@@ -31,11 +29,6 @@ namespace DialogueSystem
         }
 
         public void HandleSpeakerNodeCondition(ConditionCheckNode conditionCheckNode)
-        {
-
-        }
-
-        public void HandleSpeakerNodeJumper(SpeakerNodeJumper jumper)
         {
 
         }
