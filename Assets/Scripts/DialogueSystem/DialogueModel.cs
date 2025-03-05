@@ -11,21 +11,23 @@ namespace DialogueSystem
         public string SpeakerName { get; set; }
         public DialogueGraph Graph { get; set; }
         public ReactiveProperty<DialogueNode> CurrentNode { get; } = new ReactiveProperty<DialogueNode>();
-        public ReactiveProperty<DialogueUIModel> DialogueUIModel { get; set; } = new ReactiveProperty<DialogueUIModel>();
-        public ISubject<DialogueData> TryStartDialogue { get; private set; } = new Subject<DialogueData>();
+        public ReactiveProperty<DialogueUIModel> DialogueUIModel { get; } = new ReactiveProperty<DialogueUIModel>();
+        public ISubject<DialogueData> TryStartDialogue { get; } = new Subject<DialogueData>();
     }
 
-    public struct DialogueData
+    public readonly struct DialogueData
     {
-        public string SpeakerName;
-        public string DialogueID;
         public Transform FocusPoint { get; }
+        public string UniqueId { get; }
+        public string DialogueID { get; }
+        public string SpeakerName { get; }
 
-        public DialogueData(string speakerName, string message, Transform focusPoint)
+        public DialogueData(string speakerName, string message, Transform focusPoint, string uniqueId)
         {
             SpeakerName = speakerName;
             DialogueID = message;
             FocusPoint = focusPoint;
+            UniqueId = uniqueId;
         }
     }
 }

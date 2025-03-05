@@ -10,9 +10,9 @@ namespace Player
 
         public void Start()
         {
-            _model.PlayerName = _view.PlayerName;
-            _model.PlayerGender = _view.PlayerGender;
-            _model.PlayerRace = _view.PlayerRace;
+            _model.PlayerName = _view.PlayerConfig.PlayerName;
+            _model.PlayerGender = _view.PlayerConfig.PlayerGender;
+            _model.PlayerRace = _view.PlayerConfig.PlayerRace;
         }
     }
 }

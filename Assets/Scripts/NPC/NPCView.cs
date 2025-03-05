@@ -1,20 +1,17 @@
 using DialogueSystem;
 using InteractionSystem;
 using Player;
+using System;
 using UnityEngine;
 
 namespace NPC
 {
     public class NPCView : Interactable
     {
-        [SerializeField] private string _npcName;
-        [SerializeField] private string _dialogueKey;
         [SerializeField] private Transform _focusPoint;
-        [SerializeField] private string _uniqueId;
+        [SerializeField, Space] private NPC_Config _npcConfig;
 
         private DialogueModel _dialogueModel;
-
-        public string UniqueId => _uniqueId;
 
         public DialogueModel DialogueModel
         {
@@ -32,22 +29,38 @@ namespace NPC
 
         public override void Interact(PlayerInteractionPresenter playerInteractionPresenter)
         {
-            if (string.IsNullOrEmpty(_npcName))
+            if (string.IsNullOrEmpty(_npcConfig.NPC_Name))
             {
                 Debug.Log("NPC name not assigned. Unable to start dialogue!");
                 return;
             }
 
-            if (string.IsNullOrEmpty(_dialogueKey))
+            if (string.IsNullOrEmpty(_npcConfig.DialogueKey))
             {
                 Debug.Log("Dialogue Key not specified. Unable to start dialogue!");
                 return;
             }
 
+            if (string.IsNullOrEmpty(_npcConfig.UniqueId))
+            {
+                Debug.Log("Unique NPC ID not specified. Unable to start dialogue!");
+                return;
+            }
+
             base.Interact(playerInteractionPresenter);
 
-            DialogueData dialogueData = new DialogueData(_npcName, _dialogueKey, _focusPoint);
+            DialogueData dialogueData = new DialogueData(_npcConfig.NPC_Name, _npcConfig.DialogueKey, _focusPoint, _npcConfig.UniqueId);
             DialogueModel.TryStartDialogue.OnNext(dialogueData);
         }
+
+    }
+
+    [Serializable]
+    public class NPC_Config
+    {
+        [field: SerializeField] public string UniqueId { get; private set; }
+        [field: SerializeField] public string NPC_Name { get; private set; }
+        [field: SerializeField] public string DialogueKey { get; private set; }
     }
 }
+
