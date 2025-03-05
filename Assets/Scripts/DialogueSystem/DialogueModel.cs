@@ -1,6 +1,7 @@
 ﻿using DialogueSystem.DialogueEditor;
 using UI.DialogueUI;
 using UniRx;
+using UnityEngine;
 
 namespace DialogueSystem
 {
@@ -18,11 +19,13 @@ namespace DialogueSystem
     {
         public string SpeakerName;
         public string DialogueID;
+        public Transform FocusPoint { get; }
 
-        public DialogueData(string speakerName, string message)
+        public DialogueData(string speakerName, string message, Transform focusPoint)
         {
             SpeakerName = speakerName;
             DialogueID = message;
+            FocusPoint = focusPoint;
         }
     }
 }

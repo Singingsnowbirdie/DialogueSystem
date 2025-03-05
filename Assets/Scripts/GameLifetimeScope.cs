@@ -18,7 +18,10 @@ public class GameLifetimeScope : LifetimeScope
     [Header("PLAYER")]
     [SerializeField] private PlayerView _playerView;
     [SerializeField] private PlayerInput _playerInput;
+
+    [Header("CAMERA")]
     [SerializeField] private Camera _camera;
+    [SerializeField] private DialogueCameraView _dialogueCameraView;
 
     [Header("NPC")]
     [SerializeField] private NPCCollectionView _npcCollectionView;
@@ -28,14 +31,17 @@ public class GameLifetimeScope : LifetimeScope
 
     protected override void Configure(IContainerBuilder builder)
     {
-        // Register Components
+        // Register Views
         builder.RegisterComponent(_playerView).AsSelf();
+        builder.RegisterComponent(_dialogueView).AsSelf();
+        builder.RegisterComponent(_dialogueCameraView).AsSelf();
+        builder.RegisterComponent(_interactionPromptView).AsSelf();
+        builder.RegisterComponent(_npcCollectionView).AsSelf();
+
+        // Register Other Components
         builder.RegisterComponent(_playerInput).AsSelf();
         builder.RegisterComponent(_camera).AsSelf();
         builder.RegisterComponent(_dialogueDatabase).AsSelf();
-        builder.RegisterComponent(_dialogueView).AsSelf();
-        builder.RegisterComponent(_interactionPromptView).AsSelf();
-        builder.RegisterComponent(_npcCollectionView).AsSelf();
 
         // Register Models
         builder.Register<PlayerModel>(Lifetime.Singleton);
@@ -45,6 +51,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<DialogueUIModel>(Lifetime.Singleton);
         builder.Register<InteractionPromptUIModel>(Lifetime.Singleton);
         builder.Register<NPCCollectionModel>(Lifetime.Singleton);
+        builder.Register<DialogueCameraModel>(Lifetime.Singleton);
 
         // Register Presenters
         builder.RegisterEntryPoint<DialoguePresenter>(Lifetime.Singleton);
@@ -52,5 +59,6 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterEntryPoint<InteractionPromptPresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<PlayerInteractionPresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<NPCCollectionPresenter>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<DialogueCameraPresenter>(Lifetime.Singleton);
     }
 }

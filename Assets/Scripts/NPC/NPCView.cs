@@ -9,6 +9,8 @@ namespace NPC
     {
         [SerializeField] private string _npcName;
         [SerializeField] private string _dialogueKey;
+        [SerializeField] private Transform _focusPoint;
+
         private DialogueModel _dialogueModel;
 
         public DialogueModel DialogueModel
@@ -41,7 +43,7 @@ namespace NPC
 
             base.Interact(playerInteractionPresenter);
 
-            DialogueData dialogueData = new DialogueData(_npcName, _dialogueKey);
+            DialogueData dialogueData = new DialogueData(_npcName, _dialogueKey, _focusPoint);
             DialogueModel.TryStartDialogue.OnNext(dialogueData);
         }
     }

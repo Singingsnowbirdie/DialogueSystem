@@ -14,6 +14,7 @@ namespace DialogueSystem
         [Inject] private readonly DialogueDatabase _dialogueDatabase;
         [Inject] private readonly DialogueView _view;
         [Inject] private readonly DialogueModel _dialogueModel;
+        [Inject] private readonly DialogueCameraModel _dialogueCameraModel;
         [Inject] private readonly PlayerModel _playerModel;
 
         private DialogueHandler _dialogueHandler;
@@ -32,17 +33,18 @@ namespace DialogueSystem
                 .AddTo(_compositeDisposables);
 
             _dialogueModel.TryStartDialogue
-                .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID))
+                .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint))
                 .AddTo(_compositeDisposables);
         }
 
-        internal void TryToStartDialogue(string speakerName, string dialogueID)
+        internal void TryToStartDialogue(string speakerName, string dialogueID, Transform focusPoint)
         {
             if (_dialogueDatabase.TryGetDialogueGraph(dialogueID, out DialogueGraph graph))
             {
                 _dialogueModel.SpeakerName = speakerName;
                 _dialogueModel.Graph = graph;
                 _dialogueModel.CurrentNode.Value = graph.StartNode;
+                _dialogueCameraModel.NpcFocusPoint.Value = focusPoint;
             }
         }
 
