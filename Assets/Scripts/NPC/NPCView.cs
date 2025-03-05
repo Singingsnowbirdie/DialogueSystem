@@ -10,8 +10,11 @@ namespace NPC
         [SerializeField] private string _npcName;
         [SerializeField] private string _dialogueKey;
         [SerializeField] private Transform _focusPoint;
+        [SerializeField] private string _uniqueId;
 
         private DialogueModel _dialogueModel;
+
+        public string UniqueId => _uniqueId;
 
         public DialogueModel DialogueModel
         {

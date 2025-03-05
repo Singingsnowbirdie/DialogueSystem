@@ -30,7 +30,25 @@ namespace DialogueSystem
 
         public void HandleSpeakerNodeCondition(ConditionCheckNode conditionCheckNode)
         {
-
+            switch (conditionCheckNode.Condition)
+            {
+                case EDialogueCondition.HasMet:
+                    break;
+                case EDialogueCondition.IsReputationAmount:
+                    break;
+                case EDialogueCondition.IsGender:
+                    break;
+                case EDialogueCondition.IsRace:
+                    break;
+                case EDialogueCondition.IsQuestState:
+                    break;
+                case EDialogueCondition.HasEnoughItems:
+                    break;
+                case EDialogueCondition.HasEnoughCoins:
+                    break;
+                case EDialogueCondition.IsDialogueVariable:
+                    break;
+            }
         }
     }
 }
