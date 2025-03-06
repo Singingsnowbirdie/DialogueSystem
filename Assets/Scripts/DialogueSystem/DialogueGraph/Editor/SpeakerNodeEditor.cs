@@ -20,6 +20,14 @@ namespace DialogueSystem.DialogueEditor
             if (_dialogueGraph == null)
                 _dialogueGraph = (DialogueGraph)_dialogueNode.graph;
 
+            EditorGUILayout.LabelField("Node ID:", _dialogueNode.NodeId);
+
+            if (GUILayout.Button("Copy Node ID"))
+            {
+                GUIUtility.systemCopyBuffer = _dialogueNode.NodeId;
+                Debug.Log($"Node ID copied: {_dialogueNode.NodeId}");
+            }
+
             base.OnBodyGUI();
 
             EditorGUILayout.Space();

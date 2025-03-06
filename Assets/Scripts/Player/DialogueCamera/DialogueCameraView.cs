@@ -53,7 +53,7 @@ namespace Player
 
         public void ResetCamera()
         {
-            _focusingListener.Dispose();
+            _focusingListener?.Dispose();
             _playerCamera.transform.SetPositionAndRotation(_originalPosition, _originalRotation);
         }
     }

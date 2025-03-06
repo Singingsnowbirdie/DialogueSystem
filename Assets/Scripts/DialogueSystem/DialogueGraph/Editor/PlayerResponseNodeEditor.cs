@@ -46,6 +46,14 @@ namespace DialogueSystem.DialogueEditor
             _playerResponseNode = target as PlayerResponseNode;
             ShowLabel();
 
+            EditorGUILayout.LabelField("Node ID:", _playerResponseNode.NodeId);
+
+            if (GUILayout.Button("Copy Node ID"))
+            {
+                GUIUtility.systemCopyBuffer = _playerResponseNode.NodeId;
+                Debug.Log($"Node ID copied: {_playerResponseNode.NodeId}");
+            }
+
             base.OnBodyGUI();
 
 

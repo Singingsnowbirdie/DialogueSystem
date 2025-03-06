@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XNode;
 
@@ -18,6 +19,21 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public int SpeakerKey { get; set; }
         [field: SerializeField, HideInInspector] public bool IsExpanded { get; set; } = true;
 
+        [SerializeField, HideInInspector] private string _nodeId;
+
+        public string NodeId
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_nodeId))
+                {
+                    _nodeId = IdGenerator.GenerateId();
+                }
+                return _nodeId;
+            }
+            private set => _nodeId = value;
+        }
+
         internal bool TryGetEvents(out List<Node> events)
         {
             List<Node> nodes = new();
@@ -31,7 +47,18 @@ namespace DialogueSystem.DialogueEditor
             events = nodes;
             return events.Count > 0;
         }
+    }
 
+    public static class IdGenerator
+    {
+        private static readonly System.Random _random = new();
+        private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+        public static string GenerateId(int length = 8)
+        {
+            return new string(Enumerable.Repeat(Characters, length)
+                .Select(s => s[_random.Next(s.Length)])
+                .ToArray());
+        }
     }
 }

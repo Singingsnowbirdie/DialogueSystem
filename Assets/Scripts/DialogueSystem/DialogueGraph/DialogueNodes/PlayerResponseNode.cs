@@ -15,6 +15,21 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, TextArea(5, 10)] public string DialogueLine { get; set; }
         [field: SerializeField, HideInInspector] public List<PlayerResponseNodeJumper> ConnectedJumpers { get; set; } = new List<PlayerResponseNodeJumper>();
 
+        [SerializeField, HideInInspector] private string _nodeId;
+
+        public string NodeId
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_nodeId))
+                {
+                    _nodeId = IdGenerator.GenerateId();
+                }
+                return _nodeId;
+            }
+            private set => _nodeId = value;
+        }
+
         public string GetResponseOrder()
         {
             string str = "Response Order: ";
@@ -67,5 +82,7 @@ namespace DialogueSystem.DialogueEditor
                 return nodes;
             }
         }
+
+
     }
 }

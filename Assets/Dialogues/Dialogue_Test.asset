@@ -31,6 +31,61 @@ MonoBehaviour:
       _dynamic: 0
   <Output>k__BackingField: {fileID: 0}
   Key: Dialogue_Test
+--- !u!114 &-5956966504133227570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 88, y: -296}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -5956966504133227570}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 7069604449879266556}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: -5956966504133227570}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: -5956966504133227570}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: 'GikrOBi9
+
+    Player Response 1'
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: GikrOBi9
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +101,8 @@ MonoBehaviour:
   nodes:
   - {fileID: -6471973707407887234}
   - {fileID: 7069604449879266556}
+  - {fileID: -5956966504133227570}
+  - {fileID: 7452006555576591743}
 --- !u!114 &7069604449879266556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +137,13 @@ MonoBehaviour:
     - _fieldName: <Output>k__BackingField
       _node: {fileID: 7069604449879266556}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -5956966504133227570}
+        reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 7452006555576591743}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -96,8 +159,66 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: Hello, /playerName/!
+  <DialogueLine>k__BackingField: 't1sA8dp8
+
+    Hello, /playerName/!'
   <ConnectedJumpers>k__BackingField: []
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
+  _nodeId: t1sA8dp8
+--- !u!114 &7452006555576591743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 88, y: -24}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 7452006555576591743}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 7069604449879266556}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 7452006555576591743}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 7452006555576591743}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: 'YlW8OgQK
+
+    Player Response 2'
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: YlW8OgQK

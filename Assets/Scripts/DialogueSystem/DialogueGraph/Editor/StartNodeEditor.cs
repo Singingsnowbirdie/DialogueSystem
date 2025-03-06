@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using XNode;
 using XNodeEditor;
@@ -7,7 +6,7 @@ using XNodeEditor;
 namespace DialogueSystem.DialogueEditor
 {
     [CustomNodeEditor(typeof(StartNode))]
-    public class DialogueStartNodeEditor : DialogueNodeEditor
+    public class StartNodeEditor : DialogueNodeEditor
     {
         public override void OnCreate()
         {
@@ -57,6 +56,11 @@ namespace DialogueSystem.DialogueEditor
             EditorGUILayout.EndHorizontal();
 
             VerifyConnections();
+
+            if (GUILayout.Button("Save to JSON"))
+            {
+                startNode.SaveGraphToJson();
+            }
 
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();

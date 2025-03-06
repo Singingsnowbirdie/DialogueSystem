@@ -11,21 +11,8 @@ namespace NPC
         [SerializeField] private Transform _focusPoint;
         [SerializeField, Space] private NPC_Config _npcConfig;
 
-        private DialogueModel _dialogueModel;
-
-        public DialogueModel DialogueModel
-        {
-            get
-            {
-                if (_dialogueModel == null)
-                {
-                    NPCCollectionView npcCollectionView = GetComponentInParent<NPCCollectionView>();
-                    _dialogueModel = npcCollectionView.DialogueModel;
-                }
-
-                return _dialogueModel;
-            }
-        }
+        public string UniqueId => _npcConfig.UniqueId;
+        public NPCModel Model { private get; set; }
 
         public override void Interact(PlayerInteractionPresenter playerInteractionPresenter)
         {
@@ -50,7 +37,7 @@ namespace NPC
             base.Interact(playerInteractionPresenter);
 
             DialogueData dialogueData = new DialogueData(_npcConfig.NPC_Name, _npcConfig.DialogueKey, _focusPoint, _npcConfig.UniqueId);
-            DialogueModel.TryStartDialogue.OnNext(dialogueData);
+            Model.TryStartDialogue.OnNext(dialogueData);
         }
 
     }
