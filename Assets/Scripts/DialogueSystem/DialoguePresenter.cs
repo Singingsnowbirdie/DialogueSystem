@@ -1,5 +1,6 @@
 ﻿using Database;
 using DialogueSystem.DialogueEditor;
+using NPC;
 using Player;
 using UI.DialogueUI;
 using UniRx;
@@ -16,6 +17,7 @@ namespace DialogueSystem
         [Inject] private readonly DialogueModel _dialogueModel;
         [Inject] private readonly DialogueCameraModel _dialogueCameraModel;
         [Inject] private readonly PlayerModel _playerModel;
+        [Inject] private readonly NPCManagerModel _nPCManagerModel;
 
         private DialogueHandler _dialogueHandler;
         private DialogueLocalizationHandler _dialogueLocalizationHandler;
@@ -24,7 +26,7 @@ namespace DialogueSystem
 
         public void Initialize()
         {
-            _dialogueHandler = new DialogueHandler(_dialogueModel, this);
+            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, this);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode

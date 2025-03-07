@@ -1,15 +1,18 @@
 ﻿using DialogueSystem.DialogueEditor;
+using NPC;
 
 namespace DialogueSystem
 {
     public class DialogueHandler
     {
         private readonly DialogueModel _dialogueModel;
+        private readonly NPCManagerModel _npcManagerModel;
         private readonly DialoguePresenter _dialoguePresenter;
 
-        public DialogueHandler(DialogueModel dialogueModel, DialoguePresenter dialoguePresenter)
+        public DialogueHandler(DialogueModel dialogueModel, NPCManagerModel npcManagerModel, DialoguePresenter dialoguePresenter)
         {
             _dialogueModel = dialogueModel;
+            _npcManagerModel = npcManagerModel;
             _dialoguePresenter = dialoguePresenter;
         }
 
@@ -33,6 +36,7 @@ namespace DialogueSystem
             switch (conditionCheckNode.Condition)
             {
                 case EDialogueCondition.HasMet:
+                    HandleHasMetCondition(conditionCheckNode.NPCKey);
                     break;
                 case EDialogueCondition.IsReputationAmount:
                     break;
@@ -49,6 +53,11 @@ namespace DialogueSystem
                 case EDialogueCondition.IsDialogueVariable:
                     break;
             }
+        }
+
+        private void HandleHasMetCondition(int npcKey)
+        {
+
         }
     }
 }

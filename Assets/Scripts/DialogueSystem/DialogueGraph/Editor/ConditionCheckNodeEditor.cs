@@ -10,6 +10,10 @@ namespace DialogueSystem.DialogueEditor
         private ConditionCheckNode _conditionCheckNode;
         private DialogueGraph _dialogueGraph;
 
+        private bool _isNotesFoldout = false;
+
+        private const string NotesFoldoutKey = "ConditionCheckNode_NotesFoldout";
+
         public override void OnBodyGUI()
         {
             base.OnBodyGUI();
@@ -53,14 +57,27 @@ namespace DialogueSystem.DialogueEditor
                     break;
             }
 
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("GD Notes");
-            _conditionCheckNode.Notes = EditorGUILayout.TextArea(_conditionCheckNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
-
+            ShowNotesFoldout();
             VerifyConnections();
 
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();
+        }
+
+        private void ShowNotesFoldout()
+        {
+            EditorGUILayout.Space();
+
+            _isNotesFoldout = EditorPrefs.GetBool(NotesFoldoutKey, false);
+
+            _isNotesFoldout = EditorGUILayout.Foldout(_isNotesFoldout, "GD Notes");
+
+            if (_isNotesFoldout)
+            {
+                _conditionCheckNode.Notes = EditorGUILayout.TextArea(_conditionCheckNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
+            }
+
+            EditorPrefs.SetBool(NotesFoldoutKey, _isNotesFoldout);
         }
 
         private void ShowGenderOptions()
