@@ -130,8 +130,8 @@ namespace DialogueSystem.DialogueEditor
         private void ShowNPCOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("NPC Key");
-            _conditionCheckNode.NPCKey = EditorGUILayout.IntField(_conditionCheckNode.NPCKey);
+            EditorGUILayout.LabelField("NPC ID");
+            _conditionCheckNode.NpcID = EditorGUILayout.TextField(_conditionCheckNode.NpcID);
         }
 
         private void ShowReputationOptions()
@@ -143,8 +143,8 @@ namespace DialogueSystem.DialogueEditor
             if (_conditionCheckNode.ReputationComparisonTarget == EReputationComparisonTarget.NPC)
             {
                 EditorGUILayout.Space();
-                EditorGUILayout.LabelField("NPC Key");
-                _conditionCheckNode.NPCKey = EditorGUILayout.IntField(_conditionCheckNode.NPCKey);
+                EditorGUILayout.LabelField("NPC ID");
+                _conditionCheckNode.NpcID = EditorGUILayout.TextField(_conditionCheckNode.NpcID);
             }
             else
             {

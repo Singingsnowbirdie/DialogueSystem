@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: Condition Check
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -254, y: -49}
+  position: {x: -264, y: -216}
   ports:
     keys:
     - <Input>k__BackingField
@@ -109,7 +109,7 @@ MonoBehaviour:
   <ItemConfigKey>k__BackingField: 0
   <QuestKey>k__BackingField: 0
   <QuestState>k__BackingField: 0
-  <NPCKey>k__BackingField: 0
+  <NpcID>k__BackingField: bovDVMU8
   <DialogueVariableType>k__BackingField: 0
   <DialogueVariableKey>k__BackingField: 0
   <SelectedIndex>k__BackingField: 0

@@ -36,7 +36,7 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public EQuestState QuestState { get; set; }
 
         //NPC Options
-        [field: SerializeField, HideInInspector] public int NPCKey { get; set; }
+        [field: SerializeField, HideInInspector] public string NpcID { get; set; }
 
         // Dialogue Variables Options
         [field: SerializeField, HideInInspector] public EDialogueVariableType DialogueVariableType { get; set; }

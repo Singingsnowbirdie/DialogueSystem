@@ -36,7 +36,7 @@ namespace DialogueSystem
             switch (conditionCheckNode.Condition)
             {
                 case EDialogueCondition.HasMet:
-                    HandleHasMetCondition(conditionCheckNode.NPCKey);
+                    HandleHasMetCondition(conditionCheckNode.NpcID);
                     break;
                 case EDialogueCondition.IsReputationAmount:
                     break;
@@ -55,7 +55,7 @@ namespace DialogueSystem
             }
         }
 
-        private void HandleHasMetCondition(int npcKey)
+        private void HandleHasMetCondition(string npcID)
         {
 
         }
