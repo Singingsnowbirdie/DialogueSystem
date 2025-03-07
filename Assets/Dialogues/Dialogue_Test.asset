@@ -81,9 +81,7 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: 'GikrOBi9
-
-    Player Response 1'
+  <DialogueLine>k__BackingField: Player Response 1
   <ConnectedJumpers>k__BackingField: []
   _nodeId: GikrOBi9
 --- !u!114 &11400000
@@ -159,9 +157,7 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: 't1sA8dp8
-
-    Hello, /playerName/!'
+  <DialogueLine>k__BackingField: Hello, /playerName/!
   <ConnectedJumpers>k__BackingField: []
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
@@ -217,8 +213,6 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: 'YlW8OgQK
-
-    Player Response 2'
+  <DialogueLine>k__BackingField: Player Response 2
   <ConnectedJumpers>k__BackingField: []
   _nodeId: YlW8OgQK

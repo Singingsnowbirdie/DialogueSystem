@@ -7,7 +7,7 @@ namespace Database
     [CreateAssetMenu(fileName = "DialogueDatabase", menuName = "Database/Dialogue Database")]
     public class DialogueDatabase : ScriptableObject
     {
-        [SerializeField] private DialogueGraph[] dialogueGraphs;
+        [SerializeField] private DialogueGraph[] _dialogueGraphs;
 
         private Dictionary<string, DialogueGraph> _dialogueDictionary;
 
@@ -15,7 +15,7 @@ namespace Database
         {
             _dialogueDictionary = new Dictionary<string, DialogueGraph>();
 
-            foreach (var graph in dialogueGraphs)
+            foreach (var graph in _dialogueGraphs)
             {
                 if (graph.StartNode != null && !string.IsNullOrEmpty(graph.StartNode.Key))
                 {
@@ -26,7 +26,6 @@ namespace Database
                     Debug.LogWarning($"Graph {graph.name} does not have a GuidLabel or start node.");
                 }
             }
-
         }
 
         internal bool TryGetDialogueGraph(string dialogueID, out DialogueGraph graph)

@@ -18,11 +18,14 @@ namespace DialogueSystem
         [Inject] private readonly PlayerModel _playerModel;
 
         private DialogueHandler _dialogueHandler;
+        private DialogueLocalizationHandler _dialogueLocalizationHandler;
+
         private readonly CompositeDisposable _compositeDisposables = new CompositeDisposable();
 
         public void Initialize()
         {
             _dialogueHandler = new DialogueHandler(_dialogueModel, this);
+            _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode
                 .Subscribe(val => OnCurrentNodeUpdated(val))
@@ -60,8 +63,6 @@ namespace DialogueSystem
                 _dialogueHandler.HandleStartNode(startNode);
             else if (currentNode is SpeakerNode speakerNode)
             {
-                Debug.Log("Current Node is SpeakerNode");
-
                 if (_dialogueModel.IsDialogueStarted == false)
                 {
                     _dialogueModel.DialogueUIModel.Value = new DialogueUIModel();
@@ -69,17 +70,25 @@ namespace DialogueSystem
                     _dialogueModel.IsDialogueStarted = true;
                 }
 
-                _dialogueModel.DialogueUIModel.Value.DialogueText.Value = ReplacePlayerName(speakerNode.DialogueLine);
+                string dialogueLine = speakerNode.DialogueLine;
+
+                if (_dialogueLocalizationHandler.TryGetDialogueLine(_dialogueModel.Graph.StartNode.Key, speakerNode.NodeId, out string line))
+                {
+                    dialogueLine = line;
+                }
+
+                _dialogueModel.DialogueUIModel.Value.DialogueText.Value = ReplacePlayerName(dialogueLine);
+
             }
         }
 
         private string ReplacePlayerName(string dialogueLine)
         {
-            const string placeholder = "/playerName/";
+            const string Placeholder = "/playerName/";
 
-            if (dialogueLine.Contains(placeholder))
+            if (dialogueLine.Contains(Placeholder))
             {
-                return dialogueLine.Replace(placeholder, _playerModel.PlayerName);
+                return dialogueLine.Replace(Placeholder, _playerModel.PlayerName);
             }
 
             return dialogueLine;

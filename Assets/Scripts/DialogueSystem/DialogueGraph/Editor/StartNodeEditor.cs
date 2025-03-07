@@ -55,12 +55,21 @@ namespace DialogueSystem.DialogueEditor
             }
             EditorGUILayout.EndHorizontal();
 
-            VerifyConnections();
+            EditorGUILayout.Space();
 
             if (GUILayout.Button("Save to JSON"))
             {
                 startNode.SaveGraphToJson();
             }
+
+            EditorGUILayout.Space();
+
+            if (GUILayout.Button("Save to XML"))
+            {
+                startNode.SaveGraphToXML();
+            }
+
+            VerifyConnections();
 
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();

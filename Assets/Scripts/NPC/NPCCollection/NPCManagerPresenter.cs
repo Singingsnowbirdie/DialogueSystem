@@ -38,8 +38,6 @@ namespace NPC
                 npcModel.TryStartDialogue
                     .Subscribe(data => _dialogueModel.TryStartDialogue.OnNext(data))
                     .AddTo(_view);
-
-                Debug.Log($"Initialized NPC with ID: {npcView.UniqueId}");
             }
         }
     }

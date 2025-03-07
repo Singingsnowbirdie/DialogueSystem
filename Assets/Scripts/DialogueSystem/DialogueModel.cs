@@ -10,6 +10,7 @@ namespace DialogueSystem
         public bool IsDialogueStarted { get; set; }
         public string SpeakerName { get; set; }
         public DialogueGraph Graph { get; set; }
+        public DialogueDataWrapper DialogueJsonData { get; set; }
         public ReactiveProperty<DialogueNode> CurrentNode { get; } = new ReactiveProperty<DialogueNode>();
         public ReactiveProperty<DialogueUIModel> DialogueUIModel { get; } = new ReactiveProperty<DialogueUIModel>();
         public ISubject<DialogueData> TryStartDialogue { get; } = new Subject<DialogueData>();

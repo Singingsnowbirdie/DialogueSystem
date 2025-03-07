@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace DialogueSystem.DialogueEditor
 
         private void SaveGraphData(NodeGraph graph)
         {
-            string filePath = Path.Combine(Application.dataPath, $"Resources/{Key}.json");
+            string filePath = Path.Combine(Application.dataPath, $"Resources/JSON/{Key}.json");
             string resourcesFolder = Path.Combine(Application.dataPath, "Resources");
 
             if (!Directory.Exists(resourcesFolder))
@@ -90,6 +91,46 @@ namespace DialogueSystem.DialogueEditor
             }
         }
 
+        public void SaveGraphToXML()
+        {
+            SaveGraphToJson();
+
+            string jsonFilePath = Path.Combine(Application.dataPath, $"Resources/JSON/{Key}.json");
+            string outputExcelPath = Path.Combine(Application.persistentDataPath, $"{Key}.xlsx");
+
+            string jsonContent = File.ReadAllText(jsonFilePath);
+
+            var jsonData = JsonUtility.FromJson<JsonDataWrapper>(jsonContent);
+
+            if (jsonData == null || jsonData.Items == null || jsonData.Items.Count == 0)
+            {
+                Debug.LogError("The JSON file is empty or has an invalid format");
+                return;
+            }
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Data");
+
+                worksheet.Cells[1, 1].Value = "Node ID";
+                worksheet.Cells[1, 2].Value = "Node Type";
+                worksheet.Cells[1, 3].Value = "Original Text";
+
+                for (int i = 0; i < jsonData.Items.Count; i++)
+                {
+                    var item = jsonData.Items[i];
+                    worksheet.Cells[i + 2, 1].Value = item.NodeId;
+                    worksheet.Cells[i + 2, 2].Value = item.NodeType;
+                    worksheet.Cells[i + 2, 3].Value = item.DialogueLine;
+                }
+
+                FileInfo excelFile = new(outputExcelPath);
+                package.SaveAs(excelFile);
+
+                Debug.Log($"Excel file saved successfully to: {outputExcelPath}");
+            }
+        }
+
     }
 
     [Serializable]
@@ -100,10 +141,16 @@ namespace DialogueSystem.DialogueEditor
         public string DialogueLine;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class SerializationWrapper<T>
     {
         public List<T> Items;
         public SerializationWrapper(List<T> list) => Items = list;
+    }
+
+    [Serializable]
+    public class JsonDataWrapper
+    {
+        public List<NodeData> Items;
     }
 }

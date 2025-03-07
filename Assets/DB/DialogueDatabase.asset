@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31466e93a01ed04484f555de2c53064, type: 3}
   m_Name: DialogueDatabase
   m_EditorClassIdentifier: 
-  dialogueGraphs:
+  _dialogueGraphs:
   - {fileID: 11400000, guid: 8300ddb2d25e26a4d93dc225c4770787, type: 2}

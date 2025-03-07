@@ -1,0 +1,19 @@
+{
+    "Items": [
+        {
+            "NodeType": "SpeakerNode",
+            "NodeId": "t1sA8dp8",
+            "DialogueLine": "Hello, /playerName/!"
+        },
+        {
+            "NodeType": "PlayerResponseNode",
+            "NodeId": "GikrOBi9",
+            "DialogueLine": "Player Response 1"
+        },
+        {
+            "NodeType": "PlayerResponseNode",
+            "NodeId": "YlW8OgQK",
+            "DialogueLine": "Player Response 2"
+        }
+    ]
+}
