@@ -26,7 +26,7 @@ namespace DialogueSystem
 
         public void Initialize()
         {
-            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, this);
+            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, _playerModel, this);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode

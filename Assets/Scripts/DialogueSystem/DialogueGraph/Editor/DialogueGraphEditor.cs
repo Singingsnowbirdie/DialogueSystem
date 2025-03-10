@@ -67,24 +67,6 @@ namespace DialogueSystem.DialogueEditor
 
 
             base.RemoveNode(node);
-
-            // TEMP
-
-            //if (node is DialogueNodeJumper jumper)
-            //{
-            //    if (jumper.TargetNode != null)
-            //    {
-            //        DialogueNode dialogueNode = jumper.TargetNode;
-            //        dialogueNode.RemoveJumper(jumper);
-            //    }
-            //}
-
-            //if (node is DialogueNode targetNode)
-            //{
-            //    targetNode.RemoveFromJumpers();
-            //}
-
         }
     }
-
 }

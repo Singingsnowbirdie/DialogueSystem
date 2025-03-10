@@ -1,5 +1,6 @@
 ﻿using DialogueSystem.DialogueEditor;
 using NPC;
+using Player;
 using System.Collections.Generic;
 using XNode;
 
@@ -9,12 +10,14 @@ namespace DialogueSystem
     {
         private readonly DialogueModel _dialogueModel;
         private readonly NPCManagerModel _npcManagerModel;
+        private readonly PlayerModel _playerModel;
         private readonly DialoguePresenter _dialoguePresenter;
 
-        public DialogueHandler(DialogueModel dialogueModel, NPCManagerModel npcManagerModel, DialoguePresenter dialoguePresenter)
+        public DialogueHandler(DialogueModel dialogueModel, NPCManagerModel npcManagerModel, PlayerModel playerModel, DialoguePresenter dialoguePresenter)
         {
             _dialogueModel = dialogueModel;
             _npcManagerModel = npcManagerModel;
+            _playerModel = playerModel;
             _dialoguePresenter = dialoguePresenter;
         }
 
@@ -43,6 +46,7 @@ namespace DialogueSystem
                 case EDialogueCondition.IsReputationAmount:
                     break;
                 case EDialogueCondition.IsGender:
+                    HandleIsGenderConditionForSpeakerNode(conditionCheckNode);
                     break;
                 case EDialogueCondition.IsRace:
                     break;
@@ -57,15 +61,30 @@ namespace DialogueSystem
             }
         }
 
+        private void HandleIsGenderConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        {
+            bool metsCondition = false;
+
+            if (_playerModel.PlayerGender == conditionCheckNode.PlayerGender)
+                metsCondition = true;
+
+            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
+            HandleNextNodeType(connectedNodes[0]);
+        }
+
+        private void HandleNextNodeType(Node node)
+        {
+            if (node is SpeakerNode speakerNode)
+                _dialogueModel.CurrentNode.Value = speakerNode;
+            else if (node is ConditionCheckNode nextConditionCheckNode)
+                HandleSpeakerNodeCondition(nextConditionCheckNode);
+        }
+
         private void HandleHasMetConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
         {
             NPCData npcData = _npcManagerModel.NpcDatabase.GetNPCByID(conditionCheckNode.NpcID);
             List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(npcData.HasMetPlayer);
-
-            if (connectedNodes[0] is SpeakerNode speakerNode)
-            {
-                _dialogueModel.CurrentNode.Value = speakerNode;
-            }
+            HandleNextNodeType(connectedNodes[0]);
         }
     }
 }

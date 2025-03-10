@@ -3,7 +3,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using XNode;
-using static XNode.Node;
 
 namespace DialogueSystem.DialogueEditor
 {
