@@ -36,7 +36,7 @@ namespace NPC
 
             base.Interact(playerInteractionPresenter);
 
-            DialogueData dialogueData = new DialogueData(_npcConfig.NPC_Name, _npcConfig.DialogueKey, _focusPoint, _npcConfig.UniqueId);
+            DialogueData dialogueData = new(_npcConfig.NPC_Name, _npcConfig.DialogueKey, _focusPoint, _npcConfig.UniqueId);
             Model.TryStartDialogue.OnNext(dialogueData);
         }
 

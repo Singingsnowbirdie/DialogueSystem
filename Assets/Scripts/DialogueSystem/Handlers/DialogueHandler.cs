@@ -49,6 +49,7 @@ namespace DialogueSystem
                     HandleIsGenderConditionForSpeakerNode(conditionCheckNode);
                     break;
                 case EDialogueCondition.IsRace:
+                    HandleRaceConditionForSpeakerNode(conditionCheckNode);
                     break;
                 case EDialogueCondition.IsQuestState:
                     break;
@@ -59,6 +60,17 @@ namespace DialogueSystem
                 case EDialogueCondition.IsDialogueVariable:
                     break;
             }
+        }
+
+        private void HandleRaceConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        {
+            bool metsCondition = false;
+
+            if (_playerModel.PlayerRace == conditionCheckNode.PlayerRace)
+                metsCondition = true;
+
+            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
+            HandleNextNodeType(connectedNodes[0]);
         }
 
         private void HandleIsGenderConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
