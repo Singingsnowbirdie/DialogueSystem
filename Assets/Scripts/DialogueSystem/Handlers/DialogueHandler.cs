@@ -1,5 +1,7 @@
 ﻿using DialogueSystem.DialogueEditor;
 using NPC;
+using System.Collections.Generic;
+using XNode;
 
 namespace DialogueSystem
 {
@@ -36,7 +38,7 @@ namespace DialogueSystem
             switch (conditionCheckNode.Condition)
             {
                 case EDialogueCondition.HasMet:
-                    HandleHasMetCondition(conditionCheckNode.NpcID);
+                    HandleHasMetConditionForSpeakerNode(conditionCheckNode);
                     break;
                 case EDialogueCondition.IsReputationAmount:
                     break;
@@ -55,9 +57,15 @@ namespace DialogueSystem
             }
         }
 
-        private void HandleHasMetCondition(string npcID)
+        private void HandleHasMetConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
         {
+            NPCData npcData = _npcManagerModel.NpcDatabase.GetNPCByID(conditionCheckNode.NpcID);
+            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(npcData.HasMetPlayer);
 
+            if (connectedNodes[0] is SpeakerNode speakerNode)
+            {
+                _dialogueModel.CurrentNode.Value = speakerNode;
+            }
         }
     }
 }

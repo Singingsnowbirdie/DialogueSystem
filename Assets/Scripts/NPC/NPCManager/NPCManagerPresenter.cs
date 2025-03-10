@@ -13,6 +13,8 @@ namespace NPC
         [Inject] private readonly NPCManagerView _view;
         [Inject] private readonly DialogueModel _dialogueModel;
 
+
+
         public void Initialize()
         {
             NPCView[] npcViews = _view.GetComponentsInChildren<NPCView>();

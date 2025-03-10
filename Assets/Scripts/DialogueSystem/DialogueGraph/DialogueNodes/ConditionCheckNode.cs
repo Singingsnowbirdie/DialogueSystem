@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using XNode;
+using static XNode.Node;
 
 namespace DialogueSystem.DialogueEditor
 {
@@ -69,7 +71,7 @@ namespace DialogueSystem.DialogueEditor
 
                 if (connections.Count > 0)
                 {
-                    List<Node> connectedNodes = new List<Node>();
+                    List<Node> connectedNodes = new();
 
                     foreach (NodePort node in connections)
                     {
@@ -106,6 +108,62 @@ namespace DialogueSystem.DialogueEditor
             }
 
             return 0;
+        }
+
+        public override void OnCreateConnection(NodePort fromPort, NodePort toPort)
+        {
+            if (!ValidateConnection(fromPort, toPort))
+            {
+                fromPort.Disconnect(toPort);
+            }
+            else
+            {
+                base.OnCreateConnection(fromPort, toPort);
+            }
+        }
+
+        public bool ValidateConnection(NodePort fromPort, NodePort toPort)
+        {
+            Node connectingNode = toPort.node;
+
+            if (fromPort.fieldName.Contains("True"))
+            {
+                return ValidateOutputConnection(fromPort, connectingNode);
+            }
+            else if (fromPort.fieldName.Contains("False"))
+            {
+                return ValidateOutputConnection(fromPort, connectingNode);
+            }
+
+            return true;
+        }
+
+        private bool ValidateOutputConnection(NodePort outputPort, Node connectingNode)
+        {
+            List<Node> connectedNodes = outputPort.GetConnections().Select(port => port.node).ToList();
+
+            Debug.Log($"connectedNodes = {connectedNodes.Count}");
+
+            bool hasSpeakerNode = connectedNodes.Any(node => node is SpeakerNode || node is SpeakerNodeJumper);
+
+            if (connectingNode is SpeakerNode || connectingNode is SpeakerNodeJumper)
+            {
+                if (connectedNodes.Count > 1)
+                {
+                    EditorUtility.DisplayDialog("Connection Error", $"Cannot connect SpeakerNode or SpeakerNodeJumper to {outputPort.fieldName}: Other nodes are already connected.", "OK");
+                    return false;
+                }
+            }
+            else if (connectingNode is PlayerResponseNode || connectingNode is PlayerResponseNodeJumper)
+            {
+                if (hasSpeakerNode)
+                {
+                    EditorUtility.DisplayDialog("Connection Error", $"Cannot connect PlayerResponseNode or PlayerResponseNodeJumper to {outputPort.fieldName}: SpeakerNode or SpeakerNodeJumper is already connected.", "OK");
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

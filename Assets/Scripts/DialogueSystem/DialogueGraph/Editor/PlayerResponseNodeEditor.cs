@@ -89,6 +89,8 @@ namespace DialogueSystem.DialogueEditor
         {
             VerifyNextNodePort();
             VerifyEventsPort();
+
+
         }
 
         private void VerifyEventsPort()
@@ -130,5 +132,4 @@ namespace DialogueSystem.DialogueEditor
                 || connectedNode is ConditionCheckNode;
         }
     }
-
 }

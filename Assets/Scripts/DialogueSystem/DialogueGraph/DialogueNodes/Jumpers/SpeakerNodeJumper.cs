@@ -13,7 +13,8 @@ namespace DialogueSystem.DialogueEditor
             {
                 if (TargetNode != null)
                     return TargetNode.DialogueLine;
-                else return "The target node has been deleted! This jumper no longer works.";
+                else
+                    return "The target node has been deleted! This jumper no longer works.";
             }
         }
     }
