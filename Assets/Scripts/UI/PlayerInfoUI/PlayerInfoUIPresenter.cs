@@ -1,4 +1,5 @@
 ﻿using Player;
+using System;
 using UniRx;
 using VContainer;
 using VContainer.Unity;
@@ -19,14 +20,33 @@ namespace UI
             _uiModel.PlayerName.Value = $"Player Name: {_playerModel.PlayerName.Value}";
             _uiModel.PlayerRace.Value = $"Player Race: {_playerModel.PlayerRace.Value}";
 
-            _playerModel.ReputationAmount
-                .Subscribe(val => OnReputationAmountUpdated(val))
+            _playerModel.Reputation_OfficialAuthorities
+                .Subscribe(val => OnOfficialAuthoritiesReputationAmountUpdated(val))
+                .AddTo(_view);
+
+            _playerModel.Reputation_Civilian
+                .Subscribe(val => OnCivilianReputationAmountUpdated(val))
+                .AddTo(_view);
+
+            _playerModel.Reputation_Bandits
+                .Subscribe(val => OnBanditsReputationAmountUpdated(val))
                 .AddTo(_view);
 
         }
-        private void OnReputationAmountUpdated(int val)
+
+        private void OnBanditsReputationAmountUpdated(int val)
         {
-            _uiModel.ReputationAmount.Value = $"Player reputation: {val}";
+            _uiModel.Reputation_Bandit.Value = $"Bandits reputation: {val}";
+        }
+
+        private void OnCivilianReputationAmountUpdated(int val)
+        {
+            _uiModel.Reputation_Civilian.Value = $"Civilian reputation: {val}";
+        }
+
+        private void OnOfficialAuthoritiesReputationAmountUpdated(int val)
+        {
+            _uiModel.Reputation_OfficialAuthorities.Value = $"Official Authorities reputation: {val}";
         }
     }
 }

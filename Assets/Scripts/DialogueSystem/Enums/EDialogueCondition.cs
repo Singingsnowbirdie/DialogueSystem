@@ -10,6 +10,7 @@
         IsQuestState = 5,
         HasEnoughItems = 6,
         HasEnoughCoins = 7,
-        IsDialogueVariable = 8
+        IsDialogueVariable = 8,
+        IsFriendshipAmount = 9
     }
 }

@@ -45,10 +45,14 @@ namespace Player
         [System.Serializable]
         public class PlayerData
         {
-            public int Reputation = 0;
             public ERace Race = ERace.Human;
             public EGender Gender = EGender.Male;
             public string PlayerName = "John Doe";
+
+            // REPUTATION
+            public int Reputation_OfficialAuthorities = 0;
+            public int Reputation_Civilian = 0;
+            public int Reputation_Bandits = 0;
         }
     }
 

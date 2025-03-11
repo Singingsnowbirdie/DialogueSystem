@@ -145,11 +145,10 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <True>k__BackingField: 0
   <False>k__BackingField: 0
-  <Condition>k__BackingField: 3
+  <Condition>k__BackingField: 2
   <Notes>k__BackingField: 
   <ComparisonType>k__BackingField: 0
   <Amount>k__BackingField: 0
-  <ReputationComparisonTarget>k__BackingField: 0
   <Faction>k__BackingField: 0
   <PlayerGender>k__BackingField: 0
   <PlayerRace>k__BackingField: 0

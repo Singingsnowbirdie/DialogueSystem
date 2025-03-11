@@ -55,6 +55,8 @@ namespace DialogueSystem.DialogueEditor
                 case EDialogueCondition.IsDialogueVariable:
                     ShowDialogueVariableOptions();
                     break;
+                case EDialogueCondition.IsFriendshipAmount:
+                    break;
             }
 
             ShowNotesFoldout();
@@ -137,21 +139,8 @@ namespace DialogueSystem.DialogueEditor
         private void ShowReputationOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Compare To");
-            _conditionCheckNode.ReputationComparisonTarget = (EReputationComparisonTarget)EditorGUILayout.EnumPopup(_conditionCheckNode.ReputationComparisonTarget);
-
-            if (_conditionCheckNode.ReputationComparisonTarget == EReputationComparisonTarget.NPC)
-            {
-                EditorGUILayout.Space();
-                EditorGUILayout.LabelField("NPC ID");
-                _conditionCheckNode.NpcID = EditorGUILayout.TextField(_conditionCheckNode.NpcID);
-            }
-            else
-            {
-                EditorGUILayout.Space();
-                EditorGUILayout.LabelField("Faction");
-                _conditionCheckNode.Faction = (EFaction)EditorGUILayout.EnumPopup(_conditionCheckNode.Faction);
-            }
+            EditorGUILayout.LabelField("Compare To Faction");
+            _conditionCheckNode.Faction = (EFaction)EditorGUILayout.EnumPopup(_conditionCheckNode.Faction);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Comparison Type");

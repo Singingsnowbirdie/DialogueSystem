@@ -1,12 +1,13 @@
 using DialogueSystem.DialogueEditor;
 using UniRx;
-using UnityEngine;
 
 namespace Player
 {
     public class PlayerModel
     {
-        public ReactiveProperty<int> ReputationAmount { get; } = new ReactiveProperty<int>();
+        public ReactiveProperty<int> Reputation_OfficialAuthorities { get; } = new ReactiveProperty<int>();
+        public ReactiveProperty<int> Reputation_Civilian { get; } = new ReactiveProperty<int>();
+        public ReactiveProperty<int> Reputation_Bandits { get; } = new ReactiveProperty<int>();
         public ReactiveProperty<ERace> PlayerRace { get; } = new ReactiveProperty<ERace>();
         public ReactiveProperty<EGender> PlayerGender { get; } = new ReactiveProperty<EGender>();
         public ReactiveProperty<string> PlayerName { get; } = new ReactiveProperty<string>();
@@ -25,7 +26,9 @@ namespace Player
         public void SavePlayerData()
         {
             PlayerRepository.PlayerData playerData = PlayerRepository.LoadPlayerData();
-            playerData.Reputation = ReputationAmount.Value;
+            playerData.Reputation_OfficialAuthorities = Reputation_OfficialAuthorities.Value;
+            playerData.Reputation_Civilian = Reputation_Civilian.Value;
+            playerData.Reputation_Bandits = Reputation_Bandits.Value;
             PlayerRepository.SavePlayerData(playerData);
         }
 
@@ -33,10 +36,13 @@ namespace Player
         {
             PlayerRepository.PlayerData playerData = PlayerRepository.LoadPlayerData();
 
-            ReputationAmount.Value = playerData.Reputation;
             PlayerRace.Value = playerData.Race;
             PlayerGender.Value = playerData.Gender;
             PlayerName.Value = playerData.PlayerName;
+
+            Reputation_OfficialAuthorities.Value = playerData.Reputation_OfficialAuthorities;
+            Reputation_Civilian.Value = playerData.Reputation_Civilian;
+            Reputation_Bandits.Value = playerData.Reputation_Bandits;
         }
     }
 }

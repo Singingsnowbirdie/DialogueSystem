@@ -20,7 +20,6 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public int Amount { get; set; }
 
         // Reputation Options
-        [field: SerializeField, HideInInspector] public EReputationComparisonTarget ReputationComparisonTarget { get; set; }
         [field: SerializeField, HideInInspector] public EFaction Faction { get; set; }
 
         // Player`s Gender Options

@@ -1,6 +1,7 @@
 ﻿using DialogueSystem.DialogueEditor;
 using NPC;
 using Player;
+using System;
 using System.Collections.Generic;
 using XNode;
 
@@ -44,6 +45,7 @@ namespace DialogueSystem
                     HandleHasMetConditionForSpeakerNode(conditionCheckNode);
                     break;
                 case EDialogueCondition.IsReputationAmount:
+                    HandleReputationAmount(conditionCheckNode);
                     break;
                 case EDialogueCondition.IsGender:
                     HandleIsGenderConditionForSpeakerNode(conditionCheckNode);
@@ -59,7 +61,16 @@ namespace DialogueSystem
                     break;
                 case EDialogueCondition.IsDialogueVariable:
                     break;
+                case EDialogueCondition.IsFriendshipAmount:
+                    break;
+                case EDialogueCondition.None:
+                    break;
             }
+        }
+
+        private void HandleReputationAmount(ConditionCheckNode conditionCheckNode)
+        {
+            throw new NotImplementedException();
         }
 
         private void HandleRaceConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)

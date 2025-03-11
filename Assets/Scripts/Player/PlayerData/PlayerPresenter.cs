@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DialogueSystem.DialogueEditor;
+using System;
 using System.Collections.Generic;
-using UniRx;
 using VContainer;
 using VContainer.Unity;
 
@@ -9,22 +9,32 @@ namespace Player
     public class PlayerPresenter : IStartable
     {
         [Inject] private readonly PlayerModel _model;
-        private ICollection<IDisposable> _disposables = new List<IDisposable>();
 
         public void Start()
         {
             _model.LoadPlayerData();
         }
 
-        public void AddReputation(int amount)
+        /// <summary>
+        /// Value can be negative
+        /// </summary>
+        public void AddReputation(int amount, EFaction faction)
         {
-            _model.ReputationAmount.Value += amount;
-            _model.SavePlayerData();
-        }
+            switch (faction)
+            {
+                case EFaction.OfficialAuthorities:
+                    _model.Reputation_OfficialAuthorities.Value += amount;
+                    break;
+                case EFaction.Civilian:
+                    _model.Reputation_Civilian.Value += amount;
+                    break;
+                case EFaction.Bandits:
+                    _model.Reputation_Bandits.Value += amount;
+                    break;
+                default:
+                    break;
+            }
 
-        public void RemoveReputation(int amount)
-        {
-            _model.ReputationAmount.Value -= amount;
             _model.SavePlayerData();
         }
     }
