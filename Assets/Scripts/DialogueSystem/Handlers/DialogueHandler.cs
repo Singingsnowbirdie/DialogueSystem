@@ -66,7 +66,7 @@ namespace DialogueSystem
         {
             bool metsCondition = false;
 
-            if (_playerModel.PlayerRace == conditionCheckNode.PlayerRace)
+            if (_playerModel.PlayerRace.Value == conditionCheckNode.PlayerRace)
                 metsCondition = true;
 
             List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
@@ -77,7 +77,7 @@ namespace DialogueSystem
         {
             bool metsCondition = false;
 
-            if (_playerModel.PlayerGender == conditionCheckNode.PlayerGender)
+            if (_playerModel.PlayerGender.Value == conditionCheckNode.PlayerGender)
                 metsCondition = true;
 
             List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
@@ -94,7 +94,7 @@ namespace DialogueSystem
 
         private void HandleHasMetConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
         {
-            NPCData npcData = _npcManagerModel.NpcDatabase.GetNPCByID(conditionCheckNode.NpcID);
+            NPCData npcData = _npcManagerModel.NPCRepository.GetNPCByID(conditionCheckNode.NpcID);
             List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(npcData.HasMetPlayer);
             HandleNextNodeType(connectedNodes[0]);
         }

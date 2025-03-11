@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GM_Tools
 {
-    [CustomEditor(typeof(DebugTool_NPCDatabase))]
+    [CustomEditor(typeof(DebugTool_NPC))]
     public class DebugTool_NPCDatabaseEditor : Editor
     {
         private string _npcId = ""; 
@@ -13,7 +13,7 @@ namespace GM_Tools
         {
             DrawDefaultInspector();
 
-            DebugTool_NPCDatabase debugTool = (DebugTool_NPCDatabase)target;
+            DebugTool_NPC debugTool = (DebugTool_NPC)target;
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Caution!", EditorStyles.boldLabel);

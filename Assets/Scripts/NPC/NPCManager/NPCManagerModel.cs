@@ -7,14 +7,14 @@ namespace NPC
         public Dictionary<string, NPCView> NPCViews { get; private set; } = new Dictionary<string, NPCView>();
         public Dictionary<string, NPCModel> NPCModels { get; private set; } = new Dictionary<string, NPCModel>();
 
-        private NPCDatabase _npcDatabase;
+        private NPCRepository _npcRepository;
 
-        public NPCDatabase NpcDatabase
+        public NPCRepository NPCRepository
         {
             get
             {
-                _npcDatabase ??= new NPCDatabase();
-                return _npcDatabase;
+                _npcRepository ??= new NPCRepository();
+                return _npcRepository;
             }
         }
     }

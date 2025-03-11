@@ -90,7 +90,7 @@ namespace DialogueSystem
 
             if (dialogueLine.Contains(Placeholder))
             {
-                return dialogueLine.Replace(Placeholder, _playerModel.PlayerName);
+                return dialogueLine.Replace(Placeholder, _playerModel.PlayerName.Value);
             }
 
             return dialogueLine;

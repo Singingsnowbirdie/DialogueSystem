@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NPC
 {
-    public class NPCDatabase
+    public class NPCRepository
     {
         private List<NPCData> _npcs = new List<NPCData>();
         private string _jsonFilePath;
@@ -18,7 +18,7 @@ namespace NPC
             }
         }
 
-        public NPCDatabase()
+        public NPCRepository()
         {
             LoadData();
         }
