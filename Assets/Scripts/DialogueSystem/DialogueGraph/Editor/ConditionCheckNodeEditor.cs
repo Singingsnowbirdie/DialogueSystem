@@ -105,8 +105,8 @@ namespace DialogueSystem.DialogueEditor
             _conditionCheckNode.DialogueVariableType = (EDialogueVariableType)EditorGUILayout.EnumPopup(_conditionCheckNode.DialogueVariableType);
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Variable Key");
-            _conditionCheckNode.DialogueVariableKey = EditorGUILayout.IntField(_conditionCheckNode.DialogueVariableKey);
+            EditorGUILayout.LabelField("Variable ID");
+            _conditionCheckNode.ID = EditorGUILayout.TextField(_conditionCheckNode.ID);
 
             if (_conditionCheckNode.DialogueVariableType == EDialogueVariableType.Amount)
             {
@@ -123,8 +123,8 @@ namespace DialogueSystem.DialogueEditor
         private void ShowItemsOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Item Dialogue Key");
-            _conditionCheckNode.ItemConfigKey = EditorGUILayout.IntField(_conditionCheckNode.ItemConfigKey);
+            EditorGUILayout.LabelField("Item ID");
+            _conditionCheckNode.ID = EditorGUILayout.TextField(_conditionCheckNode.ID);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Items Amount");
@@ -140,7 +140,7 @@ namespace DialogueSystem.DialogueEditor
             {
                 EditorGUILayout.Space();
                 EditorGUILayout.LabelField("NPC ID");
-                _conditionCheckNode.NpcID = EditorGUILayout.TextField(_conditionCheckNode.NpcID);
+                _conditionCheckNode.ID = EditorGUILayout.TextField(_conditionCheckNode.ID);
             }
         }
 
@@ -175,8 +175,8 @@ namespace DialogueSystem.DialogueEditor
         private void ShowQuestStateOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Quest Key");
-            _conditionCheckNode.QuestKey = EditorGUILayout.TextField(_conditionCheckNode.QuestKey);
+            EditorGUILayout.LabelField("Quest ID");
+            _conditionCheckNode.ID = EditorGUILayout.TextField(_conditionCheckNode.ID);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Quest State To Compare");

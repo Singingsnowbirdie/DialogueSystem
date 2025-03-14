@@ -1,7 +1,9 @@
 ﻿using Characters;
 using DialogueSystem.DialogueEditor;
+using InventorySystem;
 using Player;
 using QuestSystem;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
@@ -15,11 +17,12 @@ namespace DialogueSystem
         private readonly PlayerModel _playerModel;
         private readonly DialoguePresenter _dialoguePresenter;
         private readonly JournalModel _journalModel;
+        private readonly InventoryModel _inventoryModel;
 
         private string _speakerID = "";
 
-        public DialogueHandler(DialogueModel dialogueModel, CharactersModel npcManagerModel, 
-            PlayerModel playerModel, JournalModel journalModel, 
+        public DialogueHandler(DialogueModel dialogueModel, CharactersModel npcManagerModel,
+            PlayerModel playerModel, JournalModel journalModel,
             DialoguePresenter dialoguePresenter)
         {
             _dialogueModel = dialogueModel;
@@ -38,7 +41,7 @@ namespace DialogueSystem
                 if (node is SpeakerNode speakerNode)
                     _dialogueModel.CurrentNode.Value = speakerNode;
                 else if (node is ConditionCheckNode conditionCheckNode)
-                    HandleSpeakerNodeCondition(conditionCheckNode);
+                    HandleConditionCheck(conditionCheckNode);
                 else
                     _dialoguePresenter.EndDialogue();
             }
@@ -46,78 +49,96 @@ namespace DialogueSystem
                 _dialoguePresenter.EndDialogue();
         }
 
-        public void HandleSpeakerNodeCondition(ConditionCheckNode conditionCheckNode)
+        public void HandleConditionCheck(ConditionCheckNode conditionCheckNode)
         {
-            switch (conditionCheckNode.Condition)
-            {
-                case EDialogueCondition.IsReputationAmount:
-                    HandleReputationAmount(conditionCheckNode);
-                    break;
-                case EDialogueCondition.IsGender:
-                    HandleIsGenderConditionForSpeakerNode(conditionCheckNode);
-                    break;
-                case EDialogueCondition.IsRace:
-                    HandleRaceConditionForSpeakerNode(conditionCheckNode);
-                    break;
-                case EDialogueCondition.HasMet:
-                    HandleHasMetConditionForSpeakerNode(conditionCheckNode);
-                    break;
-                case EDialogueCondition.IsFriendshipAmount:
-                    HandleFriendshipAmountConditionForSpeakerNode(conditionCheckNode);
-                    break;
-                case EDialogueCondition.IsQuestState:
-                    HandleQuestStateConditionForSpeakerNode(conditionCheckNode);
-                    break;
-                case EDialogueCondition.HasEnoughItems:
-                    break;
-                case EDialogueCondition.HasEnoughCoins:
-                    break;
-                case EDialogueCondition.IsDialogueVariable:
-                    break;
-                case EDialogueCondition.None:
-                    break;
-            }
+            bool metsCondition = MetsCondition(conditionCheckNode);
+            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
+            HandleNextNodeType(connectedNodes[0]);
         }
 
-        private void HandleQuestStateConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        private bool MetsCondition(ConditionCheckNode conditionCheckNode)
+        {
+            return conditionCheckNode.Condition switch
+            {
+                EDialogueCondition.IsReputationAmount => IsReputationAmount(conditionCheckNode),
+                EDialogueCondition.IsGender => IsGender(conditionCheckNode),
+                EDialogueCondition.IsRace => IsRace(conditionCheckNode),
+                EDialogueCondition.HasMet => HasMet(conditionCheckNode),
+                EDialogueCondition.IsFriendshipAmount => IsFriendshipAmount(conditionCheckNode),
+                EDialogueCondition.IsQuestState => IsQuestState(conditionCheckNode),
+                EDialogueCondition.HasEnoughItems => HasEnoughItems(conditionCheckNode),
+                EDialogueCondition.HasEnoughCoins => HasEnoughCoins(conditionCheckNode),
+                EDialogueCondition.IsDialogueVariable => IsDialogueVariable(conditionCheckNode),
+                _ => false,
+            };
+        }
+
+        private bool IsDialogueVariable(ConditionCheckNode conditionCheckNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool IsQuestState(ConditionCheckNode conditionCheckNode)
         {
             bool metsCondition = false;
 
-            if (string.IsNullOrEmpty(conditionCheckNode.QuestKey))
+            if (string.IsNullOrEmpty(conditionCheckNode.ID))
             {
                 Debug.Log("Quest ID for checking status is not specified!");
             }
             else
             {
-                QuestData questData = _journalModel.QuestsRepository.GetQuestByID(conditionCheckNode.QuestKey);
+                QuestData questData = _journalModel.QuestsRepository.GetQuestByID(conditionCheckNode.ID);
 
                 metsCondition = questData.QuestState == conditionCheckNode.QuestState;
             }
 
-            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
-            HandleNextNodeType(connectedNodes[0]);
+            return metsCondition;
         }
 
-        private void HandleReputationAmount(ConditionCheckNode conditionCheckNode)
+        private bool IsReputationAmount(ConditionCheckNode conditionCheckNode)
         {
             int playersAmount = _playerModel.GetReputation(conditionCheckNode.Faction);
             int comparisonAmount = conditionCheckNode.Amount;
 
-            bool metsCondition = Compare(playersAmount, comparisonAmount, conditionCheckNode.ComparisonType);
-
-            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
-            HandleNextNodeType(connectedNodes[0]);
+            return Compare(playersAmount, comparisonAmount, conditionCheckNode.ComparisonType);
         }
 
-        private void HandleFriendshipAmountConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        private bool HasEnoughItems(ConditionCheckNode conditionCheckNode)
+        {
+            bool metsCondition = false;
+
+            if (string.IsNullOrEmpty(conditionCheckNode.ID))
+            {
+                Debug.Log("Item ID for checking status is not specified!");
+            }
+            else
+            {
+                if (_inventoryModel.TryGetItemByID(conditionCheckNode.ID, out Item item))
+                {
+                    metsCondition = Compare(item.Quantity, conditionCheckNode.Amount, conditionCheckNode.ComparisonType);
+                }
+            }
+
+            return metsCondition;
+        }
+
+        private bool HasEnoughCoins(ConditionCheckNode conditionCheckNode)
+        {
+            if (_inventoryModel.TryGetItemByID("Coins", out Item item))
+            {
+                return Compare(item.Quantity, conditionCheckNode.Amount, conditionCheckNode.ComparisonType);
+            }
+
+            return false;
+        }
+
+        private bool IsFriendshipAmount(ConditionCheckNode conditionCheckNode)
         {
             CharacterData npcData = GetNpcData(conditionCheckNode);
             int npcAmount = npcData.FriendshipAmount;
             int comparisonAmount = conditionCheckNode.Amount;
-
-            bool metsCondition = Compare(npcAmount, comparisonAmount, conditionCheckNode.ComparisonType);
-            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
-            HandleNextNodeType(connectedNodes[0]);
+            return Compare(npcAmount, comparisonAmount, conditionCheckNode.ComparisonType);
         }
 
         private bool Compare(int playersAmount, int comparisonAmount, EComparisonTypes comparisonType)
@@ -133,26 +154,24 @@ namespace DialogueSystem
             };
         }
 
-        private void HandleRaceConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        private bool IsRace(ConditionCheckNode conditionCheckNode)
         {
             bool metsCondition = false;
 
             if (_playerModel.PlayerRace.Value == conditionCheckNode.PlayerRace)
                 metsCondition = true;
 
-            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
-            HandleNextNodeType(connectedNodes[0]);
+            return metsCondition;
         }
 
-        private void HandleIsGenderConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        private bool IsGender(ConditionCheckNode conditionCheckNode)
         {
             bool metsCondition = false;
 
             if (_playerModel.PlayerGender.Value == conditionCheckNode.PlayerGender)
                 metsCondition = true;
 
-            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
-            HandleNextNodeType(connectedNodes[0]);
+            return metsCondition;
         }
 
         private void HandleNextNodeType(Node node)
@@ -160,14 +179,13 @@ namespace DialogueSystem
             if (node is SpeakerNode speakerNode)
                 _dialogueModel.CurrentNode.Value = speakerNode;
             else if (node is ConditionCheckNode nextConditionCheckNode)
-                HandleSpeakerNodeCondition(nextConditionCheckNode);
+                HandleConditionCheck(nextConditionCheckNode);
         }
 
-        private void HandleHasMetConditionForSpeakerNode(ConditionCheckNode conditionCheckNode)
+        private bool HasMet(ConditionCheckNode conditionCheckNode)
         {
             CharacterData npcData = GetNpcData(conditionCheckNode);
-            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(npcData.HasMetPlayer);
-            HandleNextNodeType(connectedNodes[0]);
+            return npcData.HasMetPlayer;
         }
 
         private CharacterData GetNpcData(ConditionCheckNode conditionCheckNode)
@@ -176,7 +194,7 @@ namespace DialogueSystem
             if (conditionCheckNode.IsThisNPC)
                 npcData = _npcManagerModel.CharactersRepository.GetCharacterByID(_speakerID);
             else
-                npcData = _npcManagerModel.CharactersRepository.GetCharacterByID(conditionCheckNode.NpcID);
+                npcData = _npcManagerModel.CharactersRepository.GetCharacterByID(conditionCheckNode.ID);
             return npcData;
         }
     }

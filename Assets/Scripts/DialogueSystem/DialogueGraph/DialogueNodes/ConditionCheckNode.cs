@@ -29,20 +29,14 @@ namespace DialogueSystem.DialogueEditor
         // Player`s Race Options
         [field: SerializeField, HideInInspector] public ERace PlayerRace { get; set; }
 
-        // Item Options
-        [field: SerializeField, HideInInspector] public int ItemConfigKey { get; set; }
-
         // Quest Options
-        [field: SerializeField, HideInInspector] public string QuestKey { get; set; }
         [field: SerializeField, HideInInspector] public EQuestState QuestState { get; set; }
 
-        //NPC Options
-        [field: SerializeField, HideInInspector] public string NpcID { get; set; }
+        //ID Options
+        [field: SerializeField, HideInInspector] public string ID { get; set; }
 
         // Dialogue Variables Options
         [field: SerializeField, HideInInspector] public EDialogueVariableType DialogueVariableType { get; set; }
-        [field: SerializeField, HideInInspector] public int DialogueVariableKey { get; set; }
-        [field: SerializeField, HideInInspector] public int SelectedIndex { get; set; }
 
         internal List<Node> GetBoolConnections(bool isTrue)
         {

@@ -42,6 +42,8 @@ namespace DialogueSystem
             _dialogueModel.TryStartDialogue
                 .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint, data.NPC_ID))
                 .AddTo(_compositeDisposables);
+
+            _dialogueModel.LoadVariables();
         }
 
         internal void TryToStartDialogue(string speakerName, string dialogueID, Transform focusPoint, string npcID)

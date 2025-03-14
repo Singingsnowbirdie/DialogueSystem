@@ -1,4 +1,5 @@
 ﻿using DialogueSystem.DialogueEditor;
+using System.Collections.Generic;
 using UI.DialogueUI;
 using UniRx;
 using UnityEngine;
@@ -14,7 +15,35 @@ namespace DialogueSystem
         public DialogueDataWrapper DialogueJsonData { get; set; }
         public ReactiveProperty<DialogueNode> CurrentNode { get; } = new ReactiveProperty<DialogueNode>();
         public ReactiveProperty<DialogueUIModel> DialogueUIModel { get; } = new ReactiveProperty<DialogueUIModel>();
+        public ReactiveCollection<DialogueVariable> DialogueVariables { get; } = new ReactiveCollection<DialogueVariable>();
         public ISubject<DialogueData> TryStartDialogue { get; } = new Subject<DialogueData>();
+
+        private DialogueVariablesRepository _dialogueVariablesRepository;
+
+        public DialogueVariablesRepository DialogueVariablesRepository
+        {
+            get
+            {
+                _dialogueVariablesRepository ??= new DialogueVariablesRepository();
+                return _dialogueVariablesRepository;
+            }
+        }
+
+        public void LoadVariables()
+        {
+            List<DialogueVariable> variables = DialogueVariablesRepository.LoadDialogueVariables();
+
+            DialogueVariables.Clear();
+            foreach (var item in variables)
+            {
+                DialogueVariables.Add(item);
+            }
+        }
+
+        public void SaveDialogueVariables()
+        {
+            DialogueVariablesRepository.SaveDialogueVariables(DialogueVariables);
+        }
     }
 
     public readonly struct DialogueData

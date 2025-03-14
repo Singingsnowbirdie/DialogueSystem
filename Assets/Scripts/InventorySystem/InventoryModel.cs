@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 
 namespace InventorySystem
@@ -18,6 +19,22 @@ namespace InventorySystem
             }
         }
 
+        internal bool TryGetItemByID(string itemId, out Item item)
+        {
+            Item existingItem = Items.FirstOrDefault(item => item.ItemID == itemId);
+
+            if (existingItem != null)
+            {
+                item = existingItem;
+                return true;
+            }
+            else
+            {
+                item = null;
+                return false;
+            }
+        }
+
         public void LoadInventory()
         {
             List<Item> savedItems = InventoryRepository.LoadInventory();
@@ -33,5 +50,7 @@ namespace InventorySystem
         {
             InventoryRepository.SaveInventory(Items);
         }
+
+
     }
 }
