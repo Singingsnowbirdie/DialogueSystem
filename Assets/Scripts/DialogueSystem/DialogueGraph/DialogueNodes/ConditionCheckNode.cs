@@ -18,6 +18,7 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public string Notes { get; set; }
         [field: SerializeField, HideInInspector] public EComparisonTypes ComparisonType { get; set; }
         [field: SerializeField, HideInInspector] public int Amount { get; set; }
+        [field: SerializeField, HideInInspector] public bool IsThisNPC { get; set; } = true;
 
         // Reputation Options
         [field: SerializeField, HideInInspector] public EFaction Faction { get; set; }
@@ -32,7 +33,7 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public int ItemConfigKey { get; set; }
 
         // Quest Options
-        [field: SerializeField, HideInInspector] public int QuestKey { get; set; }
+        [field: SerializeField, HideInInspector] public string QuestKey { get; set; }
         [field: SerializeField, HideInInspector] public EQuestState QuestState { get; set; }
 
         //NPC Options

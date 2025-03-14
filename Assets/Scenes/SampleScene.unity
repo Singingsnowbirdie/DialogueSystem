@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 50150748}
   - component: {fileID: 50150751}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: Test NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusPoint: {fileID: 809596409}
   _npcConfig:
-    <UniqueId>k__BackingField: bovDVMU8
+    <NPC_ID>k__BackingField: zgxguq2s
     <NPC_Name>k__BackingField: Test NPC
     <DialogueKey>k__BackingField: Dialogue_Test
 --- !u!1 &119703993
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775de31c705cfe4b9bee638a9741dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uniqueId: bovDVMU8
+  _uniqueId: zgxguq2s
 --- !u!1 &557114036
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +768,6 @@ GameObject:
   - component: {fileID: 664207483}
   - component: {fileID: 664207486}
   - component: {fileID: 664207485}
-  - component: {fileID: 664207484}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -792,27 +791,6 @@ Transform:
   - {fileID: 809596409}
   m_Father: {fileID: 50150747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &664207484
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664207482}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &664207485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2954,7 +2932,7 @@ GameObject:
   - component: {fileID: 1564170770}
   - component: {fileID: 1564170769}
   m_Layer: 0
-  m_Name: NPC Manager
+  m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2999,7 +2977,7 @@ GameObject:
   - component: {fileID: 1637468517}
   - component: {fileID: 1637468518}
   m_Layer: 0
-  m_Name: Player Debug Tool
+  m_Name: Player Configuration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3551,7 +3529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747649726}
   m_Layer: 0
-  m_Name: GM TOOLS
+  m_Name: TOOLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3829,7 +3807,7 @@ GameObject:
   - component: {fileID: 1912289554}
   - component: {fileID: 1912289555}
   m_Layer: 0
-  m_Name: NPC Debug Tool
+  m_Name: Characters Configuration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

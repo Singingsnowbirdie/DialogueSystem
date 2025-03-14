@@ -9,6 +9,7 @@ namespace DialogueSystem
     {
         public bool IsDialogueStarted { get; set; }
         public string SpeakerName { get; set; }
+        public string SpeakerID { get; set; }
         public DialogueGraph Graph { get; set; }
         public DialogueDataWrapper DialogueJsonData { get; set; }
         public ReactiveProperty<DialogueNode> CurrentNode { get; } = new ReactiveProperty<DialogueNode>();
@@ -19,16 +20,16 @@ namespace DialogueSystem
     public readonly struct DialogueData
     {
         public Transform FocusPoint { get; }
-        public string UniqueId { get; }
+        public string NPC_ID { get; }
         public string DialogueID { get; }
         public string SpeakerName { get; }
 
-        public DialogueData(string speakerName, string message, Transform focusPoint, string uniqueId)
+        public DialogueData(string speakerName, string message, Transform focusPoint, string npcId)
         {
             SpeakerName = speakerName;
             DialogueID = message;
             FocusPoint = focusPoint;
-            UniqueId = uniqueId;
+            NPC_ID = npcId;
         }
     }
 }

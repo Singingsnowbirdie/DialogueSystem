@@ -3,12 +3,12 @@ using UniRx;
 
 namespace NPC
 {
-    public class NPCModel
+    public class CharacterModel
     {
         public string Id { get; private set; }
         public ISubject<DialogueData> TryStartDialogue { get; } = new Subject<DialogueData>();
 
-        public NPCModel(string id)
+        public CharacterModel(string id)
         {
             Id = id;
         }

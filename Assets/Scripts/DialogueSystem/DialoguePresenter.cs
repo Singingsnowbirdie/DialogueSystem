@@ -1,7 +1,8 @@
-﻿using Database;
+﻿using Characters;
+using Database;
 using DialogueSystem.DialogueEditor;
-using NPC;
 using Player;
+using QuestSystem;
 using UI.DialogueUI;
 using UniRx;
 using UnityEngine;
@@ -17,7 +18,8 @@ namespace DialogueSystem
         [Inject] private readonly DialogueModel _dialogueModel;
         [Inject] private readonly DialogueCameraModel _dialogueCameraModel;
         [Inject] private readonly PlayerModel _playerModel;
-        [Inject] private readonly NPCManagerModel _nPCManagerModel;
+        [Inject] private readonly CharactersModel _nPCManagerModel;
+        [Inject] private readonly JournalModel _journalModel;
 
         private DialogueHandler _dialogueHandler;
         private DialogueLocalizationHandler _dialogueLocalizationHandler;
@@ -26,7 +28,7 @@ namespace DialogueSystem
 
         public void Initialize()
         {
-            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, _playerModel, this);
+            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, _playerModel, _journalModel, this);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode
@@ -38,15 +40,16 @@ namespace DialogueSystem
                 .AddTo(_compositeDisposables);
 
             _dialogueModel.TryStartDialogue
-                .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint))
+                .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint, data.NPC_ID))
                 .AddTo(_compositeDisposables);
         }
 
-        internal void TryToStartDialogue(string speakerName, string dialogueID, Transform focusPoint)
+        internal void TryToStartDialogue(string speakerName, string dialogueID, Transform focusPoint, string npcID)
         {
             if (_dialogueDatabase.TryGetDialogueGraph(dialogueID, out DialogueGraph graph))
             {
                 _dialogueModel.SpeakerName = speakerName;
+                _dialogueModel.SpeakerID = npcID;
                 _dialogueModel.Graph = graph;
                 _dialogueModel.CurrentNode.Value = graph.StartNode;
                 _dialogueCameraModel.NpcFocusPoint.Value = focusPoint;
@@ -62,7 +65,7 @@ namespace DialogueSystem
             }
 
             if (currentNode is StartNode startNode)
-                _dialogueHandler.HandleStartNode(startNode);
+                _dialogueHandler.HandleStartNode(startNode, _dialogueModel.SpeakerID);
             else if (currentNode is SpeakerNode speakerNode)
             {
                 if (_dialogueModel.IsDialogueStarted == false)

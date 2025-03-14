@@ -1,7 +1,10 @@
+using Characters;
 using Database;
 using DialogueSystem;
+using InventorySystem;
 using NPC;
 using Player;
+using QuestSystem;
 using UI;
 using UI.DialogueUI;
 using UnityEngine;
@@ -24,8 +27,8 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private Camera _camera;
     [SerializeField] private DialogueCameraView _dialogueCameraView;
 
-    [Header("NPC")]
-    [SerializeField] private NPCManagerView _npcManagerView;
+    [Header("CHARACTERS")]
+    [SerializeField] private CharactersView _charactersView;
 
     [Header("DATABASE")]
     [SerializeField] private DialogueDatabase _dialogueDatabase;
@@ -35,7 +38,7 @@ public class GameLifetimeScope : LifetimeScope
         // Register Views
         builder.RegisterComponent(_playerView).AsSelf();
         builder.RegisterComponent(_dialogueCameraView).AsSelf();
-        builder.RegisterComponent(_npcManagerView).AsSelf();
+        builder.RegisterComponent(_charactersView).AsSelf();
 
         // Register UI Views
         builder.RegisterComponent(_dialogueView).AsSelf();
@@ -52,8 +55,10 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<PlayerLocomotionModel>(Lifetime.Singleton);
         builder.Register<PlayerInteractionModel>(Lifetime.Singleton);
         builder.Register<DialogueModel>(Lifetime.Singleton);
-        builder.Register<NPCManagerModel>(Lifetime.Singleton);
+        builder.Register<CharactersModel>(Lifetime.Singleton);
         builder.Register<DialogueCameraModel>(Lifetime.Singleton);
+        builder.Register<JournalModel>(Lifetime.Singleton);
+        builder.Register<InventoryModel>(Lifetime.Singleton);
 
         // Register UI Models
         builder.Register<InteractionPromptUIModel>(Lifetime.Singleton);
@@ -65,8 +70,10 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterEntryPoint<DialoguePresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<PlayerLocomotionPresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<PlayerInteractionPresenter>(Lifetime.Singleton);
-        builder.RegisterEntryPoint<NPCManagerPresenter>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<CharactersPresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<DialogueCameraPresenter>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<JournalPresenter>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<InventoryPresenter>(Lifetime.Singleton);
 
         // Register UI Presenters
         builder.RegisterEntryPoint<InteractionPromptPresenter>(Lifetime.Singleton);

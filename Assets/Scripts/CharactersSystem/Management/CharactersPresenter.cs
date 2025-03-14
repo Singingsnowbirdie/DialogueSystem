@@ -1,4 +1,5 @@
-﻿using DialogueSystem;
+﻿using Characters;
+using DialogueSystem;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -7,18 +8,18 @@ using VContainer.Unity;
 
 namespace NPC
 {
-    public class NPCManagerPresenter : IInitializable
+    public class CharactersPresenter : IInitializable
     {
-        [Inject] private readonly NPCManagerModel _model;
-        [Inject] private readonly NPCManagerView _view;
+        [Inject] private readonly CharactersModel _model;  
+        [Inject] private readonly CharactersView _view;
         [Inject] private readonly DialogueModel _dialogueModel;
 
         public void Initialize()
         {
-            NPCView[] npcViews = _view.GetComponentsInChildren<NPCView>();
+            CharacterView[] characterViews = _view.GetComponentsInChildren<CharacterView>();
             HashSet<string> uniqueIds = new HashSet<string>();
 
-            foreach (var npcView in npcViews)
+            foreach (var npcView in characterViews)
             {
                 if (uniqueIds.Contains(npcView.UniqueId))
                 {
@@ -28,10 +29,10 @@ namespace NPC
                 }
                 uniqueIds.Add(npcView.UniqueId);
 
-                NPCModel npcModel = new NPCModel(npcView.UniqueId);
+                CharacterModel npcModel = new CharacterModel(npcView.UniqueId);
 
-                _model.NPCViews[npcView.UniqueId] = npcView;
-                _model.NPCModels[npcView.UniqueId] = npcModel;
+                _model.CharacterViews[npcView.UniqueId] = npcView;
+                _model.CharacterModels[npcView.UniqueId] = npcModel;
 
                 npcView.Model = npcModel;
 

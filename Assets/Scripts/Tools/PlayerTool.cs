@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GM_Tools
 {
-    public class DebugTool_Player : MonoBehaviour
+    public class PlayerTool : MonoBehaviour
     {
         private PlayerRepository _playerRepository;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GM_Tools
 {
-    [CustomEditor(typeof(DebugTool_Player))]
+    [CustomEditor(typeof(PlayerTool))]
     public class DebugTool_PlayerEditor : Editor
     {
         private string _playerName = "John Doe";
@@ -18,7 +18,7 @@ namespace GM_Tools
         public override void OnInspectorGUI()
         {
 
-            DebugTool_Player debugTool = (DebugTool_Player)target;
+            PlayerTool debugTool = (PlayerTool)target;
 
             EditorGUILayout.Space();
 

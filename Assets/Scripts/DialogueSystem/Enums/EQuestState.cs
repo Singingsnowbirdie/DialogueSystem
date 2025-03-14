@@ -2,12 +2,13 @@
 {
     public enum EQuestState
     {
-        None = 0,
-        Available = 1,
-        Unavailable = 2,
-        InProgress = 3,
-        Unclaimed = 4,
-        Failed = 5,
-        Completed = 6
+        Available = 0,
+        Unavailable = 1,
+        InProgress = 2,
+        Completed = 3,
+        Failed = 4,
+        Rewarded = 5
     }
+
+
 }

@@ -44,6 +44,17 @@ namespace Player
             Reputation_Civilian.Value = playerData.Reputation_Civilian;
             Reputation_Bandits.Value = playerData.Reputation_Bandits;
         }
+
+        internal int GetReputation(EFaction faction)
+        {
+            return faction switch
+            {
+                EFaction.OfficialAuthorities => Reputation_OfficialAuthorities.Value,
+                EFaction.Civilian => Reputation_Civilian.Value,
+                EFaction.Bandits => Reputation_Bandits.Value,
+                _ => Reputation_Civilian.Value,
+            };
+        }
     }
 }
 

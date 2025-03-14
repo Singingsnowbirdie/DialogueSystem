@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace NPC
 {
-    public class NPCView : Interactable
+    public class CharacterView : Interactable
     {
         [SerializeField] private Transform _focusPoint;
         [SerializeField, Space] private NPC_Config _npcConfig;
 
-        public string UniqueId => _npcConfig.UniqueId;
-        public NPCModel Model { private get; set; }
+        public string UniqueId => _npcConfig.NPC_ID;
+        public CharacterModel Model { private get; set; }
 
         public override void Interact(PlayerInteractionPresenter playerInteractionPresenter)
         {
@@ -28,7 +28,7 @@ namespace NPC
                 return;
             }
 
-            if (string.IsNullOrEmpty(_npcConfig.UniqueId))
+            if (string.IsNullOrEmpty(_npcConfig.NPC_ID))
             {
                 Debug.Log("Unique NPC ID not specified. Unable to start dialogue!");
                 return;
@@ -36,7 +36,7 @@ namespace NPC
 
             base.Interact(playerInteractionPresenter);
 
-            DialogueData dialogueData = new(_npcConfig.NPC_Name, _npcConfig.DialogueKey, _focusPoint, _npcConfig.UniqueId);
+            DialogueData dialogueData = new(_npcConfig.NPC_Name, _npcConfig.DialogueKey, _focusPoint, _npcConfig.NPC_ID);
             Model.TryStartDialogue.OnNext(dialogueData);
         }
 
@@ -45,7 +45,7 @@ namespace NPC
     [Serializable]
     public class NPC_Config
     {
-        [field: SerializeField] public string UniqueId { get; private set; }
+        [field: SerializeField] public string NPC_ID { get; private set; }
         [field: SerializeField] public string NPC_Name { get; private set; }
         [field: SerializeField] public string DialogueKey { get; private set; }
     }

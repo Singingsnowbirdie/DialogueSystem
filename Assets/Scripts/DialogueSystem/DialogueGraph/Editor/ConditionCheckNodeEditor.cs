@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using XNode;
 
@@ -56,6 +57,7 @@ namespace DialogueSystem.DialogueEditor
                     ShowDialogueVariableOptions();
                     break;
                 case EDialogueCondition.IsFriendshipAmount:
+                    ShowFriendshipOptions();
                     break;
             }
 
@@ -132,8 +134,27 @@ namespace DialogueSystem.DialogueEditor
         private void ShowNPCOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("NPC ID");
-            _conditionCheckNode.NpcID = EditorGUILayout.TextField(_conditionCheckNode.NpcID);
+            _conditionCheckNode.IsThisNPC = EditorGUILayout.Toggle("This NPC", _conditionCheckNode.IsThisNPC);
+
+            if (!_conditionCheckNode.IsThisNPC)
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField("NPC ID");
+                _conditionCheckNode.NpcID = EditorGUILayout.TextField(_conditionCheckNode.NpcID);
+            }
+        }
+
+        private void ShowFriendshipOptions()
+        {
+            ShowNPCOptions();
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Comparison Type");
+            _conditionCheckNode.ComparisonType = (EComparisonTypes)EditorGUILayout.EnumPopup(_conditionCheckNode.ComparisonType);
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Friendship Amount");
+            _conditionCheckNode.Amount = EditorGUILayout.IntField(_conditionCheckNode.Amount);
         }
 
         private void ShowReputationOptions()
@@ -155,7 +176,7 @@ namespace DialogueSystem.DialogueEditor
         {
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Quest Key");
-            _conditionCheckNode.QuestKey = EditorGUILayout.IntField(_conditionCheckNode.QuestKey);
+            _conditionCheckNode.QuestKey = EditorGUILayout.TextField(_conditionCheckNode.QuestKey);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Quest State To Compare");

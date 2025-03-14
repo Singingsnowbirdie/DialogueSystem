@@ -81,7 +81,7 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: "The player is male.\r"
+  <DialogueLine>k__BackingField: Reputation level with authorities is more than 10
   <ConnectedJumpers>k__BackingField: []
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
@@ -147,8 +147,9 @@ MonoBehaviour:
   <False>k__BackingField: 0
   <Condition>k__BackingField: 2
   <Notes>k__BackingField: 
-  <ComparisonType>k__BackingField: 0
-  <Amount>k__BackingField: 0
+  <ComparisonType>k__BackingField: 3
+  <Amount>k__BackingField: 10
+  <IsThisNPC>k__BackingField: 1
   <Faction>k__BackingField: 0
   <PlayerGender>k__BackingField: 0
   <PlayerRace>k__BackingField: 0
@@ -226,7 +227,7 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: The player is female.
+  <DialogueLine>k__BackingField: Reputation level with authorities less than 10
   <ConnectedJumpers>k__BackingField: []
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
