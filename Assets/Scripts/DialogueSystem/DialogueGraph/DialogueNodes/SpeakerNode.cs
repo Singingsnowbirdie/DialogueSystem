@@ -8,7 +8,7 @@ namespace DialogueSystem.DialogueEditor
     [NodeTint("#656475")]
     [CreateNodeMenu("Dialogue Node/Speaker`s Node", 0)]
 
-    public class SpeakerNode : DialogueNode
+    public class SpeakerNode : DialogueNode, ISerializationCallbackReceiver
     {
         [field: SerializeField, Input(backingValue = ShowBackingValue.Never)] public Node Input { get; set; }
         [field: SerializeField, Output(backingValue = ShowBackingValue.Never)] public Node Output { get; set; }
@@ -46,6 +46,16 @@ namespace DialogueSystem.DialogueEditor
             }
             events = nodes;
             return events.Count > 0;
+        }
+
+        public void OnBeforeSerialize()
+        {
+
+        }
+
+        public void OnAfterDeserialize()
+        {
+            _nodeId = IdGenerator.GenerateId();
         }
     }
 

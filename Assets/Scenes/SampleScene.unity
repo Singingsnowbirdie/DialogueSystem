@@ -1134,7 +1134,7 @@ MonoBehaviour:
   _playerInput: {fileID: 2141398511}
   _camera: {fileID: 963194227}
   _dialogueCameraView: {fileID: 963194229}
-  _charactersView: {fileID: 0}
+  _charactersView: {fileID: 1564170769}
   _dialogueDatabase: {fileID: 11400000, guid: 03dcb42c52ed4774ebd705d986f44fb9, type: 2}
 --- !u!4 &738408483
 Transform:
