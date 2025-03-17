@@ -2,6 +2,7 @@ using DialogueSystem;
 using InteractionSystem;
 using Player;
 using System;
+using UI;
 using UnityEngine;
 
 namespace NPC
@@ -10,8 +11,11 @@ namespace NPC
     {
         [SerializeField] private Transform _focusPoint;
         [SerializeField, Space] private NPC_Config _npcConfig;
+        [SerializeField, Space] private CharacterUIView _characterUIView;
 
         public string UniqueId => _npcConfig.NPC_ID;
+        public string DialogueKey => _npcConfig.DialogueKey;
+        public string CharacterName => _npcConfig.NPC_Name;
         public CharacterModel Model { private get; set; }
 
         public override void Interact(PlayerInteractionPresenter playerInteractionPresenter)
@@ -40,6 +44,15 @@ namespace NPC
             Model.TryStartDialogue.OnNext(dialogueData);
         }
 
+        internal void OnSetUIModel(CharacterUIModel characterUIModel)
+        {
+            _characterUIView.OnSetModel(characterUIModel);
+        }
+
+        internal void LookAtCamera(Vector3 cameraPosition)
+        {
+            _characterUIView.LookAtCamera(cameraPosition);
+        }
     }
 
     [Serializable]
