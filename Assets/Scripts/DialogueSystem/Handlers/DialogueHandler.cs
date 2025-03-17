@@ -3,7 +3,6 @@ using DialogueSystem.DialogueEditor;
 using InventorySystem;
 using Player;
 using QuestSystem;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
@@ -75,7 +74,24 @@ namespace DialogueSystem
 
         private bool IsDialogueVariable(ConditionCheckNode conditionCheckNode)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(conditionCheckNode.ID))
+            {
+                Debug.Log("Dialogue Variable ID for checking status is not specified!");
+            }
+            else if (_dialogueModel.TryGetDialogueVariable(conditionCheckNode.ID, out DialogueVariable dialogueVariable))
+            {
+                if (conditionCheckNode.DialogueVariableType == EDialogueVariableType.Bool)
+                    return dialogueVariable.IsTrue;
+                else
+                {
+                    int playersAmount = dialogueVariable.Amount;
+                    int comparisonAmount = conditionCheckNode.Amount;
+
+                    return Compare(playersAmount, comparisonAmount, conditionCheckNode.ComparisonType);
+                }
+            }
+
+            return false;
         }
 
         private bool IsQuestState(ConditionCheckNode conditionCheckNode)

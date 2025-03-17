@@ -1,5 +1,6 @@
 ﻿using DialogueSystem.DialogueEditor;
 using System.Collections.Generic;
+using System.Linq;
 using UI.DialogueUI;
 using UniRx;
 using UnityEngine;
@@ -43,6 +44,12 @@ namespace DialogueSystem
         public void SaveDialogueVariables()
         {
             DialogueVariablesRepository.SaveDialogueVariables(DialogueVariables);
+        }
+
+        public bool TryGetDialogueVariable(string variableID, out DialogueVariable dialogueVariable)
+        {
+            dialogueVariable = DialogueVariables.FirstOrDefault(v => v.VariableID == variableID);
+            return dialogueVariable != null;
         }
     }
 
