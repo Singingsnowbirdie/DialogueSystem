@@ -1,4 +1,6 @@
-﻿using Player;
+﻿using DataSystem;
+using InventorySystem;
+using Player;
 using System;
 using UniRx;
 using VContainer;
@@ -11,6 +13,7 @@ namespace UI
         [Inject] private readonly PlayerInfoUIModel _uiModel;
         [Inject] private readonly PlayerInfoView _view;
         [Inject] private readonly PlayerModel _playerModel;
+        [Inject] private readonly InventoryModel _inventoryModel;
 
         public void Start()
         {
@@ -19,6 +22,15 @@ namespace UI
             _uiModel.PlayerGender.Value = $"Player Gender: {_playerModel.PlayerGender.Value}";
             _uiModel.PlayerName.Value = $"Player Name: {_playerModel.PlayerName.Value}";
             _uiModel.PlayerRace.Value = $"Player Race: {_playerModel.PlayerRace.Value}";
+
+            int coinsAmount = 0;
+
+            if (_inventoryModel.InventoryRepository.TryGetItemByID("Coins", out ItemData itemData))
+            {
+                coinsAmount = itemData.Quantity;
+            }
+
+            _uiModel.CoinsAmount.Value = $"Coins: {coinsAmount}";
 
             _playerModel.Reputation_OfficialAuthorities
                 .Subscribe(val => OnOfficialAuthoritiesReputationAmountUpdated(val))

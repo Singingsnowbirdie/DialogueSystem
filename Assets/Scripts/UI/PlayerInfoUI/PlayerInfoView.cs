@@ -8,6 +8,7 @@ namespace UI
         [SerializeField] private TextMeshProReactiveStringView _playerGenderTF;
         [SerializeField] private TextMeshProReactiveStringView _playerRaceTF;
         [SerializeField] private TextMeshProReactiveStringView _playerNameTF;
+        [SerializeField] private TextMeshProReactiveStringView _coinsAmountTF;
 
         [Header("REPUTATION")]
         [SerializeField] private TextMeshProReactiveStringView _reputation_OA_TF;
@@ -26,6 +27,7 @@ namespace UI
             _playerGenderTF.SetUIModel(playerInfoUIModel.PlayerGender);
             _playerRaceTF.SetUIModel(playerInfoUIModel.PlayerRace);
             _playerNameTF.SetUIModel(playerInfoUIModel.PlayerName);
+            _coinsAmountTF.SetUIModel(playerInfoUIModel.CoinsAmount);
         }
     }
 }

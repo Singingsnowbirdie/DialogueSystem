@@ -17,7 +17,7 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public List<SpeakerNodeJumper> ConnectedJumpers { get; set; } = new List<SpeakerNodeJumper>();
         [field: SerializeField, HideInInspector] public int SelectedIndex { get; set; }
         [field: SerializeField, HideInInspector] public int SpeakerKey { get; set; }
-        [field: SerializeField, HideInInspector] public bool IsExpanded { get; set; } = true;
+        [field: SerializeField, HideInInspector] public bool IsExpanded { get; set; } = false;
 
         [SerializeField, HideInInspector] private string _nodeId;
 

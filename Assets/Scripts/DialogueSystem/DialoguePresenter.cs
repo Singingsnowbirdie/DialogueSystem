@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Database;
 using DialogueSystem.DialogueEditor;
+using InventorySystem;
 using Player;
 using QuestSystem;
 using UI.DialogueUI;
@@ -20,6 +21,7 @@ namespace DialogueSystem
         [Inject] private readonly PlayerModel _playerModel;
         [Inject] private readonly CharactersModel _nPCManagerModel;
         [Inject] private readonly JournalModel _journalModel;
+        [Inject] private readonly InventoryModel _inventoryModel;
 
         private DialogueHandler _dialogueHandler;
         private DialogueLocalizationHandler _dialogueLocalizationHandler;
@@ -28,7 +30,7 @@ namespace DialogueSystem
 
         public void Initialize()
         {
-            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, _playerModel, _journalModel, this);
+            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, _playerModel, _journalModel, _inventoryModel, this);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode

@@ -7,6 +7,7 @@ namespace UI
         public ReactiveProperty<string> PlayerRace = new ReactiveProperty<string>();
         public ReactiveProperty<string> PlayerGender = new ReactiveProperty<string>();
         public ReactiveProperty<string> PlayerName = new ReactiveProperty<string>();
+        public ReactiveProperty<string> CoinsAmount = new ReactiveProperty<string>();
 
         // REPUTATION
         public ReactiveProperty<string> Reputation_OfficialAuthorities = new ReactiveProperty<string>();

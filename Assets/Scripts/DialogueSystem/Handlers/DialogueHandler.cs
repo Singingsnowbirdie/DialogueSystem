@@ -23,13 +23,14 @@ namespace DialogueSystem
 
         public DialogueHandler(DialogueModel dialogueModel, CharactersModel npcManagerModel,
             PlayerModel playerModel, JournalModel journalModel,
-            DialoguePresenter dialoguePresenter)
+            InventoryModel inventoryModel, DialoguePresenter dialoguePresenter)
         {
             _dialogueModel = dialogueModel;
             _npcManagerModel = npcManagerModel;
             _playerModel = playerModel;
             _dialoguePresenter = dialoguePresenter;
             _journalModel = journalModel;
+            _inventoryModel = inventoryModel;
         }
 
         public void HandleStartNode(StartNode startNode, string speakerID)
