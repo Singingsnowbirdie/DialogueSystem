@@ -61,7 +61,7 @@ namespace DialogueSystem.DialogueEditor
         {
             if (node.GetType() == typeof(StartNode))
             {
-                Debug.LogWarning("Cannot delete start node!");
+                Debug.Log("Cannot delete start node!");
                 return;
             }
 

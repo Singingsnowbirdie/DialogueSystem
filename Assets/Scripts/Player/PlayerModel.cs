@@ -25,24 +25,23 @@ namespace Player
 
         public void SavePlayerData()
         {
-            PlayerRepository.PlayerData playerData = PlayerRepository.LoadPlayerData();
-            playerData.Reputation_OfficialAuthorities = Reputation_OfficialAuthorities.Value;
-            playerData.Reputation_Civilian = Reputation_Civilian.Value;
-            playerData.Reputation_Bandits = Reputation_Bandits.Value;
-            PlayerRepository.SavePlayerData(playerData);
+            PlayerRepository.PlayerData.Reputation_OfficialAuthorities = Reputation_OfficialAuthorities.Value;
+            PlayerRepository.PlayerData.Reputation_Civilian = Reputation_Civilian.Value;
+            PlayerRepository.PlayerData.Reputation_Bandits = Reputation_Bandits.Value;
+            PlayerRepository.SavePlayerData(PlayerRepository.PlayerData);
         }
 
         public void LoadPlayerData()
         {
-            PlayerRepository.PlayerData playerData = PlayerRepository.LoadPlayerData();
+            PlayerRepository.LoadData();
 
-            PlayerRace.Value = playerData.Race;
-            PlayerGender.Value = playerData.Gender;
-            PlayerName.Value = playerData.PlayerName;
+            PlayerRace.Value = PlayerRepository.PlayerData.Race;
+            PlayerGender.Value = PlayerRepository.PlayerData.Gender;
+            PlayerName.Value = PlayerRepository.PlayerData.PlayerName;
 
-            Reputation_OfficialAuthorities.Value = playerData.Reputation_OfficialAuthorities;
-            Reputation_Civilian.Value = playerData.Reputation_Civilian;
-            Reputation_Bandits.Value = playerData.Reputation_Bandits;
+            Reputation_OfficialAuthorities.Value = PlayerRepository.PlayerData.Reputation_OfficialAuthorities;
+            Reputation_Civilian.Value = PlayerRepository.PlayerData.Reputation_Civilian;
+            Reputation_Bandits.Value = PlayerRepository.PlayerData.Reputation_Bandits;
         }
 
         internal int GetReputation(EFaction faction)

@@ -36,7 +36,7 @@ namespace GM_Tools
             }
             else
             {
-                Debug.LogWarning("ID not generated. Create ID first..");
+                Debug.Log("ID not generated. Create ID first..");
             }
         }
     }

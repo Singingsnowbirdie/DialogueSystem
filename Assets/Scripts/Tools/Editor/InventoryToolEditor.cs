@@ -36,14 +36,14 @@ namespace GM_Tools
                 _quantity = 1;
             }
 
-            if (GUILayout.Button("Add Item"))
+            if (GUILayout.Button("Update item quantity"))
             {
-                inventoryTool.AddItem(_itemId, _quantity);
+                inventoryTool.SetItemQuantity(_itemId, _quantity);
             }
 
             if (GUILayout.Button("Remove Item"))
             {
-                inventoryTool.RemoveItem(_itemId, _quantity);
+                inventoryTool.RemoveItem(_itemId);
             }
         }
     }

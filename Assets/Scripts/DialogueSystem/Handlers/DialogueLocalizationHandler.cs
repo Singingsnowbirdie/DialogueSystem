@@ -19,15 +19,22 @@ namespace DialogueSystem
                 _dialogueModel.DialogueJsonData = GetDialogueJsonData(dialogueKey);
             }
 
-            foreach (DialogueNodeData item in _dialogueModel.DialogueJsonData.Items)
+            if (_dialogueModel.DialogueJsonData != null)
             {
-                if (item.NodeId == nodeId)
+                foreach (DialogueNodeData item in _dialogueModel.DialogueJsonData.Items)
                 {
-                    // TODO: Add language selection here!
+                    if (item.NodeId == nodeId)
+                    {
+                        // TODO: Add language selection here!
 
-                    dialogueLine = item.DialogueLine;
-                    return true;
+                        dialogueLine = item.DialogueLine;
+                        return true;
+                    }
                 }
+            }
+            else
+            {
+                Debug.LogError($"This dialog does not have DialogueJsonData");
             }
 
             Debug.LogError($"Node with NodeId {nodeId} not found in file {dialogueKey}.json");

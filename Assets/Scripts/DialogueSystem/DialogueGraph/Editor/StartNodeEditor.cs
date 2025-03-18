@@ -11,15 +11,6 @@ namespace DialogueSystem.DialogueEditor
         public override void OnCreate()
         {
             base.OnCreate();
-            SetKey();
-        }
-
-        private void SetKey()
-        {
-            StartNode startNode = target as StartNode;
-
-            startNode.Key = startNode.graph.name;
-            startNode.DialogueKeyLabel = "KEY: " + startNode.Key;
         }
 
         public override void AddContextMenuItems(GenericMenu menu)
@@ -47,13 +38,13 @@ namespace DialogueSystem.DialogueEditor
 
             StartNode startNode = target as StartNode;
 
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.TextField("Dialogue KEY:", startNode.Key, GUILayout.ExpandWidth(true));
-            if (GUILayout.Button("Copy", GUILayout.Width(50)))
+            EditorGUILayout.LabelField("Dialogue ID:", startNode.DialogueId);
+
+            if (GUILayout.Button("Copy Dialogue ID"))
             {
-                GUIUtility.systemCopyBuffer = startNode.Key;
+                GUIUtility.systemCopyBuffer = startNode.DialogueId;
+                Debug.Log($"Dialogue ID copied: {startNode.DialogueId}");
             }
-            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
 

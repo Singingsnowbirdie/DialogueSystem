@@ -1,6 +1,4 @@
 ﻿using DialogueSystem.DialogueEditor;
-using System;
-using System.Collections.Generic;
 using VContainer;
 using VContainer.Unity;
 

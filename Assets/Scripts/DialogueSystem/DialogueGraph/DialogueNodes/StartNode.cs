@@ -14,7 +14,20 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
         public Node Output { get; set; }
 
-        [SerializeField, HideInInspector] public string Key;
+        [SerializeField, HideInInspector] private string _dialogueID;
+
+        public string DialogueId
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_dialogueID))
+                {
+                    _dialogueID = IdGenerator.GenerateId();
+                }
+                return _dialogueID;
+            }
+            private set => _dialogueID = value;
+        }
 
         [NonSerialized] public string DialogueKeyLabel;
 
@@ -27,7 +40,7 @@ namespace DialogueSystem.DialogueEditor
 
         private void SaveGraphData(NodeGraph graph)
         {
-            string filePath = Path.Combine(Application.dataPath, $"Resources/JSON/{Key}.json");
+            string filePath = Path.Combine(Application.dataPath, $"Resources/JSON/{DialogueId}.json");
             string resourcesFolder = Path.Combine(Application.dataPath, "Resources");
 
             if (!Directory.Exists(resourcesFolder))
@@ -95,8 +108,8 @@ namespace DialogueSystem.DialogueEditor
         {
             SaveGraphToJson();
 
-            string jsonFilePath = Path.Combine(Application.dataPath, $"Resources/JSON/{Key}.json");
-            string outputExcelPath = Path.Combine(Application.persistentDataPath, $"{Key}.xlsx");
+            string jsonFilePath = Path.Combine(Application.dataPath, $"Resources/JSON/{DialogueId}.json");
+            string outputExcelPath = Path.Combine(Application.persistentDataPath, $"{DialogueId}.xlsx");
 
             string jsonContent = File.ReadAllText(jsonFilePath);
 

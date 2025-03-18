@@ -40,7 +40,7 @@ namespace GM_Tools
                 }
                 else
                 {
-                    Debug.LogWarning("Quest ID cannot be empty.");
+                    Debug.Log("Quest ID cannot be empty.");
                 }
             }
         }

@@ -43,7 +43,7 @@ namespace DialogueSystem
                 .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint, data.NPC_ID))
                 .AddTo(_compositeDisposables);
 
-            _dialogueModel.LoadVariables();
+            _dialogueModel.DialogueVariablesRepository.LoadData();
         }
 
         internal void TryToStartDialogue(string speakerName, string dialogueID, Transform focusPoint, string npcID)
@@ -79,7 +79,7 @@ namespace DialogueSystem
 
                 string dialogueLine = speakerNode.DialogueLine;
 
-                if (_dialogueLocalizationHandler.TryGetDialogueLine(_dialogueModel.Graph.StartNode.Key, speakerNode.NodeId, out string line))
+                if (_dialogueLocalizationHandler.TryGetDialogueLine(_dialogueModel.Graph.StartNode.DialogueId, speakerNode.NodeId, out string line))
                 {
                     dialogueLine = line;
                 }

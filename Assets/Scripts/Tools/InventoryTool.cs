@@ -1,80 +1,68 @@
-﻿using InventorySystem;
+﻿using DataSystem;
 using System.Collections.Generic;
-using System.Linq;
-using UniRx;
 using UnityEngine;
 
 namespace GM_Tools
 {
     public class InventoryTool : MonoBehaviour
     {
-        public ReactiveCollection<Item> Items { get; } = new ReactiveCollection<Item>();
-
         private InventoryRepository _inventoryRepository;
 
-        private void OnValidate()
+        public InventoryRepository InventoryRepository
         {
-            _inventoryRepository ??= new InventoryRepository();
-            LoadInventory();
+            get
+            {
+                _inventoryRepository ??= new InventoryRepository();
+                return _inventoryRepository;
+            }
         }
 
         public void ResetData()
         {
-            _inventoryRepository.ResetData();
-            Debug.Log("Inventory data has been reset.");
+            InventoryRepository.ResetData();
         }
 
-        public void LoadInventory()
+        public void SetItemQuantity(string itemId, int quantity)
         {
-            List<Item> savedItems = _inventoryRepository.LoadInventory();
+            List<ItemData> items = InventoryRepository.LoadItemsData();
 
-            Items.Clear();
-            foreach (var item in savedItems)
+            ItemData itemData = FindOrCreate(items, itemId);
+
+            itemData.Quantity = quantity;
+
+            InventoryRepository.SaveData(items);
+            Debug.Log($"Item {itemId} quantity updated to {quantity}");
+        }
+
+        private ItemData FindOrCreate(List<ItemData> items, string itemId)
+        {
+            ItemData item = items.Find(c => c.ItemID == itemId);
+
+            if (item == null)
             {
-                Items.Add(item);
+                item = new ItemData(itemId);
+                items.Add(item);
             }
+
+            return item;
         }
 
-        public void SaveInventory()
+        public void RemoveItem(string itemId)
         {
-            _inventoryRepository.SaveInventory(Items);
-        }
+            List<ItemData> items = InventoryRepository.LoadItemsData();
 
-        public void AddItem(string itemId, int quantity)
-        {
-            Item existingItem = Items.FirstOrDefault(item => item.ItemID == itemId);
+            ItemData itemToRemove = items.Find(item => item.ItemID == itemId);
 
-            if (existingItem != null)
+            if (itemToRemove != null)
             {
-                existingItem.Quantity += quantity;
+                items.Remove(itemToRemove);
+                Debug.Log($"Item '{itemId}' removed from inventory.");
             }
             else
             {
-                Items.Add(new Item(itemId, quantity));
+                Debug.Log($"Item with ID '{itemId}' not found in inventory.");
             }
-
-            SaveInventory();
-        }
-
-        public void RemoveItem(string itemId, int quantity)
-        {
-            var existingItem = Items.FirstOrDefault(item => item.ItemID == itemId);
-
-            if (existingItem != null)
-            {
-                existingItem.Quantity -= quantity;
-
-                if (existingItem.Quantity <= 0)
-                {
-                    Items.Remove(existingItem);
-                }
-
-                SaveInventory();
-            }
-            else
-            {
-                Debug.LogWarning($"Item with Id {itemId} not found in inventory.");
-            }
+            InventoryRepository.SaveData(items);
         }
     }
 }

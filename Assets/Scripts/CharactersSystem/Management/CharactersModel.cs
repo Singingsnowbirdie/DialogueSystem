@@ -1,4 +1,5 @@
-﻿using NPC;
+﻿using DataSystem;
+using NPC;
 using System.Collections.Generic;
 
 namespace Characters

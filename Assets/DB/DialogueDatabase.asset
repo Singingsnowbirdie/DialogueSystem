@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DialogueDatabase
   m_EditorClassIdentifier: 
   _dialogueGraphs:
-  - {fileID: 11400000, guid: 8300ddb2d25e26a4d93dc225c4770787, type: 2}
+  - {fileID: 11400000, guid: 3bd3a6a456f874e45be1c23e3483f193, type: 2}

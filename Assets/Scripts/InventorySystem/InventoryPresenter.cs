@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using DataSystem;
 using VContainer;
 using VContainer.Unity;
 
@@ -11,14 +10,9 @@ namespace InventorySystem
 
         public void Start()
         {
-            _model.LoadInventory();
+            _model.InventoryRepository.LoadData();
 
-            SetStartCoinsAmount();
-        }
-
-        private void SetStartCoinsAmount()
-        {
-            AddItem("Coins", 20);
+            AddItem("Coins", 20); // temp debug
         }
 
         public void AddItem(string itemId, int quantity)
@@ -26,18 +20,15 @@ namespace InventorySystem
             if (quantity < 1)
                 return;
 
-            Item existingItem = _model.Items.FirstOrDefault(item => item.ItemID == itemId);
-
-            if (existingItem != null)
+            if (_model.InventoryRepository.TryGetItemByID(itemId, out ItemData existingItem))
             {
                 existingItem.Quantity += quantity;
             }
             else
             {
-                _model.Items.Add(new Item(itemId, quantity));
+                _model.InventoryRepository.AddItem(itemId, quantity);
+                _model.InventoryRepository.SaveData();
             }
-
-            _model.SaveInventory();
         }
 
         public void RemoveItem(string itemId, int quantity)
@@ -45,24 +36,15 @@ namespace InventorySystem
             if (quantity < 1)
                 return;
 
-            var existingItem = _model.Items.FirstOrDefault(item => item.ItemID == itemId);
-
-            if (existingItem != null)
+            if (_model.InventoryRepository.TryGetItemByID(itemId, out ItemData existingItem))
             {
                 existingItem.Quantity -= quantity;
 
                 if (existingItem.Quantity <= 0)
-                {
-                    _model.Items.Remove(existingItem);
-                }
+                    _model.InventoryRepository.RemoveItemById(itemId);
+            }
 
-                _model.SaveInventory();
-            }
-            else
-            {
-                Debug.LogWarning($"Item with Id {itemId} not found in inventory.");
-            }
+            _model.InventoryRepository.SaveData();
         }
-
     }
 }

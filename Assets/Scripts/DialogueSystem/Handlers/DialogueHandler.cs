@@ -1,4 +1,5 @@
 ﻿using Characters;
+using DataSystem;
 using DialogueSystem.DialogueEditor;
 using InventorySystem;
 using Player;
@@ -78,8 +79,10 @@ namespace DialogueSystem
             {
                 Debug.Log("Dialogue Variable ID for checking status is not specified!");
             }
-            else if (_dialogueModel.TryGetDialogueVariable(conditionCheckNode.ID, out DialogueVariable dialogueVariable))
+            else
             {
+                DialogueVariableData dialogueVariable = _dialogueModel.DialogueVariablesRepository.GetDialogueVariable(conditionCheckNode.ID);
+
                 if (conditionCheckNode.DialogueVariableType == EDialogueVariableType.Bool)
                     return dialogueVariable.IsTrue;
                 else
@@ -105,7 +108,6 @@ namespace DialogueSystem
             else
             {
                 QuestData questData = _journalModel.QuestsRepository.GetQuestByID(conditionCheckNode.ID);
-
                 metsCondition = questData.QuestState == conditionCheckNode.QuestState;
             }
 
@@ -130,7 +132,7 @@ namespace DialogueSystem
             }
             else
             {
-                if (_inventoryModel.TryGetItemByID(conditionCheckNode.ID, out Item item))
+                if (_inventoryModel.InventoryRepository.TryGetItemByID(conditionCheckNode.ID, out ItemData item))
                 {
                     metsCondition = Compare(item.Quantity, conditionCheckNode.Amount, conditionCheckNode.ComparisonType);
                 }
@@ -141,7 +143,7 @@ namespace DialogueSystem
 
         private bool HasEnoughCoins(ConditionCheckNode conditionCheckNode)
         {
-            if (_inventoryModel.TryGetItemByID("Coins", out Item item))
+            if (_inventoryModel.InventoryRepository.TryGetItemByID("Coins", out ItemData item))
             {
                 return Compare(item.Quantity, conditionCheckNode.Amount, conditionCheckNode.ComparisonType);
             }

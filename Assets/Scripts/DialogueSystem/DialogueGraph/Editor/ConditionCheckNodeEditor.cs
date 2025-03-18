@@ -29,19 +29,17 @@ namespace DialogueSystem.DialogueEditor
 
             switch (_conditionCheckNode.Condition)
             {
-                case EDialogueCondition.None:
+                case EDialogueCondition.IsGender:
+                    ShowGenderOptions();
+                    break;
+                case EDialogueCondition.IsRace:
+                    ShowRaceOptions();
                     break;
                 case EDialogueCondition.HasMet:
                     ShowNPCOptions();
                     break;
                 case EDialogueCondition.IsReputationAmount:
                     ShowReputationOptions();
-                    break;
-                case EDialogueCondition.IsGender:
-                    ShowGenderOptions();
-                    break;
-                case EDialogueCondition.IsRace:
-                    ShowRaceOptions();
                     break;
                 case EDialogueCondition.IsQuestState:
                     ShowQuestStateOptions();

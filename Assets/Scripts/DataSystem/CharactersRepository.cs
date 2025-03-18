@@ -2,11 +2,12 @@
 using System.IO;
 using UnityEngine;
 
-namespace Characters
+namespace DataSystem
 {
-    public class CharactersRepository
+    public class CharactersRepository : IRepository
     {
-        private List<CharacterData> _characters = new List<CharacterData>();
+        private List<CharacterData> _characters;
+
         private string _jsonFilePath;
 
         public string JsonFilePath
@@ -18,9 +19,22 @@ namespace Characters
             }
         }
 
-        public CharactersRepository()
+        public void LoadData()
         {
-            LoadData();
+            _characters = LoadCharactersData();
+        }
+
+        public List<CharacterData> LoadCharactersData()
+        {
+            List<CharacterData> characters = new List<CharacterData>();
+
+            if (File.Exists(JsonFilePath))
+            {
+                string json = File.ReadAllText(JsonFilePath);
+                characters = JsonUtility.FromJson<CharactersDatabaseWrapper>(json).Characters;
+            }
+
+            return characters;
         }
 
         public CharacterData GetCharacterByID(string id)
@@ -31,50 +45,28 @@ namespace Characters
             {
                 characterData = new CharacterData(id);
                 _characters.Add(characterData);
-                SaveData();
+                SaveData(_characters);
             }
 
             return characterData;
         }
 
-        public void SetCharacterValues(string characterId, bool hasMet, int friendshipAmount)
-        {
-            CharacterData characterData = GetCharacterByID(characterId);
-
-            characterData.HasMetPlayer = hasMet;
-            characterData.FriendshipAmount = friendshipAmount;
-            SaveData();
-            Debug.Log($"Character {characterId} HasMetPlayer updated to {hasMet}");
-        }
-
         public void ResetData()
-        {
-            foreach (CharacterData character in _characters)
-            {
-                character.HasMetPlayer = false;
-                character.FriendshipAmount = 0;
-            }
-            SaveData();
-            Debug.Log("Characters database reset.");
-        }
-
-        private void LoadData()
         {
             if (File.Exists(JsonFilePath))
             {
-                string json = File.ReadAllText(JsonFilePath);
-                _characters = JsonUtility.FromJson<CharactersDatabaseWrapper>(json).Characters;
-                Debug.Log("Characters data loaded from JSON.");
+                File.Delete(JsonFilePath);
+                Debug.Log("Characters data reset. Save file deleted.");
             }
             else
             {
-                Debug.Log("No characters data found. Creating new database.");
+                Debug.Log("No characters data save file found to delete.");
             }
         }
 
-        private void SaveData()
+        public void SaveData(List<CharacterData> characters)
         {
-            CharactersDatabaseWrapper wrapper = new CharactersDatabaseWrapper { Characters = _characters };
+            CharactersDatabaseWrapper wrapper = new CharactersDatabaseWrapper { Characters = characters };
             string json = JsonUtility.ToJson(wrapper, true);
             File.WriteAllText(JsonFilePath, json);
             Debug.Log("Characters data saved to JSON.");

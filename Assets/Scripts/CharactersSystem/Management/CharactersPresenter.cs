@@ -1,4 +1,5 @@
 ﻿using Characters;
+using DataSystem;
 using DialogueSystem;
 using System.Collections.Generic;
 using UI;
@@ -35,6 +36,7 @@ namespace NPC
 
                 _model.CharacterViews[npcView.UniqueId] = npcView;
                 _model.CharacterModels[npcView.UniqueId] = npcModel;
+                _model.CharactersRepository.LoadData();
 
                 npcView.Model = npcModel;
 
@@ -47,7 +49,7 @@ namespace NPC
                     CharacterUIModel characterUIModel = new CharacterUIModel();
                     characterUIModel.CharacterID.Value = $"NPC ID: {characterView.UniqueId}";
                     characterUIModel.CharacterName.Value = characterView.CharacterName;
-                    characterUIModel.DialogueID.Value = $"DIALOGUE ID: {characterView.DialogueKey}";
+                    characterUIModel.DialogueID.Value = $"DIALOGUE ID: {characterView.DialogueID}";
                     characterUIModel.FriendshipAmount.Value = GetFriendshipAmount(characterUIModel.CharacterID.Value);
 
                     characterView.OnSetUIModel(characterUIModel);

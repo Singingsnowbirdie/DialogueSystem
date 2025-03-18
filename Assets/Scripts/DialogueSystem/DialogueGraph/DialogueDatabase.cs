@@ -17,13 +17,13 @@ namespace Database
 
             foreach (var graph in _dialogueGraphs)
             {
-                if (graph.StartNode != null && !string.IsNullOrEmpty(graph.StartNode.Key))
+                if (graph.StartNode != null && !string.IsNullOrEmpty(graph.StartNode.DialogueId))
                 {
-                    _dialogueDictionary.Add(graph.StartNode.Key, graph);
+                    _dialogueDictionary.Add(graph.StartNode.DialogueId, graph);
                 }
                 else
                 {
-                    Debug.LogWarning($"Graph {graph.name} does not have a GuidLabel or start node.");
+                    Debug.Log($"Graph {graph.name} does not have a GuidLabel or start node.");
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace Database
                 return true;
             }
 
-            Debug.LogWarning($"DialogueGraph with Guid {dialogueID} not found.");
+            Debug.Log($"DialogueGraph with Guid {dialogueID} not found.");
             graph = null;
             return false;
         }

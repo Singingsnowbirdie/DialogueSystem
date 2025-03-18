@@ -2,15 +2,14 @@
 {
     public enum EDialogueCondition
     {
-        None = 0,
-        HasMet = 1,
-        IsReputationAmount = 2,
-        IsGender = 3,
-        IsRace = 4,
-        IsQuestState = 5,
-        HasEnoughItems = 6,
-        HasEnoughCoins = 7,
-        IsDialogueVariable = 8,
-        IsFriendshipAmount = 9
+        IsGender,            // 0
+        HasMet,              // 1
+        IsReputationAmount,  // 2
+        IsRace,              // 3
+        IsQuestState,        // 4
+        HasEnoughItems,      // 5
+        HasEnoughCoins,      // 6
+        IsDialogueVariable,  // 7
+        IsFriendshipAmount   // 8
     }
 }

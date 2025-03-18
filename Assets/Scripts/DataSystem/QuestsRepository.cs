@@ -1,13 +1,16 @@
-﻿using DialogueSystem.DialogueEditor;
+﻿using DataSystem;
+using DialogueSystem.DialogueEditor;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 namespace QuestSystem
 {
-    public class QuestsRepository
+    public class QuestsRepository : IRepository
     {
-        private List<QuestData> _quests = new List<QuestData>();
+        private List<QuestData> _quests;
+
         private string _jsonFilePath;
 
         public string JsonFilePath
@@ -19,23 +22,24 @@ namespace QuestSystem
             }
         }
 
-        public QuestsRepository()
+        public void LoadData()
         {
-            LoadData();
+            _quests = LoadQuests();
         }
 
-        private void LoadData()
+        public List<QuestData> LoadQuests()
         {
+            List<QuestData> quests = new List<QuestData>();
+
             if (File.Exists(JsonFilePath))
             {
                 string json = File.ReadAllText(JsonFilePath);
-                _quests = JsonUtility.FromJson<QuestsDatabaseWrapper>(json).Quests;
-                Debug.Log("Quests data loaded from JSON.");
+
+                QuestsDatabaseWrapper wrapper = JsonUtility.FromJson<QuestsDatabaseWrapper>(json);
+                quests = wrapper.Quests;
             }
-            else
-            {
-                Debug.Log("No quests data found. Creating new database.");
-            }
+
+            return quests;
         }
 
         public QuestData GetQuestByID(string id)
@@ -46,7 +50,7 @@ namespace QuestSystem
             {
                 questData = new QuestData(id);
                 _quests.Add(questData);
-                SaveData();
+                SaveData(_quests);
             }
 
             return questData;
@@ -54,39 +58,33 @@ namespace QuestSystem
 
         public void ResetData()
         {
-            foreach (QuestData questData in _quests)
+            if (File.Exists(JsonFilePath))
             {
-                questData.QuestState = EQuestState.Available;
+                File.Delete(JsonFilePath);
+                Debug.Log("Quests data reset. Save file deleted.");
             }
-            SaveData();
-            Debug.Log("Quests database reset.");
+            else
+            {
+                Debug.Log("No quests data save file found to delete.");
+            }
+
         }
 
-        private void SaveData()
+        public void SaveData(List<QuestData> quests)
         {
-            QuestsDatabaseWrapper wrapper = new QuestsDatabaseWrapper { Quests = _quests };
+            QuestsDatabaseWrapper wrapper = new QuestsDatabaseWrapper { Quests = quests };
             string json = JsonUtility.ToJson(wrapper, true);
             File.WriteAllText(JsonFilePath, json);
-            Debug.Log("Quests data saved to JSON.");
         }
 
-        internal void SetQuestValues(string questId, EQuestState questState)
-        {
-            QuestData questData = GetQuestByID(questId);
-
-            questData.QuestState = questState;
-
-            SaveData();
-            Debug.Log($"Quest {questId} state updated to {questState}");
-        }
-
-        [System.Serializable]
+        [Serializable]
         private class QuestsDatabaseWrapper
         {
             public List<QuestData> Quests;
         }
     }
 
+    [Serializable]
     public class QuestData
     {
         public string QuestID;

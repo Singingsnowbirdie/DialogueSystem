@@ -1,4 +1,6 @@
-﻿namespace QuestSystem
+﻿using System;
+
+namespace QuestSystem
 {
     public class JournalModel
     {
@@ -11,6 +13,11 @@
                 _questsRepository ??= new QuestsRepository();
                 return _questsRepository;
             }
+        }
+
+        internal void LoadQuestsData()
+        {
+            QuestsRepository.LoadData();
         }
     }
 }
