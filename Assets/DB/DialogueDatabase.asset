@@ -15,3 +15,4 @@ MonoBehaviour:
   _dialogueGraphs:
   - {fileID: 11400000, guid: 3bd3a6a456f874e45be1c23e3483f193, type: 2}
   - {fileID: 11400000, guid: 72f0fe573abb9814fa718aa193715953, type: 2}
+  - {fileID: 11400000, guid: a049496826c954046ae035ff088ece37, type: 2}
