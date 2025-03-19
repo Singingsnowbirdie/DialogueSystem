@@ -56,7 +56,6 @@ namespace DialogueSystem.DialogueEditor
 
             base.OnBodyGUI();
 
-
             EditorGUILayout.Space();
             NodeEditorGUILayout.PortField(_playerResponseNode.Outputs.ElementAt(1));
 

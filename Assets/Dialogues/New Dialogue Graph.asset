@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: -440}
+  position: {x: -200, y: -440}
   ports:
     keys:
     - <Input>k__BackingField
@@ -42,7 +42,13 @@ MonoBehaviour:
     - _fieldName: <Events>k__BackingField
       _node: {fileID: -8714766488463231833}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 2476735135582208215}
+        reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 3779487805602202022}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -55,7 +61,7 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: WPtylPpM
+  _nodeId: q44BUKl8
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +77,8 @@ MonoBehaviour:
   nodes:
   - {fileID: 191421202628363565}
   - {fileID: -8714766488463231833}
+  - {fileID: 2476735135582208215}
+  - {fileID: 3779487805602202022}
 --- !u!114 &191421202628363565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,3 +110,87 @@ MonoBehaviour:
       _dynamic: 0
   <Output>k__BackingField: {fileID: 0}
   _dialogueID: 5JEBRAdH
+--- !u!114 &2476735135582208215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 88, y: -264}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 2476735135582208215}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: -8714766488463231833}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 1
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <GiveTakeEventType>k__BackingField: 0
+  <ItemConfigKey>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <NPCKey>k__BackingField: 0
+--- !u!114 &3779487805602202022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 88, y: -456}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 3779487805602202022}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: -8714766488463231833}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 0
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <GiveTakeEventType>k__BackingField: 0
+  <ItemConfigKey>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <NPCKey>k__BackingField: 0

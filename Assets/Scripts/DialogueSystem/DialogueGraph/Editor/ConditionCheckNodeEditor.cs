@@ -216,5 +216,4 @@ namespace DialogueSystem.DialogueEditor
                 || connectedNode is SpeakerNode;
         }
     }
-
 }
