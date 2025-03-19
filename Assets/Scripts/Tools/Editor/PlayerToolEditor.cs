@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GM_Tools
 {
     [CustomEditor(typeof(PlayerTool))]
-    public class DebugTool_PlayerEditor : Editor
+    public class PlayerToolEditor : Editor
     {
         private string _playerName = "John Doe";
         private EGender _playerGender = EGender.Male;
@@ -27,32 +27,20 @@ namespace GM_Tools
                 debugTool.ResetPlayerData();
             }
 
+            // GENERAL
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("General:");
+
             _playerName = EditorGUILayout.TextField("Player Name", _playerName);
-
-            EditorGUILayout.Space();
             _playerGender = (EGender)EditorGUILayout.EnumPopup("Player Gender", _playerGender);
-
-            EditorGUILayout.Space();
             _playerRace = (ERace)EditorGUILayout.EnumPopup("Player Race", _playerRace);
 
+            // REPUTATION
             EditorGUILayout.Space();
-            GUIStyle headerStyle = new GUIStyle(EditorStyles.boldLabel)
-            {
-                fontSize = 14,
-                alignment = TextAnchor.MiddleCenter,
-            };
+            EditorGUILayout.LabelField("Reputation:");
 
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Reputation:", headerStyle);
-
-            EditorGUILayout.Space();
             _reputation_OfficialAuthorities = EditorGUILayout.IntField("Official Authorities", _reputation_OfficialAuthorities);
-            
-            EditorGUILayout.Space();
             _reputation_Civilian = EditorGUILayout.IntField("Civilian", _reputation_Civilian);
-            
-            EditorGUILayout.Space();
             _reputation_Bandits = EditorGUILayout.IntField("Bandits", _reputation_Bandits);
 
             if (GUILayout.Button("Update Player Data"))

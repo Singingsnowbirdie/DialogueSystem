@@ -16,12 +16,9 @@ namespace GM_Tools
 
             DrawDefaultInspector();
 
-            if (GUILayout.Button("Reset Data"))
-            {
-                questsTool.ResetData();
-            }
-
+            // UPDATE QUEST VALUES
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Update Quest Values", EditorStyles.boldLabel);
 
             _questId = EditorGUILayout.TextField("Quest ID", _questId);
 
@@ -43,6 +40,17 @@ namespace GM_Tools
                     Debug.Log("Quest ID cannot be empty.");
                 }
             }
+
+
+            // RESET DATA
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Reset Data", EditorStyles.boldLabel);
+
+            if (GUILayout.Button("Reset Data"))
+            {
+                questsTool.ResetData();
+            }
+
         }
     }
 }

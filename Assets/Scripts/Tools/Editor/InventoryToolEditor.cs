@@ -15,12 +15,10 @@ namespace GM_Tools
 
             DrawDefaultInspector();
 
-            if (GUILayout.Button("Reset Inventory Data"))
-            {
-                inventoryTool.ResetData();
-            }
+            // ADD OR REMOVE ITEM
 
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Add or Remove Item", EditorStyles.boldLabel);
 
             _itemId = EditorGUILayout.TextField("Item ID", _itemId);
 
@@ -45,6 +43,19 @@ namespace GM_Tools
             {
                 inventoryTool.RemoveItem(_itemId);
             }
+
+            // RESET DATA
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Reset Data", EditorStyles.boldLabel);
+
+            if (GUILayout.Button("Reset Inventory Data"))
+            {
+                inventoryTool.ResetData();
+            }
+
+            EditorGUILayout.Space();
+
         }
     }
 }

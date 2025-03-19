@@ -12,8 +12,8 @@ namespace DialogueSystem.DialogueEditor
     {
         // General
         [field: SerializeField, Input(backingValue = ShowBackingValue.Never)] public Node Input { get; set; }
-        [field: SerializeField, Output(backingValue = ShowBackingValue.Never)] public bool True { get; set; }
-        [field: SerializeField, Output(backingValue = ShowBackingValue.Never)] public int False { get; set; }
+        [field: SerializeField, Output(backingValue = ShowBackingValue.Never)] public Node True { get; set; }
+        [field: SerializeField, Output(backingValue = ShowBackingValue.Never)] public Node False { get; set; }
         [field: SerializeField, HideInInspector] public EDialogueCondition Condition { get; set; }
         [field: SerializeField, HideInInspector] public string Notes { get; set; }
         [field: SerializeField, HideInInspector] public EComparisonTypes ComparisonType { get; set; }

@@ -16,18 +16,15 @@ namespace GM_Tools
 
             CharactersTool debugTool = (CharactersTool)target;
 
-            if (GUILayout.Button("Reset All Data"))
-            {
-                debugTool.ResetData();
-            }
-
+            // UPDATE CHARACTER VALUES
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Apply Character Values", EditorStyles.boldLabel);
 
             _characterId = EditorGUILayout.TextField("Character ID", _characterId);
 
             if (string.IsNullOrEmpty(_characterId))
             {
-                EditorGUILayout.HelpBox("Charactrer ID cannot be empty.", MessageType.Error);
+                EditorGUILayout.HelpBox("Character ID cannot be empty.", MessageType.Error);
             }
 
             _hasMetPlayer = EditorGUILayout.Toggle("Has Met Player", _hasMetPlayer);
@@ -37,6 +34,15 @@ namespace GM_Tools
             if (GUILayout.Button("Apply new value"))
             {
                 debugTool.UpdateCharacterValues(_characterId, _hasMetPlayer, _friendshipAmount);
+            }
+
+            // RESET DATA
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Reset Data", EditorStyles.boldLabel);
+
+            if (GUILayout.Button("Reset All Data"))
+            {
+                debugTool.ResetData();
             }
         }
     }

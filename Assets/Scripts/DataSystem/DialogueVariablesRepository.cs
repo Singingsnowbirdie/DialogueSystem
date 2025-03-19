@@ -80,12 +80,7 @@ namespace DialogueSystem
         {
             DialogueVariableData variableData = _dialogueVariables.Find(variable => variable.VariableID == id);
 
-            if (variableData == null)
-            {
-                variableData = new DialogueVariableData(id);
-                _dialogueVariables.Add(variableData);
-                SaveData(_dialogueVariables);
-            }
+            variableData ??= new DialogueVariableData(id);
 
             return variableData;
         }
