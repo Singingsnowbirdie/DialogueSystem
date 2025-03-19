@@ -46,6 +46,8 @@ namespace DialogueSystem
                 case EDialogueEventType.HasMetEvent:
                     HandleHasMetEvent(eventNode);
                     break;
+                case EDialogueEventType.AddFriendship:
+                    break;
                 case EDialogueEventType.SetQuestState:
                     break;
                 case EDialogueEventType.StartTrading:
@@ -59,8 +61,6 @@ namespace DialogueSystem
                 case EDialogueEventType.GiveTakeCoinsEvent:
                     break;
                 case EDialogueEventType.AddReputation:
-                    break;
-                case EDialogueEventType.AddFriendship:
                     break;
                 case EDialogueEventType.PlayAnimation:
                     break;
