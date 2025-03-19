@@ -8,6 +8,8 @@ namespace DialogueSystem.DialogueEditor
     {
         private DialogueEventNode _eventNode;
         private DialogueGraph _dialogueGraph;
+        private bool _isNotesFoldout = false;
+        private const string NotesFoldoutKey = "ConditionCheckNode_NotesFoldout";
 
         public override void OnBodyGUI()
         {
@@ -24,15 +26,6 @@ namespace DialogueSystem.DialogueEditor
 
             switch (_eventNode.EventType)
             {
-                case EDialogueEventType.None:
-                    // No options
-                    break;
-                case EDialogueEventType.StartTrading:
-                    // No options
-                    break;
-                case EDialogueEventType.StartFighting:
-                    // No options
-                    break;
                 case EDialogueEventType.HasMetEvent:
                     ShowMetNPCOptions();
                     break;
@@ -48,16 +41,38 @@ namespace DialogueSystem.DialogueEditor
                 case EDialogueEventType.GiveTakeCoinsEvent:
                     ShowCoinsOptions();
                     break;
+                case EDialogueEventType.AddReputation:
+                    break;
+                case EDialogueEventType.AddFriendship:
+                    break;
+                case EDialogueEventType.PlayAnimation:
+                    break;
+                case EDialogueEventType.PlaySound:
+                    break;
                 default:
                     break;
             }
 
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("GD Notes");
-            _eventNode.Notes = EditorGUILayout.TextArea(_eventNode.Notes, EditorStyles.textArea, GUILayout.Height(50));
+            ShowNotesFoldout();
 
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();
+        }
+
+        private void ShowNotesFoldout()
+        {
+            EditorGUILayout.Space();
+
+            _isNotesFoldout = EditorPrefs.GetBool(NotesFoldoutKey, false);
+
+            _isNotesFoldout = EditorGUILayout.Foldout(_isNotesFoldout, "GD Notes");
+
+            if (_isNotesFoldout)
+            {
+                _eventNode.Notes = EditorGUILayout.TextArea(_eventNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
+            }
+
+            EditorPrefs.SetBool(NotesFoldoutKey, _isNotesFoldout);
         }
 
         private void ShowCoinsOptions()
@@ -123,13 +138,24 @@ namespace DialogueSystem.DialogueEditor
 
         void ShowMetNPCOptions()
         {
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("NPC Key");
-            _eventNode.NPCKey = EditorGUILayout.IntField(_eventNode.NPCKey);
+            ShowNPCOptions();
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Set Value");
             _eventNode.IsTrue = EditorGUILayout.Toggle(_eventNode.IsTrue);
+        }
+
+        private void ShowNPCOptions()
+        {
+            EditorGUILayout.Space();
+            _eventNode.IsThisNPC = EditorGUILayout.Toggle("This NPC", _eventNode.IsThisNPC);
+
+            if (!_eventNode.IsThisNPC)
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField("NPC ID");
+                _eventNode.ID = EditorGUILayout.TextField(_eventNode.ID);
+            }
         }
     }
 }

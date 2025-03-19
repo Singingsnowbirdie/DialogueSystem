@@ -64,6 +64,11 @@ namespace DataSystem
             }
         }
 
+        public void SaveData()
+        {
+            SaveData(_characters);
+        }
+
         public void SaveData(List<CharacterData> characters)
         {
             CharactersDatabaseWrapper wrapper = new CharactersDatabaseWrapper { Characters = characters };

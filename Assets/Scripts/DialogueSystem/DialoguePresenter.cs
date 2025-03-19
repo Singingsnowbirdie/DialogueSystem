@@ -2,13 +2,16 @@
 using Database;
 using DialogueSystem.DialogueEditor;
 using InventorySystem;
+using NUnit.Framework;
 using Player;
 using QuestSystem;
+using System.Collections.Generic;
 using UI.DialogueUI;
 using UniRx;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using XNode;
 
 namespace DialogueSystem
 {
@@ -19,18 +22,20 @@ namespace DialogueSystem
         [Inject] private readonly DialogueModel _dialogueModel;
         [Inject] private readonly DialogueCameraModel _dialogueCameraModel;
         [Inject] private readonly PlayerModel _playerModel;
-        [Inject] private readonly CharactersModel _nPCManagerModel;
+        [Inject] private readonly CharactersModel _charactersModel;
         [Inject] private readonly JournalModel _journalModel;
         [Inject] private readonly InventoryModel _inventoryModel;
 
         private DialogueHandler _dialogueHandler;
+        private EventsHandler _eventsHandler;
         private DialogueLocalizationHandler _dialogueLocalizationHandler;
 
         private readonly CompositeDisposable _compositeDisposables = new CompositeDisposable();
 
         public void Initialize()
         {
-            _dialogueHandler = new DialogueHandler(_dialogueModel, _nPCManagerModel, _playerModel, _journalModel, _inventoryModel, this);
+            _dialogueHandler = new DialogueHandler(_dialogueModel, _charactersModel, _playerModel, _journalModel, _inventoryModel, this);
+            _eventsHandler = new EventsHandler(_charactersModel);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode
@@ -88,6 +93,10 @@ namespace DialogueSystem
 
                 _dialogueModel.DialogueUIModel.Value.DialogueText.Value = ReplacePlayerName(dialogueLine);
 
+                if (speakerNode.TryGetEvents(out List<Node> events))
+                {
+                    _eventsHandler.HandleEvents(events, _dialogueModel.SpeakerID);
+                }
             }
         }
 

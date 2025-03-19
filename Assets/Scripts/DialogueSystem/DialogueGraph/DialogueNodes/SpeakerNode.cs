@@ -48,10 +48,7 @@ namespace DialogueSystem.DialogueEditor
             return events.Count > 0;
         }
 
-        public void OnBeforeSerialize()
-        {
-
-        }
+        public void OnBeforeSerialize() { }
 
         public void OnAfterDeserialize()
         {

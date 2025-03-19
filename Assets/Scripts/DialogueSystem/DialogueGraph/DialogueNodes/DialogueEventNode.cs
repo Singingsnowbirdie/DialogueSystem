@@ -15,6 +15,7 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public EDialogueEventType EventType { get; set; }
         [field: SerializeField, HideInInspector] public string Notes { get; set; }
         [field: SerializeField, HideInInspector] public int Amount { get; set; } = 1;
+        [field: SerializeField, HideInInspector] public string ID { get; set; }
 
         // Give (take) item or coins
         [field: SerializeField, HideInInspector] public EGiveTakeEventType GiveTakeEventType { get; set; }
@@ -30,6 +31,6 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public bool IsTrue { get; set; }
 
         // NPC 
-        [field: SerializeField, HideInInspector] public int NPCKey { get; set; }
+        [field: SerializeField, HideInInspector] public bool IsThisNPC { get; set; } = true;
     }
 }

@@ -44,6 +44,11 @@ namespace NPC
                     .Subscribe(data => _dialogueModel.TryStartDialogue.OnNext(data))
                     .AddTo(_view);
 
+                _model.SetHasMet
+                    .Subscribe(data => SetHasMet(data))
+                    .AddTo(_view);
+
+
                 foreach (CharacterView characterView in characterViews)
                 {
                     CharacterUIModel characterUIModel = new CharacterUIModel();
@@ -55,6 +60,13 @@ namespace NPC
                     characterView.OnSetUIModel(characterUIModel);
                 }
             }
+        }
+
+        private void SetHasMet(HasMetData data)
+        {
+            CharacterData characterData = _model.CharactersRepository.GetCharacterByID(data.CharacterID);
+            characterData.HasMetPlayer = data.HasMetPlayer;
+            _model.CharactersRepository.SaveData();
         }
 
         public void Tick()

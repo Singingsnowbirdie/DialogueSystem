@@ -1,6 +1,7 @@
 ﻿using DataSystem;
 using NPC;
 using System.Collections.Generic;
+using UniRx;
 
 namespace Characters
 {
@@ -8,6 +9,7 @@ namespace Characters
     {
         public Dictionary<string, CharacterView> CharacterViews { get; private set; } = new Dictionary<string, CharacterView>();
         public Dictionary<string, CharacterModel> CharacterModels { get; private set; } = new Dictionary<string, CharacterModel>();
+        public ISubject<HasMetData> SetHasMet { get; } = new Subject<HasMetData>();
 
         private CharactersRepository _charactersRepository;
 
@@ -19,5 +21,17 @@ namespace Characters
                 return _charactersRepository;
             }
         }
+    }
+
+    public readonly struct HasMetData
+    {
+        public HasMetData(string characterID, bool hasMetPlayer)
+        {
+            CharacterID = characterID;
+            HasMetPlayer = hasMetPlayer;
+        }
+
+        public string CharacterID { get; }
+        public bool HasMetPlayer { get; }
     }
 }

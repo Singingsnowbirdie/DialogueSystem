@@ -9,9 +9,7 @@ namespace DialogueSystem.DialogueEditor
     {
         private ConditionCheckNode _conditionCheckNode;
         private DialogueGraph _dialogueGraph;
-
         private bool _isNotesFoldout = false;
-
         private const string NotesFoldoutKey = "ConditionCheckNode_NotesFoldout";
 
         public override void OnBodyGUI()
