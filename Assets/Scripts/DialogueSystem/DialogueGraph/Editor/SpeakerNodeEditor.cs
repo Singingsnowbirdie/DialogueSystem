@@ -31,8 +31,20 @@ namespace DialogueSystem.DialogueEditor
             base.OnBodyGUI();
 
             EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("+", GUILayout.Width(30)))
+            {
+                _dialogueNode.TextAreaHeight += 20;
+                _dialogueNode.TextAreaHeight = Mathf.Min(_dialogueNode.TextAreaHeight, 200);
+            }
+            if (GUILayout.Button("-", GUILayout.Width(30)))
+            {
+                _dialogueNode.TextAreaHeight -= 20;
+                _dialogueNode.TextAreaHeight = Mathf.Max(_dialogueNode.TextAreaHeight, 60);
+            }
             EditorGUILayout.LabelField("Text Line");
-            _dialogueNode.DialogueLine = EditorGUILayout.TextArea(_dialogueNode.DialogueLine, EditorStyles.textArea, GUILayout.Height(100));
+            EditorGUILayout.EndHorizontal();
+            _dialogueNode.DialogueLine = EditorGUILayout.TextArea(_dialogueNode.DialogueLine, EditorStyles.textArea, GUILayout.Height(_dialogueNode.TextAreaHeight));
 
             EditorGUILayout.Space();
             _dialogueNode.IsExpanded = EditorGUILayout.Foldout(_dialogueNode.IsExpanded, "Tags hint");

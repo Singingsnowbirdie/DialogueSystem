@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7108331160203067207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1256, y: -280}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -7108331160203067207}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: -1087100728483183270}
+        reroutePoints: []
+      - fieldName: <Events>k__BackingField
+        node: {fileID: 3982372819649979414}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 5
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <ID>k__BackingField: 
+  <GiveTakeEventType>k__BackingField: 0
+  <ItemConfigKey>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
 --- !u!114 &-4564370962760717694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +59,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 72, y: -456}
+  position: {x: 72, y: -600}
   ports:
     keys:
     - <Input>k__BackingField
@@ -34,7 +80,10 @@ MonoBehaviour:
     - _fieldName: <Output>k__BackingField
       _node: {fileID: -4564370962760717694}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -2455848825988686588}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -50,12 +99,16 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: The player is a man
+  <DialogueLine>k__BackingField: "Ah, you\u2019ve returned, my young friend! I sense
+    that within you lies the power to change the fate of this world. But remember,
+    strength is not just about swords and spells. Sometimes wisdom and patience are
+    your greatest allies. What brings you to me this time?"
   <ConnectedJumpers>k__BackingField: []
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: JEvM9wen
+  <TextAreaHeight>k__BackingField: 180
+  _nodeId: X9wYluuJ
 --- !u!114 &-3378726167792555083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +122,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -776, y: -280}
+  position: {x: -792, y: -280}
   ports:
     keys:
     - <Output>k__BackingField
@@ -154,6 +207,129 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: 
   <DialogueVariableType>k__BackingField: 0
+--- !u!114 &-2455848825988686588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 360, y: -312}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -2455848825988686588}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: -4564370962760717694}
+        reroutePoints: []
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 466085989364342784}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: -2455848825988686588}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 5926942261738888375}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: -2455848825988686588}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: "I\u2019m looking for a way to defeat an ancient
+    dragon that\u2019s ravaging the villages."
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: 3g1d1Gk1
+--- !u!114 &-1087100728483183270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 888, y: -616}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -1087100728483183270}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <True>k__BackingField
+        node: {fileID: 5926942261738888375}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: -1087100728483183270}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: -1087100728483183270}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -7108331160203067207}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: "Ha! You\u2019re as brave as a warrior should be.
+    But a dragon is not just a beast\u2014it\u2019s a test of your spirit. Take this
+    amulet; it will protect you from its flames. But beware, the true battle will
+    not be with the dragon, but with yourself."
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 140
+  _nodeId: mrLwonH9
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +347,11 @@ MonoBehaviour:
   - {fileID: -2788500161798348063}
   - {fileID: -4564370962760717694}
   - {fileID: 466085989364342784}
+  - {fileID: -2455848825988686588}
+  - {fileID: 5926942261738888375}
+  - {fileID: -1087100728483183270}
+  - {fileID: 3982372819649979414}
+  - {fileID: -7108331160203067207}
 --- !u!114 &466085989364342784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +365,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 72, y: -136}
+  position: {x: 72, y: -200}
   ports:
     keys:
     - <Input>k__BackingField
@@ -205,7 +386,10 @@ MonoBehaviour:
     - _fieldName: <Output>k__BackingField
       _node: {fileID: 466085989364342784}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -2455848825988686588}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -221,9 +405,144 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: The player is a woman
+  <DialogueLine>k__BackingField: "Ah, you\u2019ve returned, my dear! I see your spirit
+    shining like a star in the night sky. You possess the wisdom that can bring harmony
+    to this world. But remember, true strength often lies in gentleness and resolve.
+    What brings you to me this time?"
   <ConnectedJumpers>k__BackingField: []
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: yECXyPRJ
+  <TextAreaHeight>k__BackingField: 160
+  _nodeId: 68owtGzJ
+--- !u!114 &3982372819649979414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 888, y: -216}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 3982372819649979414}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <False>k__BackingField
+        node: {fileID: 5926942261738888375}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 3982372819649979414}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 3982372819649979414}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -7108331160203067207}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: "You are wise, as befits one who carries the light
+    within. A dragon is not just a monster\u2014it\u2019s a symbol of chaos that
+    you can tame. Take this amulet; it will protect you from its flames. But remember,
+    the true victory lies not in strength, but in your ability to understand and
+    transform."
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 180
+  _nodeId: mQ7odl3R
+--- !u!114 &5926942261738888375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994a226d5cac2034897cf49c89a7c1d4, type: 3}
+  m_Name: Condition Check
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 616, y: -312}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <True>k__BackingField
+    - <False>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 5926942261738888375}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: -2455848825988686588}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <True>k__BackingField
+      _node: {fileID: 5926942261738888375}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -1087100728483183270}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <False>k__BackingField
+      _node: {fileID: 5926942261738888375}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 3982372819649979414}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <True>k__BackingField: {fileID: 0}
+  <False>k__BackingField: {fileID: 0}
+  <Condition>k__BackingField: 0
+  <Notes>k__BackingField: 
+  <ComparisonType>k__BackingField: 0
+  <Amount>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
+  <Faction>k__BackingField: 0
+  <PlayerGender>k__BackingField: 0
+  <PlayerRace>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <ID>k__BackingField: 
+  <DialogueVariableType>k__BackingField: 0

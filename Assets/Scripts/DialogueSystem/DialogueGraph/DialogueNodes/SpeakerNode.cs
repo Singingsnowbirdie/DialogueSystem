@@ -18,6 +18,7 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public int SelectedIndex { get; set; }
         [field: SerializeField, HideInInspector] public int SpeakerKey { get; set; }
         [field: SerializeField, HideInInspector] public bool IsExpanded { get; set; } = false;
+        [field: SerializeField, HideInInspector] public float TextAreaHeight { get; set; } = 100f;
 
         [SerializeField, HideInInspector] private string _nodeId;
 
