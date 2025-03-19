@@ -19,7 +19,6 @@ namespace DialogueSystem.DialogueEditor
 
         // Give (take) item or coins
         [field: SerializeField, HideInInspector] public EGiveTakeEventType GiveTakeEventType { get; set; }
-        [field: SerializeField, HideInInspector] public int ItemConfigKey { get; set; }
 
         // Set quest state
         [field: SerializeField, HideInInspector] public int QuestConfigKey { get; set; }

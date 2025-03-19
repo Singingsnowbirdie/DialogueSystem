@@ -89,12 +89,12 @@ namespace DialogueSystem.DialogueEditor
         private void ShowItemOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Gide or Take Item");
+            EditorGUILayout.LabelField("Give or Take Item");
             _eventNode.GiveTakeEventType = (EGiveTakeEventType)EditorGUILayout.EnumPopup(_eventNode.GiveTakeEventType);
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Item Config Key");
-            _eventNode.ItemConfigKey = EditorGUILayout.IntField(_eventNode.ItemConfigKey);
+            EditorGUILayout.LabelField("Item ID");
+            _eventNode.ID = EditorGUILayout.TextField(_eventNode.ID);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Item Amount");

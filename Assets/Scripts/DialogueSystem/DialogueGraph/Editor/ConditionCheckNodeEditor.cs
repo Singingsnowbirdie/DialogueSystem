@@ -9,8 +9,7 @@ namespace DialogueSystem.DialogueEditor
     {
         private ConditionCheckNode _conditionCheckNode;
         private DialogueGraph _dialogueGraph;
-        private bool _isNotesFoldout = false;
-        private const string NotesFoldoutKey = "ConditionCheckNode_NotesFoldout";
+        private bool _isNotesFoldout;
 
         public override void OnBodyGUI()
         {
@@ -67,16 +66,12 @@ namespace DialogueSystem.DialogueEditor
         {
             EditorGUILayout.Space();
 
-            _isNotesFoldout = EditorPrefs.GetBool(NotesFoldoutKey, false);
-
             _isNotesFoldout = EditorGUILayout.Foldout(_isNotesFoldout, "GD Notes");
 
             if (_isNotesFoldout)
             {
                 _conditionCheckNode.Notes = EditorGUILayout.TextArea(_conditionCheckNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
             }
-
-            EditorPrefs.SetBool(NotesFoldoutKey, _isNotesFoldout);
         }
 
         private void ShowGenderOptions()
