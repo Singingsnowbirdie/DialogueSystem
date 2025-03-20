@@ -47,6 +47,7 @@ namespace DialogueSystem
                     HandleHasMetEvent(eventNode);
                     break;
                 case EDialogueEventType.AddFriendship:
+                    HandleAddFriendshipEvent(eventNode);
                     break;
                 case EDialogueEventType.SetQuestState:
                     break;
@@ -67,6 +68,11 @@ namespace DialogueSystem
                 case EDialogueEventType.PlaySound:
                     break;
             }
+        }
+
+        private void HandleAddFriendshipEvent(DialogueEventNode eventNode)
+        {
+            throw new NotImplementedException();
         }
 
         private void HandleHasMetEvent(DialogueEventNode eventNode)

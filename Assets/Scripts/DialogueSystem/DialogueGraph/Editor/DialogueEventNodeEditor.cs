@@ -9,7 +9,6 @@ namespace DialogueSystem.DialogueEditor
         private DialogueEventNode _eventNode;
         private DialogueGraph _dialogueGraph;
         private bool _isNotesFoldout = false;
-        private const string NotesFoldoutKey = "ConditionCheckNode_NotesFoldout";
 
         public override void OnBodyGUI()
         {
@@ -29,6 +28,9 @@ namespace DialogueSystem.DialogueEditor
                 case EDialogueEventType.HasMetEvent:
                     ShowMetNPCOptions();
                     break;
+                case EDialogueEventType.AddFriendship:
+                    ShowFriendshipOptions();
+                    break;
                 case EDialogueEventType.SetQuestState:
                     ShowQuestOptions();
                     break;
@@ -43,8 +45,7 @@ namespace DialogueSystem.DialogueEditor
                     break;
                 case EDialogueEventType.AddReputation:
                     break;
-                case EDialogueEventType.AddFriendship:
-                    break;
+
                 case EDialogueEventType.PlayAnimation:
                     break;
                 case EDialogueEventType.PlaySound:
@@ -63,16 +64,12 @@ namespace DialogueSystem.DialogueEditor
         {
             EditorGUILayout.Space();
 
-            _isNotesFoldout = EditorPrefs.GetBool(NotesFoldoutKey, false);
-
             _isNotesFoldout = EditorGUILayout.Foldout(_isNotesFoldout, "GD Notes");
 
             if (_isNotesFoldout)
             {
                 _eventNode.Notes = EditorGUILayout.TextArea(_eventNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
             }
-
-            EditorPrefs.SetBool(NotesFoldoutKey, _isNotesFoldout);
         }
 
         private void ShowCoinsOptions()
@@ -143,6 +140,16 @@ namespace DialogueSystem.DialogueEditor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Set Value");
             _eventNode.IsTrue = EditorGUILayout.Toggle(_eventNode.IsTrue);
+        }
+
+        private void ShowFriendshipOptions()
+        {
+            ShowNPCOptions();
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Amount To Add");
+            EditorGUILayout.LabelField("(can enter negative values)");
+            _eventNode.Amount = EditorGUILayout.IntField(_eventNode.Amount);
         }
 
         private void ShowNPCOptions()

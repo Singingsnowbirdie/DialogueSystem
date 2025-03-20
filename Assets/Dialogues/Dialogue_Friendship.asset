@@ -56,7 +56,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: fdakuswH
+  <TextAreaHeight>k__BackingField: 60
+  _nodeId: rrzzhy9P
 --- !u!114 &-6469260182992209811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +114,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: CyjakTAa
+  <TextAreaHeight>k__BackingField: 60
+  _nodeId: IutwMMEZ
 --- !u!114 &-5512968172237658097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +172,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: 9Rev9Qu6
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: n0JY0T6r
 --- !u!114 &-4342605870859908106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +277,6 @@ MonoBehaviour:
   <Amount>k__BackingField: 1
   <ID>k__BackingField: 
   <GiveTakeEventType>k__BackingField: 0
-  <ItemConfigKey>k__BackingField: 0
   <QuestConfigKey>k__BackingField: 0
   <QuestState>k__BackingField: 0
   <DialogueVariableKey>k__BackingField: 0
@@ -346,7 +348,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: 2vZPSW0n
+  <TextAreaHeight>k__BackingField: 60
+  _nodeId: cb2qdZEp
 --- !u!114 &-469000206071804594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +599,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: iYShWnba
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: JMTBESQc
 --- !u!114 &3006662240554956372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +773,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: vhWk3hQl
+  <TextAreaHeight>k__BackingField: 60
+  _nodeId: czpgw6Iy
 --- !u!114 &5277936793720364417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +811,6 @@ MonoBehaviour:
   <Amount>k__BackingField: 1
   <ID>k__BackingField: 
   <GiveTakeEventType>k__BackingField: 0
-  <ItemConfigKey>k__BackingField: 0
   <QuestConfigKey>k__BackingField: 0
   <QuestState>k__BackingField: 0
   <DialogueVariableKey>k__BackingField: 0
@@ -869,7 +873,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: KaxKrsdK
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: oR2cBQYH
 --- !u!114 &6189617052312193624
 MonoBehaviour:
   m_ObjectHideFlags: 0
