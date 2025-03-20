@@ -64,6 +64,7 @@ namespace DialogueSystem
                     HandleGiveTakeCoinsEvent(eventNode);
                     break;
                 case EDialogueEventType.SetQuestState:
+                    HandleSetQuestStateEvent(eventNode);
                     break;
                 case EDialogueEventType.StartTrading:
                     HandleStartTradingEvent();
@@ -80,6 +81,11 @@ namespace DialogueSystem
                 case EDialogueEventType.PlaySound:
                     break;
             }
+        }
+
+        private void HandleSetQuestStateEvent(DialogueEventNode eventNode)
+        {
+            throw new NotImplementedException();
         }
 
         private void HandleStartTradingEvent()

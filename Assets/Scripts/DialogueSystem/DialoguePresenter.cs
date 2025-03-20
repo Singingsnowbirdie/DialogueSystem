@@ -4,7 +4,6 @@ using DialogueSystem.DialogueEditor;
 using InventorySystem;
 using Player;
 using QuestSystem;
-using System;
 using System.Collections.Generic;
 using UI.DialogueUI;
 using UniRx;
@@ -66,6 +65,8 @@ namespace DialogueSystem
             // TODO: We create the "Start Trading" event in CharactersModel and pass the NPC ID.
             // We subscribe to this event in CharactersPresenter and process it.
 
+            Debug.Log("TryStartTrading");
+
             EndDialogue();
         }
 
@@ -74,6 +75,8 @@ namespace DialogueSystem
             // TODO: We create the "Start Fighting" event in CharactersModel and pass the NPC ID.
             // We subscribe to this event in CharactersPresenter and process it.
             // It is possible that not only the specified NPC but also his allies should start fighting with the character.
+
+            Debug.Log("TryStartFighting");
 
             EndDialogue();
         }
