@@ -72,16 +72,26 @@ namespace DialogueSystem
 
         private void HandleAddFriendshipEvent(DialogueEventNode eventNode)
         {
-            throw new NotImplementedException();
+            string characterID = GetSpeakerID(eventNode);
+            int friendshipAmount = eventNode.Amount;
+
+            FriendshipData friendshipData = new FriendshipData(characterID, friendshipAmount);
+
+            _charactersModel.AddFriendship.OnNext(friendshipData);
+        }
+
+        private string GetSpeakerID(DialogueEventNode eventNode)
+        {
+            if (!eventNode.IsThisNPC)
+                return eventNode.ID;
+
+            return _speakerID;
+
         }
 
         private void HandleHasMetEvent(DialogueEventNode eventNode)
         {
-            string characterID = _speakerID;
-
-            if (!eventNode.IsThisNPC)
-                characterID = eventNode.ID;
-
+            string characterID = GetSpeakerID(eventNode);
             bool hasMet = eventNode.IsTrue;
 
             HasMetData hasMetData = new(characterID, hasMet);

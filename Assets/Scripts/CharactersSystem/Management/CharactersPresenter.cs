@@ -1,6 +1,7 @@
 ﻿using Characters;
 using DataSystem;
 using DialogueSystem;
+using System;
 using System.Collections.Generic;
 using UI;
 using UniRx;
@@ -48,6 +49,10 @@ namespace NPC
                     .Subscribe(data => SetHasMet(data))
                     .AddTo(_view);
 
+                _model.AddFriendship
+                    .Subscribe(data => AddFriendship(data))
+                    .AddTo(_view);
+
 
                 foreach (CharacterView characterView in characterViews)
                 {
@@ -60,6 +65,13 @@ namespace NPC
                     characterView.OnSetUIModel(characterUIModel);
                 }
             }
+        }
+
+        private void AddFriendship(FriendshipData data)
+        {
+            CharacterData characterData = _model.CharactersRepository.GetCharacterByID(data.CharacterID);
+            characterData.FriendshipAmount += data.FriendshipAmount;
+            _model.CharactersRepository.SaveData();
         }
 
         private void SetHasMet(HasMetData data)
