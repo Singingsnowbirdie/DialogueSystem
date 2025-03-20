@@ -35,7 +35,7 @@ namespace DialogueSystem
         public void Initialize()
         {
             _dialogueHandler = new DialogueHandler(_dialogueModel, _charactersModel, _playerModel, _journalModel, _inventoryModel, this);
-            _eventsHandler = new EventsHandler(_charactersModel);
+            _eventsHandler = new EventsHandler(_charactersModel, _inventoryModel);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode

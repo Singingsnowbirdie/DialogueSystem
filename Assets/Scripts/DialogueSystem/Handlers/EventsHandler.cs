@@ -1,5 +1,6 @@
 ﻿using Characters;
 using DialogueSystem.DialogueEditor;
+using InventorySystem;
 using System;
 using System.Collections.Generic;
 using XNode;
@@ -9,12 +10,14 @@ namespace DialogueSystem
     public class EventsHandler
     {
         private CharactersModel _charactersModel;
+        private readonly InventoryModel _inventoryModel;
 
         private string _speakerID = "";
 
-        public EventsHandler(CharactersModel charactersModel)
+        public EventsHandler(CharactersModel charactersModel, InventoryModel inventoryModel)
         {
             _charactersModel = charactersModel;
+            _inventoryModel = inventoryModel;
         }
 
         internal void HandleEvents(List<Node> events, string speakerID)
@@ -34,11 +37,13 @@ namespace DialogueSystem
             }
         }
 
+        // HANDLE CONDITION
         private void HandleCondition(ConditionCheckNode conditionCheckNode)
         {
             throw new NotImplementedException();
         }
 
+        // HANDLE EVENT
         private void HandleEvent(DialogueEventNode eventNode)
         {
             switch (eventNode.EventType)
@@ -49,6 +54,12 @@ namespace DialogueSystem
                 case EDialogueEventType.AddFriendship:
                     HandleAddFriendshipEvent(eventNode);
                     break;
+                case EDialogueEventType.GiveTakeItemEvent:
+                    HandleGiveTakeItemEvent(eventNode);
+                    break;
+                case EDialogueEventType.GiveTakeCoinsEvent:
+                    HandleGiveTakeCoinsEvent(eventNode);
+                    break;
                 case EDialogueEventType.SetQuestState:
                     break;
                 case EDialogueEventType.StartTrading:
@@ -56,10 +67,6 @@ namespace DialogueSystem
                 case EDialogueEventType.StartFighting:
                     break;
                 case EDialogueEventType.SetDialogueVariable:
-                    break;
-                case EDialogueEventType.GiveTakeItemEvent:
-                    break;
-                case EDialogueEventType.GiveTakeCoinsEvent:
                     break;
                 case EDialogueEventType.AddReputation:
                     break;
@@ -70,23 +77,16 @@ namespace DialogueSystem
             }
         }
 
-        private void HandleAddFriendshipEvent(DialogueEventNode eventNode)
+        private void HandleGiveTakeCoinsEvent(DialogueEventNode eventNode)
         {
-            string characterID = GetSpeakerID(eventNode);
-            int friendshipAmount = eventNode.Amount;
-
-            FriendshipData friendshipData = new FriendshipData(characterID, friendshipAmount);
-
-            _charactersModel.AddFriendship.OnNext(friendshipData);
+            string itemID = "Coins";
+            GiveTakeItem(eventNode, itemID);
         }
 
-        private string GetSpeakerID(DialogueEventNode eventNode)
+        private void HandleGiveTakeItemEvent(DialogueEventNode eventNode)
         {
-            if (!eventNode.IsThisNPC)
-                return eventNode.ID;
-
-            return _speakerID;
-
+            string itemID = eventNode.ID;
+            GiveTakeItem(eventNode, itemID);
         }
 
         private void HandleHasMetEvent(DialogueEventNode eventNode)
@@ -97,6 +97,36 @@ namespace DialogueSystem
             HasMetData hasMetData = new(characterID, hasMet);
 
             _charactersModel.SetHasMet.OnNext(hasMetData);
+        }
+
+        private void HandleAddFriendshipEvent(DialogueEventNode eventNode)
+        {
+            string characterID = GetSpeakerID(eventNode);
+            int friendshipAmount = eventNode.Amount;
+
+            FriendshipData friendshipData = new(characterID, friendshipAmount);
+
+            _charactersModel.AddFriendship.OnNext(friendshipData);
+        }
+
+        // OTHER METHODS
+
+        private string GetSpeakerID(DialogueEventNode eventNode)
+        {
+            if (!eventNode.IsThisNPC)
+                return eventNode.ID;
+
+            return _speakerID;
+        }
+
+        private void GiveTakeItem(DialogueEventNode eventNode, string itemID)
+        {
+            int amount = eventNode.Amount;
+            EGiveTakeEventType eventType = eventNode.GiveTakeEventType;
+
+            GiveTakeItemData data = new(itemID, amount, eventType);
+
+            _inventoryModel.GiveTakeItem.OnNext(data);
         }
     }
 }
