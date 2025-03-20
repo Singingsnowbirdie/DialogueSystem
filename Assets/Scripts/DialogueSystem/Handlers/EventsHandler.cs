@@ -9,13 +9,16 @@ namespace DialogueSystem
 {
     public class EventsHandler
     {
-        private CharactersModel _charactersModel;
+        private readonly CharactersModel _charactersModel;
         private readonly InventoryModel _inventoryModel;
+        private readonly DialogueModel _dialogueModel;
 
         private string _speakerID = "";
 
-        public EventsHandler(CharactersModel charactersModel, InventoryModel inventoryModel)
+        public EventsHandler(DialogueModel dialogueModel, CharactersModel charactersModel, 
+            InventoryModel inventoryModel)
         {
+            _dialogueModel = dialogueModel;
             _charactersModel = charactersModel;
             _inventoryModel = inventoryModel;
         }
@@ -63,8 +66,10 @@ namespace DialogueSystem
                 case EDialogueEventType.SetQuestState:
                     break;
                 case EDialogueEventType.StartTrading:
+                    HandleStartTradingEvent();
                     break;
                 case EDialogueEventType.StartFighting:
+                    HandleStartFightingEvent();
                     break;
                 case EDialogueEventType.SetDialogueVariable:
                     break;
@@ -75,6 +80,16 @@ namespace DialogueSystem
                 case EDialogueEventType.PlaySound:
                     break;
             }
+        }
+
+        private void HandleStartTradingEvent()
+        {
+            _dialogueModel.TryStartTrading.OnNext(_speakerID);
+        }
+
+        private void HandleStartFightingEvent()
+        {
+            _dialogueModel.TryStartFighting.OnNext(_speakerID);
         }
 
         private void HandleGiveTakeCoinsEvent(DialogueEventNode eventNode)

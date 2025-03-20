@@ -1,7 +1,6 @@
 ﻿using Characters;
 using DataSystem;
 using DialogueSystem;
-using System;
 using System.Collections.Generic;
 using UI;
 using UniRx;

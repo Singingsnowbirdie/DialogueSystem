@@ -2,9 +2,9 @@
 using Database;
 using DialogueSystem.DialogueEditor;
 using InventorySystem;
-using NUnit.Framework;
 using Player;
 using QuestSystem;
+using System;
 using System.Collections.Generic;
 using UI.DialogueUI;
 using UniRx;
@@ -35,7 +35,7 @@ namespace DialogueSystem
         public void Initialize()
         {
             _dialogueHandler = new DialogueHandler(_dialogueModel, _charactersModel, _playerModel, _journalModel, _inventoryModel, this);
-            _eventsHandler = new EventsHandler(_charactersModel, _inventoryModel);
+            _eventsHandler = new EventsHandler(_dialogueModel, _charactersModel, _inventoryModel);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode
@@ -50,7 +50,32 @@ namespace DialogueSystem
                 .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint, data.NPC_ID))
                 .AddTo(_compositeDisposables);
 
+            _dialogueModel.TryStartFighting
+                .Subscribe(characterID => TryStartFighting(characterID))
+                .AddTo(_compositeDisposables);
+
+            _dialogueModel.TryStartTrading
+                .Subscribe(characterID => TryStartTrading(characterID))
+                .AddTo(_compositeDisposables);
+
             _dialogueModel.DialogueVariablesRepository.LoadData();
+        }
+
+        private void TryStartTrading(string characterID)
+        {
+            // TODO: We create the "Start Trading" event in CharactersModel and pass the NPC ID.
+            // We subscribe to this event in CharactersPresenter and process it.
+
+            EndDialogue();
+        }
+
+        private void TryStartFighting(string characterID)
+        {
+            // TODO: We create the "Start Fighting" event in CharactersModel and pass the NPC ID.
+            // We subscribe to this event in CharactersPresenter and process it.
+            // It is possible that not only the specified NPC but also his allies should start fighting with the character.
+
+            EndDialogue();
         }
 
         internal void TryToStartDialogue(string speakerName, string dialogueID, Transform focusPoint, string npcID)

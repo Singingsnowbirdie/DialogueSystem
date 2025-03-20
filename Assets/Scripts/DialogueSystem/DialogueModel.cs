@@ -15,6 +15,8 @@ namespace DialogueSystem
         public ReactiveProperty<DialogueNode> CurrentNode { get; } = new ReactiveProperty<DialogueNode>();
         public ReactiveProperty<DialogueUIModel> DialogueUIModel { get; } = new ReactiveProperty<DialogueUIModel>();
         public ISubject<DialogueData> TryStartDialogue { get; } = new Subject<DialogueData>();
+        public ISubject<string> TryStartFighting { get; } = new Subject<string>();
+        public ISubject<string> TryStartTrading { get; } = new Subject<string>();
 
         private DialogueVariablesRepository _dialogueVariablesRepository;
 
