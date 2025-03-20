@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using XNode;
 
@@ -53,6 +54,9 @@ namespace DialogueSystem.DialogueEditor
                 case EDialogueCondition.IsFriendshipAmount:
                     ShowFriendshipOptions();
                     break;
+                case EDialogueCondition.InfluenceAttempt:
+                    ShowInfluenceOptions();
+                    break;
             }
 
             ShowNotesFoldout();
@@ -62,16 +66,12 @@ namespace DialogueSystem.DialogueEditor
             serializedObject.Update();
         }
 
-        private void ShowNotesFoldout()
+        // OPTIONS
+        private void ShowInfluenceOptions()
         {
             EditorGUILayout.Space();
-
-            _isNotesFoldout = EditorGUILayout.Foldout(_isNotesFoldout, "GD Notes");
-
-            if (_isNotesFoldout)
-            {
-                _conditionCheckNode.Notes = EditorGUILayout.TextArea(_conditionCheckNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
-            }
+            EditorGUILayout.LabelField("Select Influence Type");
+            _conditionCheckNode.InfluenceType = (EInfluenceType)EditorGUILayout.EnumPopup(_conditionCheckNode.InfluenceType);
         }
 
         private void ShowGenderOptions()
@@ -180,6 +180,8 @@ namespace DialogueSystem.DialogueEditor
             _conditionCheckNode.Amount = EditorGUILayout.IntField(_conditionCheckNode.Amount);
         }
 
+        // VERIFY CONNECTIONS
+
         private void VerifyConnections()
         {
             for (int i = 0; i < 2; i++)
@@ -207,6 +209,19 @@ namespace DialogueSystem.DialogueEditor
                 || connectedNode is PlayerResponseNodeJumper
                 || connectedNode is DialogueEventNode
                 || connectedNode is SpeakerNode;
+        }
+
+        // OTHER
+        private void ShowNotesFoldout()
+        {
+            EditorGUILayout.Space();
+
+            _isNotesFoldout = EditorGUILayout.Foldout(_isNotesFoldout, "GD Notes");
+
+            if (_isNotesFoldout)
+            {
+                _conditionCheckNode.Notes = EditorGUILayout.TextArea(_conditionCheckNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
+            }
         }
     }
 }

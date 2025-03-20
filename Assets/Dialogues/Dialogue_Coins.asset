@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8466871789325144601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994a226d5cac2034897cf49c89a7c1d4, type: 3}
+  m_Name: Condition Check
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 312, y: 8}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <True>k__BackingField
+    - <False>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -8466871789325144601}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 5881853355471477932}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <True>k__BackingField
+      _node: {fileID: -8466871789325144601}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -3677503896346894305}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <False>k__BackingField
+      _node: {fileID: -8466871789325144601}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 8159789751514257917}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <True>k__BackingField: {fileID: 0}
+  <False>k__BackingField: {fileID: 0}
+  <Condition>k__BackingField: 9
+  <Notes>k__BackingField: 
+  <ComparisonType>k__BackingField: 0
+  <Amount>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
+  <Faction>k__BackingField: 0
+  <PlayerGender>k__BackingField: 0
+  <PlayerRace>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <ID>k__BackingField: 
+  <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 0
 --- !u!114 &-7452242040186625605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +81,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -1400}
+  position: {x: 1112, y: -1880}
   ports:
     keys:
     - <Input>k__BackingField
@@ -46,6 +114,9 @@ MonoBehaviour:
       - fieldName: <Input>k__BackingField
         node: {fileID: -3746499590766522480}
         reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 3096914607066181942}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -59,7 +130,91 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 80
-  _nodeId: 8tmMzr1s
+  _nodeId: FZCYPMOH
+--- !u!114 &-7144943389802374691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 920, y: -8}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -7144943389802374691}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: -3677503896346894305}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 5
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <ID>k__BackingField: Artifact_56
+  <GiveTakeEventType>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
+--- !u!114 &-6458856957068191590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 904, y: -872}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -6458856957068191590}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: 7822704023824015937}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 5
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <ID>k__BackingField: Artifact_56
+  <GiveTakeEventType>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
 --- !u!114 &-5749987025816657948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +228,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 328, y: -1160}
+  position: {x: 328, y: -1640}
   ports:
     keys:
     - <Input>k__BackingField
@@ -125,7 +280,49 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 80
-  _nodeId: Gd5cKQJk
+  _nodeId: Evjk6y3X
+--- !u!114 &-5455648849128128439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: -520}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -5455648849128128439}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: 6190152687207178949}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 3
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <ID>k__BackingField: 
+  <GiveTakeEventType>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
 --- !u!114 &-5260725462510477085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +336,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 856, y: -1384}
+  position: {x: 856, y: -1864}
   ports:
     keys:
     - <Input>k__BackingField
@@ -195,7 +392,7 @@ MonoBehaviour:
   m_Name: Condition Check
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: -552}
+  position: {x: 312, y: -712}
   ports:
     keys:
     - <Input>k__BackingField
@@ -216,7 +413,10 @@ MonoBehaviour:
     - _fieldName: <True>k__BackingField
       _node: {fileID: -5142235175522655840}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 7822704023824015937}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -224,7 +424,10 @@ MonoBehaviour:
     - _fieldName: <False>k__BackingField
       _node: {fileID: -5142235175522655840}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 6190152687207178949}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -232,7 +435,7 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <True>k__BackingField: {fileID: 0}
   <False>k__BackingField: {fileID: 0}
-  <Condition>k__BackingField: 0
+  <Condition>k__BackingField: 9
   <Notes>k__BackingField: 
   <ComparisonType>k__BackingField: 0
   <Amount>k__BackingField: 0
@@ -243,6 +446,7 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: 
   <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 1
 --- !u!114 &-3746499590766522480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +460,7 @@ MonoBehaviour:
   m_Name: Dialogue Event
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1368, y: -1352}
+  position: {x: 1400, y: -1784}
   ports:
     keys:
     - <Input>k__BackingField
@@ -285,6 +489,67 @@ MonoBehaviour:
   <DialogueVariableType>k__BackingField: 0
   <IsTrue>k__BackingField: 0
   <IsThisNPC>k__BackingField: 1
+--- !u!114 &-3677503896346894305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 648, y: -152}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -3677503896346894305}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <True>k__BackingField
+        node: {fileID: -8466871789325144601}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: -3677503896346894305}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: -3677503896346894305}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -7144943389802374691}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: Okay, you've convinced me. Mention me there when
+    you're bathing in the rays of gratitude from the saved.
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 80
+  _nodeId: GHIT2mFo
 --- !u!114 &-1494924887706333663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +563,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -1096}
+  position: {x: 1112, y: -1576}
   ports:
     keys:
     - <Input>k__BackingField
@@ -341,7 +606,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 80
-  _nodeId: UOwDLdwI
+  _nodeId: IldBYbp8
 --- !u!114 &-803241930321390389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +620,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 856, y: -1096}
+  position: {x: 856, y: -1576}
   ports:
     keys:
     - <Input>k__BackingField
@@ -412,7 +677,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -552}
+  position: {x: 56, y: -712}
   ports:
     keys:
     - <Input>k__BackingField
@@ -485,6 +750,16 @@ MonoBehaviour:
   - {fileID: 8164624185670740656}
   - {fileID: 5195552899434878801}
   - {fileID: -5142235175522655840}
+  - {fileID: 7822704023824015937}
+  - {fileID: 6190152687207178949}
+  - {fileID: -5455648849128128439}
+  - {fileID: 3096914607066181942}
+  - {fileID: -6458856957068191590}
+  - {fileID: -8466871789325144601}
+  - {fileID: -3677503896346894305}
+  - {fileID: 8159789751514257917}
+  - {fileID: -7144943389802374691}
+  - {fileID: 8881095642215495023}
 --- !u!114 &1575794126283942016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +826,49 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 80
-  _nodeId: fJ79L7xR
+  _nodeId: 6SUZC79h
+--- !u!114 &3096914607066181942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1400, y: -1544}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 3096914607066181942}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: -7452242040186625605}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 5
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: 1
+  <ID>k__BackingField: Artifact_56
+  <GiveTakeEventType>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1
 --- !u!114 &4031486541664647912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +882,7 @@ MonoBehaviour:
   m_Name: Condition Check
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 600, y: -1160}
+  position: {x: 600, y: -1640}
   ports:
     keys:
     - <Input>k__BackingField
@@ -619,6 +936,7 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: 
   <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 0
 --- !u!114 &4150035952048048596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +981,7 @@ MonoBehaviour:
   m_Name: Player Response Jumper
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 600, y: -712}
+  position: {x: 600, y: -1192}
   ports:
     keys:
     - <Input>k__BackingField
@@ -694,7 +1012,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -1144}
+  position: {x: 56, y: -1624}
   ports:
     keys:
     - <Input>k__BackingField
@@ -750,7 +1068,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -200}
+  position: {x: 56, y: 8}
   ports:
     keys:
     - <Input>k__BackingField
@@ -771,7 +1089,10 @@ MonoBehaviour:
     - _fieldName: <Output>k__BackingField
       _node: {fileID: 5881853355471477932}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -8466871789325144601}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -792,6 +1113,187 @@ MonoBehaviour:
   <ConnectedJumpers>k__BackingField:
   - {fileID: 5195552899434878801}
   _nodeId: ksfvsBhP
+--- !u!114 &6190152687207178949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 648, y: -568}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 6190152687207178949}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <False>k__BackingField
+        node: {fileID: -5142235175522655840}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 6190152687207178949}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 6190152687207178949}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -5455648849128128439}
+        reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 8881095642215495023}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: What!? You still dare to threaten me? Guards! Guards!
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 80
+  _nodeId: WTGTK5qO
+--- !u!114 &7822704023824015937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 648, y: -872}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 7822704023824015937}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <True>k__BackingField
+        node: {fileID: -5142235175522655840}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 7822704023824015937}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 7822704023824015937}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -6458856957068191590}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: Okay, okay, take it! Just don't hit me!
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 80
+  _nodeId: 2UIlPnIu
+--- !u!114 &8159789751514257917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 648, y: 152}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 8159789751514257917}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <False>k__BackingField
+        node: {fileID: -8466871789325144601}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 8159789751514257917}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 8159789751514257917}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: No way! Let someone else do the charity work, and
+    I need to feed my own family.
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 80
+  _nodeId: uEb71zFG
 --- !u!114 &8164624185670740656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,7 +1307,7 @@ MonoBehaviour:
   m_Name: Player Response Jumper
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 600, y: -936}
+  position: {x: 600, y: -1416}
   ports:
     keys:
     - <Input>k__BackingField
@@ -823,3 +1325,45 @@ MonoBehaviour:
       _dynamic: 0
   <Input>k__BackingField: {fileID: 0}
   <TargetNode>k__BackingField: {fileID: -173455037339970651}
+--- !u!114 &8881095642215495023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: -376}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 8881095642215495023}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: 6190152687207178949}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 8
+  <Notes>k__BackingField: 
+  <Amount>k__BackingField: -20
+  <ID>k__BackingField: 
+  <GiveTakeEventType>k__BackingField: 0
+  <QuestConfigKey>k__BackingField: 0
+  <QuestState>k__BackingField: 0
+  <DialogueVariableKey>k__BackingField: 0
+  <DialogueVariableType>k__BackingField: 0
+  <IsTrue>k__BackingField: 0
+  <IsThisNPC>k__BackingField: 1

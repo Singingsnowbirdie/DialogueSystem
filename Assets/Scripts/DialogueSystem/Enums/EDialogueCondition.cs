@@ -10,6 +10,7 @@
         HasEnoughItems,
         HasEnoughCoins,
         IsDialogueVariable,
-        IsFriendshipAmount
+        IsFriendshipAmount,
+        InfluenceAttempt
     }
 }

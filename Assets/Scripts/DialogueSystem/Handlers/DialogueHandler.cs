@@ -4,6 +4,7 @@ using DialogueSystem.DialogueEditor;
 using InventorySystem;
 using Player;
 using QuestSystem;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
@@ -70,8 +71,33 @@ namespace DialogueSystem
                 EDialogueCondition.HasEnoughItems => HasEnoughItems(conditionCheckNode),
                 EDialogueCondition.HasEnoughCoins => HasEnoughCoins(conditionCheckNode),
                 EDialogueCondition.IsDialogueVariable => IsDialogueVariable(conditionCheckNode),
+                EDialogueCondition.InfluenceAttempt => IsInfluenceSuccessful(conditionCheckNode),
                 _ => false,
             };
+        }
+
+        private bool IsInfluenceSuccessful(ConditionCheckNode conditionCheckNode)
+        {
+            if (conditionCheckNode.InfluenceType == EInfluenceType.Persuasion)
+                return IsPersuasionSuccessful(_speakerID);
+            else
+                return IsThreatSuccessful(_speakerID);
+        }
+
+        private bool IsThreatSuccessful(string speakerID)
+        {
+            // TODO: Perform calculations taking into account the player's perks,
+            // buffs and the NPC's characteristics.
+
+            return UnityEngine.Random.value < 0.5f;
+        }
+
+        private bool IsPersuasionSuccessful(string speakerID)
+        {
+            // TODO: Perform calculations taking into account the player's perks,
+            // buffs and the NPC's characteristics ( and his attitude towards the player).
+
+            return UnityEngine.Random.value < 0.5f;
         }
 
         private bool IsDialogueVariable(ConditionCheckNode conditionCheckNode)

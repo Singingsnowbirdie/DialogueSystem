@@ -19,24 +19,13 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public EComparisonTypes ComparisonType { get; set; }
         [field: SerializeField, HideInInspector] public int Amount { get; set; }
         [field: SerializeField, HideInInspector] public bool IsThisNPC { get; set; } = true;
-
-        // Reputation Options
         [field: SerializeField, HideInInspector] public EFaction Faction { get; set; }
-
-        // Player`s Gender Options
         [field: SerializeField, HideInInspector] public EGender PlayerGender { get; set; }
-
-        // Player`s Race Options
         [field: SerializeField, HideInInspector] public ERace PlayerRace { get; set; }
-
-        // Quest Options
         [field: SerializeField, HideInInspector] public EQuestState QuestState { get; set; }
-
-        //ID Options
         [field: SerializeField, HideInInspector] public string ID { get; set; }
-
-        // Dialogue Variables Options
         [field: SerializeField, HideInInspector] public EDialogueVariableType DialogueVariableType { get; set; }
+        [field: SerializeField, HideInInspector] public EInfluenceType InfluenceType { get; set; }
 
         internal List<Node> GetBoolConnections(bool isTrue)
         {
