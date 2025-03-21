@@ -44,8 +44,8 @@ namespace DialogueSystem.DialogueEditor
                     ShowCoinsOptions();
                     break;
                 case EDialogueEventType.AddReputation:
+                    ShowReputationOptions();
                     break;
-
                 case EDialogueEventType.PlayAnimation:
                     break;
                 case EDialogueEventType.PlaySound:
@@ -70,6 +70,18 @@ namespace DialogueSystem.DialogueEditor
             {
                 _eventNode.Notes = EditorGUILayout.TextArea(_eventNode.Notes, EditorStyles.textArea, GUILayout.Height(100));
             }
+        }
+
+        private void ShowReputationOptions()
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Select Faction");
+            _eventNode.Faction = (EFaction)EditorGUILayout.EnumPopup(_eventNode.Faction);
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Amount To Add");
+            EditorGUILayout.LabelField("(can enter negative values)");
+            _eventNode.Amount = EditorGUILayout.IntField(_eventNode.Amount);
         }
 
         private void ShowCoinsOptions()
@@ -105,8 +117,8 @@ namespace DialogueSystem.DialogueEditor
             _eventNode.DialogueVariableType = (EDialogueVariableType)EditorGUILayout.EnumPopup(_eventNode.DialogueVariableType);
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Variable Key");
-            _eventNode.DialogueVariableKey = EditorGUILayout.IntField(_eventNode.DialogueVariableKey);
+            EditorGUILayout.LabelField("Variable ID");
+            _eventNode.ID = EditorGUILayout.TextField(_eventNode.ID);
 
             if (_eventNode.DialogueVariableType == EDialogueVariableType.Amount)
             {
@@ -125,8 +137,8 @@ namespace DialogueSystem.DialogueEditor
         private void ShowQuestOptions()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Quest Key");
-            _eventNode.QuestConfigKey = EditorGUILayout.IntField(_eventNode.QuestConfigKey);
+            EditorGUILayout.LabelField("Quest ID");
+            _eventNode.ID = EditorGUILayout.TextField(_eventNode.ID);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("New Quest State");

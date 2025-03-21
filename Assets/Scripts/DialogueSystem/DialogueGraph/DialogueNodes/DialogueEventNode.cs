@@ -16,20 +16,11 @@ namespace DialogueSystem.DialogueEditor
         [field: SerializeField, HideInInspector] public string Notes { get; set; }
         [field: SerializeField, HideInInspector] public int Amount { get; set; } = 1;
         [field: SerializeField, HideInInspector] public string ID { get; set; }
-
-        // Give (take) item or coins
         [field: SerializeField, HideInInspector] public EGiveTakeEventType GiveTakeEventType { get; set; }
-
-        // Set quest state
-        [field: SerializeField, HideInInspector] public int QuestConfigKey { get; set; }
         [field: SerializeField, HideInInspector] public EQuestState QuestState { get; set; }
-
-        // Dialogue Variables
-        [field: SerializeField, HideInInspector] public int DialogueVariableKey { get; set; }
         [field: SerializeField, HideInInspector] public EDialogueVariableType DialogueVariableType { get; set; }
+        [field: SerializeField, HideInInspector] public EFaction Faction { get; set; }
         [field: SerializeField, HideInInspector] public bool IsTrue { get; set; }
-
-        // NPC 
         [field: SerializeField, HideInInspector] public bool IsThisNPC { get; set; } = true;
     }
 }

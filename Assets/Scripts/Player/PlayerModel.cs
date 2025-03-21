@@ -5,13 +5,17 @@ namespace Player
 {
     public class PlayerModel
     {
-        public ReactiveProperty<int> Reputation_OfficialAuthorities { get; } = new ReactiveProperty<int>();
-        public ReactiveProperty<int> Reputation_Civilian { get; } = new ReactiveProperty<int>();
-        public ReactiveProperty<int> Reputation_Bandits { get; } = new ReactiveProperty<int>();
+        // MAIN
         public ReactiveProperty<ERace> PlayerRace { get; } = new ReactiveProperty<ERace>();
         public ReactiveProperty<EGender> PlayerGender { get; } = new ReactiveProperty<EGender>();
         public ReactiveProperty<string> PlayerName { get; } = new ReactiveProperty<string>();
 
+        // REPUTATION
+        public ReactiveProperty<int> Reputation_OfficialAuthorities { get; } = new ReactiveProperty<int>();
+        public ReactiveProperty<int> Reputation_Civilian { get; } = new ReactiveProperty<int>();
+        public ReactiveProperty<int> Reputation_Bandits { get; } = new ReactiveProperty<int>();
+
+        // OTHER
         private PlayerRepository _playerRepository;
 
         public PlayerRepository PlayerRepository
@@ -54,6 +58,18 @@ namespace Player
                 _ => Reputation_Civilian.Value,
             };
         }
+    }
+
+    public readonly struct ReputationData
+    {
+        public ReputationData(EFaction faction, int amount)
+        {
+            Faction = faction;
+            Amount = amount;
+        }
+
+        public EFaction Faction { get; }
+        public int Amount { get; }
     }
 }
 

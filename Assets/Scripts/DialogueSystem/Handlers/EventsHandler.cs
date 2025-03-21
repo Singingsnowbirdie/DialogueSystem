@@ -79,6 +79,7 @@ namespace DialogueSystem
                     HandleSetDialogueVariableEvent(eventNode);
                     break;
                 case EDialogueEventType.AddReputation:
+                    HandleAddReputationEvent(eventNode);
                     break;
                 case EDialogueEventType.PlayAnimation:
                     HandlePlayAnimationEvent(eventNode);
@@ -87,6 +88,11 @@ namespace DialogueSystem
                     HandlePlaySoundEvent(eventNode);
                     break;
             }
+        }
+
+        private void HandleAddReputationEvent(DialogueEventNode eventNode)
+        {
+            throw new NotImplementedException();
         }
 
         private void HandleSetDialogueVariableEvent(DialogueEventNode eventNode)
