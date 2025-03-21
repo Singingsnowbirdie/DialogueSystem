@@ -4,6 +4,7 @@ using DialogueSystem.DialogueEditor;
 using InventorySystem;
 using Player;
 using QuestSystem;
+using System;
 using System.Collections.Generic;
 using UI.DialogueUI;
 using UniRx;
@@ -14,7 +15,7 @@ using XNode;
 
 namespace DialogueSystem
 {
-    public class DialoguePresenter : IInitializable
+    public class DialoguePresenter : IInitializable, IDisposable
     {
         [Inject] private readonly DialogueDatabase _dialogueDatabase;
         [Inject] private readonly DialogueView _view;
@@ -29,35 +30,47 @@ namespace DialogueSystem
         private EventsHandler _eventsHandler;
         private DialogueLocalizationHandler _dialogueLocalizationHandler;
 
-        private readonly CompositeDisposable _compositeDisposables = new CompositeDisposable();
+        private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         public void Initialize()
         {
             _dialogueHandler = new DialogueHandler(_dialogueModel, _charactersModel, _playerModel, _journalModel, _inventoryModel, this);
-            _eventsHandler = new EventsHandler(_dialogueModel, _charactersModel, _inventoryModel);
+            _eventsHandler = new EventsHandler(_dialogueModel, _charactersModel, _inventoryModel, _journalModel);
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode
                 .Subscribe(val => OnCurrentNodeUpdated(val))
-                .AddTo(_compositeDisposables);
+                .AddTo(_compositeDisposable);
 
             _dialogueModel.DialogueUIModel
                 .Subscribe(val => _view.OnDialogueUIModelUpdated(val))
-                .AddTo(_compositeDisposables);
+                .AddTo(_compositeDisposable);
 
             _dialogueModel.TryStartDialogue
                 .Subscribe(data => TryToStartDialogue(data.SpeakerName, data.DialogueID, data.FocusPoint, data.NPC_ID))
-                .AddTo(_compositeDisposables);
+                .AddTo(_compositeDisposable);
 
             _dialogueModel.TryStartFighting
                 .Subscribe(characterID => TryStartFighting(characterID))
-                .AddTo(_compositeDisposables);
+                .AddTo(_compositeDisposable);
+
+            _dialogueModel.SetVariableValues
+                .Subscribe(data => SetVariableValues(data))
+                .AddTo(_compositeDisposable);
 
             _dialogueModel.TryStartTrading
                 .Subscribe(characterID => TryStartTrading(characterID))
-                .AddTo(_compositeDisposables);
+                .AddTo(_compositeDisposable);
 
             _dialogueModel.DialogueVariablesRepository.LoadData();
+        }
+
+        private void SetVariableValues(SetVariableData data)
+        {
+            DialogueVariableData variable = _dialogueModel.DialogueVariablesRepository.GetDialogueVariable(data.VariableID);
+            variable.IsTrue = data.IsTrue;
+            variable.Amount = data.Amount;
+            _dialogueModel.DialogueVariablesRepository.SaveData();
         }
 
         private void TryStartTrading(string characterID)
@@ -147,6 +160,11 @@ namespace DialogueSystem
                 // stop interaction for Player
                 _dialogueModel.IsDialogueStarted = false;
             }
+        }
+
+        public void Dispose()
+        {
+            _compositeDisposable.Dispose();
         }
     }
 }

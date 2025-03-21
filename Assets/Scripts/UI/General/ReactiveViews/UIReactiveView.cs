@@ -24,5 +24,10 @@ namespace Gameplay.UI.ReactiveViews
         }
 
         protected abstract void OnSetModel(T viewModel);
+
+        private void OnDestroy()
+        {
+            compositeDisposable?.Dispose();
+        }
     }
 }

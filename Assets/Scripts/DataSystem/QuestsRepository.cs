@@ -77,6 +77,11 @@ namespace QuestSystem
             File.WriteAllText(JsonFilePath, json);
         }
 
+        internal void SaveData()
+        {
+            SaveData(_quests);
+        }
+
         [Serializable]
         private class QuestsDatabaseWrapper
         {

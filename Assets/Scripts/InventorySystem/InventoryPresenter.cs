@@ -1,16 +1,17 @@
 ﻿using DataSystem;
 using DialogueSystem.DialogueEditor;
+using System;
 using UniRx;
 using VContainer;
 using VContainer.Unity;
 
 namespace InventorySystem
 {
-    public class InventoryPresenter : IStartable
+    public class InventoryPresenter : IStartable, IDisposable
     {
         [Inject] private readonly InventoryModel _model;
 
-        CompositeDisposable _compositeDisposables = new CompositeDisposable();
+        private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         public void Start()
         {
@@ -18,7 +19,7 @@ namespace InventorySystem
 
             _model.GiveTakeItem
                     .Subscribe(data => GiveTakeItem(data))
-                    .AddTo(_compositeDisposables);
+                    .AddTo(_compositeDisposable);
 
             AddItem("Coins", 20); // temp debug
         }
@@ -65,6 +66,11 @@ namespace InventorySystem
             }
 
             _model.InventoryRepository.SaveData();
+        }
+
+        public void Dispose()
+        {
+            _compositeDisposable.Dispose();
         }
     }
 }

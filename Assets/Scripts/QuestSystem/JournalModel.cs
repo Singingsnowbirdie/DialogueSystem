@@ -1,9 +1,13 @@
-﻿using System;
+﻿using DialogueSystem;
+using DialogueSystem.DialogueEditor;
+using UniRx;
 
 namespace QuestSystem
 {
     public class JournalModel
     {
+        public ISubject<QuestStateData> SetQuestState { get; } = new Subject<QuestStateData>();
+
         private QuestsRepository _questsRepository;
 
         public QuestsRepository QuestsRepository
@@ -14,11 +18,19 @@ namespace QuestSystem
                 return _questsRepository;
             }
         }
+    }
 
-        internal void LoadQuestsData()
+    public readonly struct QuestStateData
+    {
+        public QuestStateData(string questID, EQuestState questState)
         {
-            QuestsRepository.LoadData();
+            QuestID = questID;
+            QuestState = questState;
         }
+
+        public string QuestID { get; }
+
+        public EQuestState QuestState { get; }
     }
 }
 

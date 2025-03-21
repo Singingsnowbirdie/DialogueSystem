@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace DialogueSystem
 {
@@ -39,6 +38,11 @@ namespace DialogueSystem
             }
 
             return dialogueVariables;
+        }
+
+        internal void SaveData()
+        {
+            SaveData(_dialogueVariables);
         }
 
         public void SaveData(List<DialogueVariableData> dialogueVariables)

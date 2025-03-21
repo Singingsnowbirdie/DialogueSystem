@@ -1,6 +1,7 @@
 ﻿using Characters;
 using DialogueSystem.DialogueEditor;
 using InventorySystem;
+using QuestSystem;
 using System;
 using System.Collections.Generic;
 using XNode;
@@ -11,16 +12,18 @@ namespace DialogueSystem
     {
         private readonly CharactersModel _charactersModel;
         private readonly InventoryModel _inventoryModel;
+        private readonly JournalModel _journalModel;
         private readonly DialogueModel _dialogueModel;
 
         private string _speakerID = "";
 
-        public EventsHandler(DialogueModel dialogueModel, CharactersModel charactersModel, 
-            InventoryModel inventoryModel)
+        public EventsHandler(DialogueModel dialogueModel, CharactersModel charactersModel,
+            InventoryModel inventoryModel, JournalModel journalModel)
         {
             _dialogueModel = dialogueModel;
             _charactersModel = charactersModel;
             _inventoryModel = inventoryModel;
+            _journalModel = journalModel;
         }
 
         internal void HandleEvents(List<Node> events, string speakerID)
@@ -73,19 +76,39 @@ namespace DialogueSystem
                     HandleStartFightingEvent();
                     break;
                 case EDialogueEventType.SetDialogueVariable:
+                    HandleSetDialogueVariableEvent(eventNode);
                     break;
                 case EDialogueEventType.AddReputation:
                     break;
                 case EDialogueEventType.PlayAnimation:
+                    HandlePlayAnimationEvent(eventNode);
                     break;
                 case EDialogueEventType.PlaySound:
+                    HandlePlaySoundEvent(eventNode);
                     break;
             }
         }
 
+        private void HandleSetDialogueVariableEvent(DialogueEventNode eventNode)
+        {
+            SetVariableData data = new SetVariableData(eventNode.ID, eventNode.IsTrue, eventNode.Amount);
+            _dialogueModel.SetVariableValues.OnNext(data);
+        }
+
+        private void HandlePlaySoundEvent(DialogueEventNode eventNode)
+        {
+            // Add logic to play the corresponding audio while displaying the text spoken by the NPC here.
+        }
+
+        private void HandlePlayAnimationEvent(DialogueEventNode eventNode)
+        {
+            // This event is designed to control NPC animations during dialogue. Add logic to call animations here.
+        }
+
         private void HandleSetQuestStateEvent(DialogueEventNode eventNode)
         {
-            throw new NotImplementedException();
+            QuestStateData data = new QuestStateData(eventNode.ID, eventNode.QuestState);
+            _journalModel.SetQuestState.OnNext(data);
         }
 
         private void HandleStartTradingEvent()

@@ -1,4 +1,5 @@
 ﻿using InteractionSystem;
+using System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +8,7 @@ using VContainer.Unity;
 
 namespace Player
 {
-    public class PlayerInteractionPresenter : IStartable
+    public class PlayerInteractionPresenter : IStartable, IDisposable
     {
         [Inject] private readonly PlayerInteractionModel _model;
         [Inject] private readonly PlayerInput _playerInput;
@@ -62,6 +63,11 @@ namespace Player
         internal void OnInteractionCompleted()
         {
             _model.IsInteracting.Value = false;
+        }
+
+        public void Dispose()
+        {
+            _compositeDisposable.Dispose();
         }
     }
 }

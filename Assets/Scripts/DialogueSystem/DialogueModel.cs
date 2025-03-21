@@ -15,6 +15,7 @@ namespace DialogueSystem
         public ReactiveProperty<DialogueNode> CurrentNode { get; } = new ReactiveProperty<DialogueNode>();
         public ReactiveProperty<DialogueUIModel> DialogueUIModel { get; } = new ReactiveProperty<DialogueUIModel>();
         public ISubject<DialogueData> TryStartDialogue { get; } = new Subject<DialogueData>();
+        public ISubject<SetVariableData> SetVariableValues { get; } = new Subject<SetVariableData>();
         public ISubject<string> TryStartFighting { get; } = new Subject<string>();
         public ISubject<string> TryStartTrading { get; } = new Subject<string>();
 
@@ -44,5 +45,19 @@ namespace DialogueSystem
             FocusPoint = focusPoint;
             NPC_ID = npcId;
         }
+    }
+
+    public readonly struct SetVariableData
+    {
+        public SetVariableData(string variableID, bool isTrue, int amount)
+        {
+            VariableID = variableID;
+            IsTrue = isTrue;
+            Amount = amount;
+        }
+
+        public string VariableID { get; }
+        public bool IsTrue { get; }
+        public int Amount { get; }
     }
 }
