@@ -118,11 +118,11 @@ namespace DialogueSystem
                 _dialogueHandler.HandleStartNode(startNode, _dialogueModel.SpeakerID);
             else if (currentNode is SpeakerNode speakerNode)
             {
-                if (_dialogueModel.IsDialogueStarted == false)
+                if (_dialogueModel.IsDialogueStarted.Value == false)
                 {
                     _dialogueModel.DialogueUIModel.Value = new DialogueUIModel();
                     _dialogueModel.DialogueUIModel.Value.SpeakerName.Value = _dialogueModel.SpeakerName;
-                    _dialogueModel.IsDialogueStarted = true;
+                    _dialogueModel.IsDialogueStarted.Value = true;
                 }
 
                 string dialogueLine = speakerNode.DialogueLine;
@@ -155,10 +155,10 @@ namespace DialogueSystem
 
         public void EndDialogue()
         {
-            if (_dialogueModel.IsDialogueStarted == true)
+            if (_dialogueModel.IsDialogueStarted.Value == true)
             {
                 // stop interaction for Player
-                _dialogueModel.IsDialogueStarted = false;
+                _dialogueModel.IsDialogueStarted.Value = false;
             }
         }
 

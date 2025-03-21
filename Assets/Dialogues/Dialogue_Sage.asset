@@ -149,7 +149,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 160
-  _nodeId: qa3yAKQr
+  _nodeId: w6DZRtPa
 --- !u!114 &-3378726167792555083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: 
   <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 0
 --- !u!114 &-2455848825988686588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +371,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 140
-  _nodeId: hdZJQLL3
+  _nodeId: Pf0GmDRM
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 140
-  _nodeId: l9f91qFr
+  _nodeId: Ein2nZgO
 --- !u!114 &2863555705318836798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +580,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 180
-  _nodeId: 4UzIMLwX
+  _nodeId: An5nRndi
 --- !u!114 &5926942261738888375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +648,7 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: 
   <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 0
 --- !u!114 &5950559182327667480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,7 +709,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 60
-  _nodeId: YVTiEj0D
+  _nodeId: EpGRdttX
 --- !u!114 &6741336748498054009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,3 +777,4 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: Amulet_01
   <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 0

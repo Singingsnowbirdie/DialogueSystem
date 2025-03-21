@@ -7,7 +7,7 @@ namespace DialogueSystem
 {
     public class DialogueModel
     {
-        public bool IsDialogueStarted { get; set; }
+        public ReactiveProperty<bool> IsDialogueStarted { get; } = new ReactiveProperty<bool>(false);
         public string SpeakerName { get; set; }
         public string SpeakerID { get; set; }
         public DialogueGraph Graph { get; set; }

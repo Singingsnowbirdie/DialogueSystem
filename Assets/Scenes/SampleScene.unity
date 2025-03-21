@@ -248,7 +248,7 @@ MonoBehaviour:
   _npcConfig:
     <NPC_ID>k__BackingField: zgxguq2s
     <NPC_Name>k__BackingField: Test NPC
-    <DialogueID>k__BackingField: skxOJsKD
+    <DialogueID>k__BackingField: WEV6NBnv
   _characterUIView: {fileID: 6362252167750768880}
 --- !u!1 &119703993
 GameObject:

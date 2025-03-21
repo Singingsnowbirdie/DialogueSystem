@@ -59,6 +59,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<DialogueCameraModel>(Lifetime.Singleton);
         builder.Register<JournalModel>(Lifetime.Singleton);
         builder.Register<InventoryModel>(Lifetime.Singleton);
+        builder.Register<CursorModel>(Lifetime.Singleton);
 
         // Register UI Models
         builder.Register<InteractionPromptUIModel>(Lifetime.Singleton);
@@ -74,6 +75,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterEntryPoint<DialogueCameraPresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<JournalPresenter>(Lifetime.Singleton);
         builder.RegisterEntryPoint<InventoryPresenter>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<CursorPresenter>(Lifetime.Singleton);
 
         // Register UI Presenters
         builder.RegisterEntryPoint<InteractionPromptPresenter>(Lifetime.Singleton);
