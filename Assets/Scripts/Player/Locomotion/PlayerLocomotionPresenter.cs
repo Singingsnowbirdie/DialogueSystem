@@ -1,15 +1,16 @@
+using DialogueSystem;
 using UniRx;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
-using UnityEngine;
 
 namespace Player
 {
     public class PlayerLocomotionPresenter : IStartable
     {
         [Inject] private readonly PlayerLocomotionModel _locomotionModel;
-        [Inject] private readonly PlayerInteractionModel _interactionModel;
+        [Inject] private readonly DialogueModel _dialogueModel;
         [Inject] private readonly PlayerView _view;
         [Inject] private readonly PlayerInput _playerInput;
 
@@ -35,12 +36,12 @@ namespace Player
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            _interactionModel.IsInteracting
-                .Subscribe(val => OnInteracting(val))
+            _dialogueModel.IsDialogueOccurs
+                .Subscribe(val => OnDialogueOccurs(val))
                 .AddTo(_view);
         }
 
-        private void OnInteracting(bool val)
+        private void OnDialogueOccurs(bool val)
         {
             _locomotionModel.CanMove = !val;
 

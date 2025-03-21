@@ -22,7 +22,7 @@ namespace UI
         {
             _model.SetCursorState(false);
 
-            _dialogueModel.IsDialogueStarted
+            _dialogueModel.IsDialogueOccurs
                 .Subscribe(val => _model.SetCursorState(val))
                 .AddTo(_disposables);
         }
