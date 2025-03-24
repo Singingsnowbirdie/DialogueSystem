@@ -6,6 +6,6 @@ namespace UI.DialogueUI
     {
         public ReactiveProperty<string> SpeakerName = new ReactiveProperty<string>();
         public ReactiveProperty<string> DialogueText = new ReactiveProperty<string>();
-        public ReactiveCollection<PlayerAnswerView.UIModel> PlayerAnswers = new();
+        public ReactiveCollection<PlayerResponseModel> PlayerResponses = new();
     }
 }

@@ -19,7 +19,7 @@ namespace UI.DialogueUI
             {
                 _speakerNameTF.SetUIModel(uiModel.SpeakerName);
                 _dialogueTF.SetUIModel(uiModel.DialogueText);
-                //_playerAnswersList.SetUIModel(uiModel.PlayerAnswers);
+                _playerAnswersList.SetUIModel(uiModel.PlayerResponses);
 
                 gameObject.SetActive(true);
             }

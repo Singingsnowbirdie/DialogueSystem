@@ -25,17 +25,22 @@ namespace DialogueSystem
         [Inject] private readonly CharactersModel _charactersModel;
         [Inject] private readonly JournalModel _journalModel;
         [Inject] private readonly InventoryModel _inventoryModel;
-
-        private DialogueHandler _dialogueHandler;
-        private EventsHandler _eventsHandler;
         private DialogueLocalizationHandler _dialogueLocalizationHandler;
 
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
+        public DialogueHandler DialogueHandler { get; set; }
+        public EventsHandler EventsHandler { get; set; }
+        public PlayerResponsesHandler PlayerResponsesHandler { get; set; }
+
+        List<IDisposable> _responseDisposables = new List<IDisposable>();
+
         public void Initialize()
         {
-            _dialogueHandler = new DialogueHandler(_dialogueModel, _charactersModel, _playerModel, _journalModel, _inventoryModel, this);
-            _eventsHandler = new EventsHandler(_dialogueModel, _charactersModel, _inventoryModel, _journalModel);
+            DialogueHandler = new DialogueHandler(_dialogueModel, _charactersModel, _playerModel, _journalModel, _inventoryModel, this);
+            EventsHandler = new EventsHandler(_dialogueModel, _charactersModel, _inventoryModel, _journalModel, _playerModel, this);
+            PlayerResponsesHandler = new(this);
+
             _dialogueLocalizationHandler = new DialogueLocalizationHandler(_dialogueModel);
 
             _dialogueModel.CurrentNode
@@ -115,7 +120,7 @@ namespace DialogueSystem
             }
 
             if (currentNode is StartNode startNode)
-                _dialogueHandler.HandleStartNode(startNode, _dialogueModel.SpeakerID);
+                DialogueHandler.HandleStartNode(startNode, _dialogueModel.SpeakerID);
             else if (currentNode is SpeakerNode speakerNode)
             {
                 if (_dialogueModel.IsDialogueOccurs.Value == false)
@@ -136,9 +141,50 @@ namespace DialogueSystem
 
                 if (speakerNode.TryGetEvents(out List<Node> events))
                 {
-                    _eventsHandler.HandleEvents(events, _dialogueModel.SpeakerID);
+                    EventsHandler.HandleEvents(events, _dialogueModel.SpeakerID);
                 }
+
+                _dialogueModel.DialogueUIModel.Value.PlayerResponses.Clear();
+
+                DisposePlayerResponses();
+
+                if (speakerNode.TryGetConnectedNodes(out List<DialogueNode> dialogueNodes))
+                {
+                    if (PlayerResponsesHandler.HasPlayerResponses(dialogueNodes, out List<PlayerResponseNode> responses))
+                    {
+                        foreach (PlayerResponseNode response in responses)
+                        {
+                            PlayerResponseModel responseModel = new(response);
+
+                            _dialogueModel.DialogueUIModel.Value.PlayerResponses.Add(responseModel);
+
+                            IDisposable disposable = responseModel.PlayerResponseSelected
+                                .Subscribe(responseNode => OnPlayerResponseSelected(responseNode))
+                                .AddTo(_compositeDisposable);
+
+                            _responseDisposables.Add(disposable);
+                        }
+                    }
+                }
+                else
+                {
+                    // ShowEndDialogueOption();
+                }
+
             }
+        }
+
+        private void DisposePlayerResponses()
+        {
+            foreach (IDisposable item in _responseDisposables)
+            {
+                item.Dispose();
+            }
+        }
+
+        private object OnPlayerResponseSelected(PlayerResponseNode data)
+        {
+            throw new NotImplementedException();
         }
 
         private string ReplacePlayerName(string dialogueLine)
@@ -161,6 +207,7 @@ namespace DialogueSystem
 
         public void Dispose()
         {
+            DisposePlayerResponses();
             _compositeDisposable.Dispose();
         }
     }

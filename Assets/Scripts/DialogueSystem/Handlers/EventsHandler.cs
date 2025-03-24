@@ -1,8 +1,8 @@
 ﻿using Characters;
 using DialogueSystem.DialogueEditor;
 using InventorySystem;
+using Player;
 using QuestSystem;
-using System;
 using System.Collections.Generic;
 using XNode;
 
@@ -13,17 +13,22 @@ namespace DialogueSystem
         private readonly CharactersModel _charactersModel;
         private readonly InventoryModel _inventoryModel;
         private readonly JournalModel _journalModel;
+        private readonly PlayerModel _playerModel;
+        private readonly DialoguePresenter _dialoguePresenter;
         private readonly DialogueModel _dialogueModel;
+        private DialogueHandler _dialogueHandler => _dialoguePresenter.DialogueHandler;
 
         private string _speakerID = "";
 
         public EventsHandler(DialogueModel dialogueModel, CharactersModel charactersModel,
-            InventoryModel inventoryModel, JournalModel journalModel)
+            InventoryModel inventoryModel, JournalModel journalModel, PlayerModel playerModel, DialoguePresenter dialoguePresenter)
         {
             _dialogueModel = dialogueModel;
             _charactersModel = charactersModel;
             _inventoryModel = inventoryModel;
             _journalModel = journalModel;
+            _playerModel = playerModel;
+            _dialoguePresenter = dialoguePresenter;
         }
 
         internal void HandleEvents(List<Node> events, string speakerID)
@@ -38,19 +43,13 @@ namespace DialogueSystem
                 }
                 else if (node is ConditionCheckNode conditionCheckNode)
                 {
-                    HandleCondition(conditionCheckNode);
+                    _dialogueHandler.HandleConditionCheck(conditionCheckNode);
                 }
             }
         }
 
-        // HANDLE CONDITION
-        private void HandleCondition(ConditionCheckNode conditionCheckNode)
-        {
-            throw new NotImplementedException();
-        }
-
         // HANDLE EVENT
-        private void HandleEvent(DialogueEventNode eventNode)
+        public void HandleEvent(DialogueEventNode eventNode)
         {
             switch (eventNode.EventType)
             {
@@ -92,7 +91,8 @@ namespace DialogueSystem
 
         private void HandleAddReputationEvent(DialogueEventNode eventNode)
         {
-            throw new NotImplementedException();
+            ReputationData reputationData = new ReputationData(eventNode.Faction, eventNode.Amount);
+            _playerModel.AddReputation.OnNext(reputationData);
         }
 
         private void HandleSetDialogueVariableEvent(DialogueEventNode eventNode)

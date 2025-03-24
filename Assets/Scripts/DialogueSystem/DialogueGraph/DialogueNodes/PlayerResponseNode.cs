@@ -82,7 +82,5 @@ namespace DialogueSystem.DialogueEditor
                 return nodes;
             }
         }
-
-
     }
 }

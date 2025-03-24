@@ -2,7 +2,7 @@
 
 namespace UI.DialogueUI
 {
-    public class PlayerAnswersList : UIReactiveList<PlayerAnswerView, PlayerAnswerView.UIModel>
+    public class PlayerAnswersList : UIReactiveList<PlayerResponseView, PlayerResponseModel>
     {
 
     }

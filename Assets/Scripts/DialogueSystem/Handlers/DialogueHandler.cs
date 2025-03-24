@@ -4,7 +4,6 @@ using DialogueSystem.DialogueEditor;
 using InventorySystem;
 using Player;
 using QuestSystem;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
@@ -19,7 +18,7 @@ namespace DialogueSystem
         private readonly DialoguePresenter _dialoguePresenter;
         private readonly JournalModel _journalModel;
         private readonly InventoryModel _inventoryModel;
-
+        private EventsHandler _eventsHandler => _dialoguePresenter.EventsHandler;
         private string _speakerID = "";
 
         public DialogueHandler(DialogueModel dialogueModel, CharactersModel npcManagerModel,
@@ -89,7 +88,7 @@ namespace DialogueSystem
             // TODO: Perform calculations taking into account the player's perks,
             // buffs and the NPC's characteristics.
 
-            return UnityEngine.Random.value < 0.5f;
+            return Random.value < 0.5f;
         }
 
         private bool IsPersuasionSuccessful(string speakerID)
@@ -97,7 +96,7 @@ namespace DialogueSystem
             // TODO: Perform calculations taking into account the player's perks,
             // buffs and the NPC's characteristics ( and his attitude towards the player).
 
-            return UnityEngine.Random.value < 0.5f;
+            return Random.value < 0.5f;
         }
 
         private bool IsDialogueVariable(ConditionCheckNode conditionCheckNode)
@@ -225,6 +224,8 @@ namespace DialogueSystem
                 _dialogueModel.CurrentNode.Value = speakerNode;
             else if (node is ConditionCheckNode nextConditionCheckNode)
                 HandleConditionCheck(nextConditionCheckNode);
+            else if (node is DialogueEventNode eventNode)
+                _eventsHandler.HandleEvent(eventNode);
         }
 
         private bool HasMet(ConditionCheckNode conditionCheckNode)
@@ -241,6 +242,11 @@ namespace DialogueSystem
             else
                 npcData = _npcManagerModel.CharactersRepository.GetCharacterByID(conditionCheckNode.ID);
             return npcData;
+        }
+
+        internal bool TryGetNextResponseNode(ConditionCheckNode conditionCheckNode, out List<PlayerResponseNode> resultResponses)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

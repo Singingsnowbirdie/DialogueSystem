@@ -14,6 +14,7 @@ namespace Player
         public ReactiveProperty<int> Reputation_OfficialAuthorities { get; } = new ReactiveProperty<int>();
         public ReactiveProperty<int> Reputation_Civilian { get; } = new ReactiveProperty<int>();
         public ReactiveProperty<int> Reputation_Bandits { get; } = new ReactiveProperty<int>();
+        public ISubject<ReputationData> AddReputation { get; } = new Subject<ReputationData>();
 
         // OTHER
         private PlayerRepository _playerRepository;
