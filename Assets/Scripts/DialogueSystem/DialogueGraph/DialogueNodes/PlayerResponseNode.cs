@@ -61,7 +61,7 @@ namespace DialogueSystem.DialogueEditor
             return str + order;
         }
 
-        internal bool HasEvents(out List<Node> events)
+        internal bool TryGetEvents(out List<Node> events)
         {
             events = EventPortConnections;
             return EventPortConnections.Count > 0;

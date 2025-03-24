@@ -36,10 +36,9 @@ MonoBehaviour:
   <Amount>k__BackingField: 1
   <ID>k__BackingField: Amulet_01
   <GiveTakeEventType>k__BackingField: 1
-  <QuestConfigKey>k__BackingField: 0
   <QuestState>k__BackingField: 0
-  <DialogueVariableKey>k__BackingField: 0
   <DialogueVariableType>k__BackingField: 0
+  <Faction>k__BackingField: 0
   <IsTrue>k__BackingField: 0
   <IsThisNPC>k__BackingField: 1
 --- !u!114 &-7108331160203067207
@@ -81,10 +80,9 @@ MonoBehaviour:
   <Amount>k__BackingField: 1
   <ID>k__BackingField: Amulet_01
   <GiveTakeEventType>k__BackingField: 0
-  <QuestConfigKey>k__BackingField: 0
   <QuestState>k__BackingField: 0
-  <DialogueVariableKey>k__BackingField: 0
   <DialogueVariableType>k__BackingField: 0
+  <Faction>k__BackingField: 0
   <IsTrue>k__BackingField: 0
   <IsThisNPC>k__BackingField: 1
 --- !u!114 &-4564370962760717694
@@ -149,7 +147,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 160
-  _nodeId: w6DZRtPa
+  _nodeId: vOHdBm7o
 --- !u!114 &-3378726167792555083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +369,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 140
-  _nodeId: Pf0GmDRM
+  _nodeId: I8RNY0D5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +458,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 140
-  _nodeId: Ein2nZgO
+  _nodeId: 6DZoeWPn
 --- !u!114 &2863555705318836798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +578,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 180
-  _nodeId: An5nRndi
+  _nodeId: T0anoVGB
 --- !u!114 &5926942261738888375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,7 +707,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 60
-  _nodeId: EpGRdttX
+  _nodeId: Q9bUramq
 --- !u!114 &6741336748498054009
 MonoBehaviour:
   m_ObjectHideFlags: 0

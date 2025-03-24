@@ -122,6 +122,7 @@ namespace DialogueSystem
             if (currentNode is StartNode startNode)
                 DialogueHandler.HandleStartNode(startNode, _dialogueModel.SpeakerID);
             else if (currentNode is SpeakerNode speakerNode)
+
             {
                 if (_dialogueModel.IsDialogueOccurs.Value == false)
                 {
@@ -170,7 +171,6 @@ namespace DialogueSystem
                 {
                     // ShowEndDialogueOption();
                 }
-
             }
         }
 
@@ -182,9 +182,24 @@ namespace DialogueSystem
             }
         }
 
-        private object OnPlayerResponseSelected(PlayerResponseNode data)
+        private void OnPlayerResponseSelected(PlayerResponseNode responseNode)
         {
-            throw new NotImplementedException();
+            if (responseNode.TryGetEvents(out List<Node> events))
+            {
+                EventsHandler.HandleEvents(events, _dialogueModel.SpeakerID);
+            }
+
+            if (responseNode.TryGetConnectedNode(out DialogueNode node))
+            {
+                if (node is SpeakerNode speakerNode)
+                    _dialogueModel.CurrentNode.Value = node;
+                else if (node is ConditionCheckNode conditionNode)
+                    DialogueHandler.HandleConditionCheck(conditionNode);
+            }
+            else
+            {
+                EndDialogue();
+            }
         }
 
         private string ReplacePlayerName(string dialogueLine)
