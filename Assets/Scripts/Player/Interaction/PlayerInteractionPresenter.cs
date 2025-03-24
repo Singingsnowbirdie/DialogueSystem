@@ -1,7 +1,6 @@
 ﻿using DialogueSystem;
 using InteractionSystem;
 using System;
-using UI;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +9,7 @@ using VContainer.Unity;
 
 namespace Player
 {
-    public class PlayerInteractionPresenter : IStartable, IDisposable
+    public class PlayerInteractionPresenter : IStartable, IDisposable, ITickable
     {
         [Inject] private readonly PlayerInteractionModel _model;
         [Inject] private readonly PlayerInput _playerInput;
@@ -23,11 +22,7 @@ namespace Player
 
         public void Start()
         {
-            _playerInput.actions["Interact"].started += OnInteract;
-
-            Observable.EveryUpdate()
-                .Subscribe(_ => DetectInteractable())
-                .AddTo(_compositeDisposable);
+            _playerInput.actions["Interact"].started += OnTryInteract;
 
             _dialogueModel.IsDialogueOccurs
                 .Subscribe(val => OnDialogueOccurs(val))
@@ -38,11 +33,11 @@ namespace Player
         {
             if (!val && _model.IsInteracting.Value)
             {
-                _model.IsInteracting.Value = false;
+                OnInteractionCompleted();
             }
         }
 
-        private void OnInteract(InputAction.CallbackContext context)
+        private void OnTryInteract(InputAction.CallbackContext context)
         {
             if (_model.CurrentInteractable.Value != null)
             {
@@ -57,16 +52,17 @@ namespace Player
 
             Ray ray = new(_camera.transform.position, _camera.transform.forward);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, InteractionDistance))
+            if (Physics.Raycast(ray, out RaycastHit hit, InteractionDistance) &&
+                hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                if (hit.collider.TryGetComponent(out IInteractable interactable))
+                if (_model.CurrentInteractable.Value != interactable)
                 {
                     _model.CurrentInteractable.Value = interactable;
                     return;
                 }
             }
-
-            _model.CurrentInteractable.Value = null;
+            else
+                _model.CurrentInteractable.Value = null;
         }
 
         private void Interact(IInteractable interactable)
@@ -83,6 +79,11 @@ namespace Player
         public void Dispose()
         {
             _compositeDisposable.Dispose();
+        }
+
+        public void Tick()
+        {
+            DetectInteractable();
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue Event
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: -1016}
+  position: {x: 424, y: -1240}
   ports:
     keys:
     - <Input>k__BackingField
@@ -147,7 +147,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 160
-  _nodeId: vOHdBm7o
+  _nodeId: aCzT7oMM
 --- !u!114 &-3378726167792555083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 140
-  _nodeId: I8RNY0D5
+  _nodeId: Vb0TZXJm
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +396,7 @@ MonoBehaviour:
   - {fileID: 5950559182327667480}
   - {fileID: 2863555705318836798}
   - {fileID: -8421314508002159553}
+  - {fileID: 4896445474821103582}
 --- !u!114 &466085989364342784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +459,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 140
-  _nodeId: 6DZoeWPn
+  _nodeId: lj4jHPQg
 --- !u!114 &2863555705318836798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +473,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -24, y: -1016}
+  position: {x: 136, y: -1240}
   ports:
     keys:
     - <Input>k__BackingField
@@ -578,7 +579,60 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 180
-  _nodeId: T0anoVGB
+  _nodeId: MbRIBiG2
+--- !u!114 &4896445474821103582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 136, y: -936}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 4896445474821103582}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 5950559182327667480}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 4896445474821103582}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 4896445474821103582}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: I still need this.
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: 3g1d1Gk1
 --- !u!114 &5926942261738888375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,6 +739,9 @@ MonoBehaviour:
       - fieldName: <Input>k__BackingField
         node: {fileID: 2863555705318836798}
         reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 4896445474821103582}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -707,7 +764,7 @@ MonoBehaviour:
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
   <TextAreaHeight>k__BackingField: 60
-  _nodeId: Q9bUramq
+  _nodeId: gSEhELzW
 --- !u!114 &6741336748498054009
 MonoBehaviour:
   m_ObjectHideFlags: 0

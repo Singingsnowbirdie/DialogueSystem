@@ -32,7 +32,7 @@ namespace UI
         {
             if (val)
             {
-                _playerInteractionModel.CurrentInteractable.Value = null;
+                _model.PromptText.Value = "";
             }
         }
 

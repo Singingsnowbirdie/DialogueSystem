@@ -24,7 +24,19 @@ namespace Player
         {
             _characterController.Move(movement);
         }
+
+        //private void OnDrawGizmos()
+        //{
+        //    if (_playerCamera == null)
+        //        return;
+
+        //    Gizmos.color = Color.green; 
+        //    Vector3 rayOrigin = _playerCamera.transform.position;
+        //    Vector3 rayDirection = _playerCamera.transform.forward * 3f;
+        //    Gizmos.DrawRay(rayOrigin, rayDirection);
+        //}
     }
+   
 }
 
 
