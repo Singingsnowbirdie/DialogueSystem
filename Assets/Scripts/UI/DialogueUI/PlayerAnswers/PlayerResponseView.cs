@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace UI.DialogueUI
 {
-    public class PlayerResponseView : UIReactiveView<PlayerResponseModel>
+    public class PlayerResponseView : UIReactiveView<PlayerResponseModel>, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private TextMeshProReactiveStringView _playerAnswerTF;
         [SerializeField] private Button _button;
