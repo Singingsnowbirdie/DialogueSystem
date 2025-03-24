@@ -1,5 +1,7 @@
-﻿using InteractionSystem;
+﻿using DialogueSystem;
+using InteractionSystem;
 using System;
+using UI;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +15,7 @@ namespace Player
         [Inject] private readonly PlayerInteractionModel _model;
         [Inject] private readonly PlayerInput _playerInput;
         [Inject] private readonly Camera _camera;
+        [Inject] private readonly DialogueModel _dialogueModel;
 
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
@@ -25,6 +28,18 @@ namespace Player
             Observable.EveryUpdate()
                 .Subscribe(_ => DetectInteractable())
                 .AddTo(_compositeDisposable);
+
+            _dialogueModel.IsDialogueOccurs
+                .Subscribe(val => OnDialogueOccurs(val))
+                .AddTo(_compositeDisposable);
+        }
+
+        private void OnDialogueOccurs(bool val)
+        {
+            if (!val && _model.IsInteracting.Value)
+            {
+                _model.IsInteracting.Value = false;
+            }
         }
 
         private void OnInteract(InputAction.CallbackContext context)

@@ -149,29 +149,39 @@ namespace DialogueSystem
 
                 DisposePlayerResponses();
 
-                if (speakerNode.TryGetConnectedNodes(out List<DialogueNode> dialogueNodes))
+                if (speakerNode.TryGetConnectedNodes(out List<DialogueNode> dialogueNodes) &&
+                    PlayerResponsesHandler.HasPlayerResponses(dialogueNodes, out List<PlayerResponseNode> responses))
                 {
-                    if (PlayerResponsesHandler.HasPlayerResponses(dialogueNodes, out List<PlayerResponseNode> responses))
+                    foreach (PlayerResponseNode response in responses)
                     {
-                        foreach (PlayerResponseNode response in responses)
-                        {
-                            PlayerResponseModel responseModel = new(response);
+                        PlayerResponseModel responseModel = new(response);
 
-                            _dialogueModel.DialogueUIModel.Value.PlayerResponses.Add(responseModel);
+                        _dialogueModel.DialogueUIModel.Value.PlayerResponses.Add(responseModel);
 
-                            IDisposable disposable = responseModel.PlayerResponseSelected
-                                .Subscribe(responseNode => OnPlayerResponseSelected(responseNode))
-                                .AddTo(_compositeDisposable);
+                        IDisposable disposable = responseModel.PlayerResponseSelected
+                            .Subscribe(responseNode => OnPlayerResponseSelected(responseNode))
+                            .AddTo(_compositeDisposable);
 
-                            _responseDisposables.Add(disposable);
-                        }
+                        _responseDisposables.Add(disposable);
                     }
                 }
                 else
                 {
-                    // ShowEndDialogueOption();
+                    ShowEndDialogueOption();
                 }
             }
+        }
+
+        private void ShowEndDialogueOption()
+        {
+            PlayerResponseModel responseModel = new PlayerResponseModel(null);
+            _dialogueModel.DialogueUIModel.Value.PlayerResponses.Add(responseModel);
+
+            IDisposable disposable = responseModel.PlayerResponseSelected
+                .Subscribe(responseNode => OnPlayerResponseSelected(responseNode))
+                .AddTo(_compositeDisposable);
+
+            _responseDisposables.Add(disposable);
         }
 
         private void DisposePlayerResponses()
@@ -184,17 +194,24 @@ namespace DialogueSystem
 
         private void OnPlayerResponseSelected(PlayerResponseNode responseNode)
         {
-            if (responseNode.TryGetEvents(out List<Node> events))
+            if (responseNode != null)
             {
-                EventsHandler.HandleEvents(events, _dialogueModel.SpeakerID);
-            }
+                if (responseNode.TryGetEvents(out List<Node> events))
+                {
+                    EventsHandler.HandleEvents(events, _dialogueModel.SpeakerID);
+                }
 
-            if (responseNode.TryGetConnectedNode(out DialogueNode node))
-            {
-                if (node is SpeakerNode speakerNode)
-                    _dialogueModel.CurrentNode.Value = node;
-                else if (node is ConditionCheckNode conditionNode)
-                    DialogueHandler.HandleConditionCheck(conditionNode);
+                if (responseNode.TryGetConnectedNode(out DialogueNode node))
+                {
+                    if (node is SpeakerNode)
+                        _dialogueModel.CurrentNode.Value = node;
+                    else if (node is ConditionCheckNode conditionNode)
+                        DialogueHandler.HandleConditionCheck(conditionNode);
+                }
+                else
+                {
+                    EndDialogue();
+                }
             }
             else
             {
@@ -217,7 +234,10 @@ namespace DialogueSystem
         public void EndDialogue()
         {
             if (_dialogueModel.IsDialogueOccurs.Value == true)
+            {
                 _dialogueModel.IsDialogueOccurs.Value = false;
+                _view.gameObject.SetActive(false);
+            }
         }
 
         public void Dispose()

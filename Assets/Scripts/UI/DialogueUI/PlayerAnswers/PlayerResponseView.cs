@@ -1,5 +1,6 @@
 ﻿using DialogueSystem.DialogueEditor;
 using Gameplay.UI.ReactiveViews;
+using System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -59,7 +60,11 @@ namespace UI.DialogueUI
         public PlayerResponseModel(PlayerResponseNode response)
         {
             ResponseNode = response;
-            PlayerAnswerText.Value = response.DialogueLine; // TODO: add localization
+
+            if (response != null)
+                PlayerAnswerText.Value = response.DialogueLine; // TODO: add localization
+            else
+                PlayerAnswerText.Value = "End dialogue.";
         }
 
         public StringReactiveProperty PlayerAnswerText { get; } = new StringReactiveProperty();
