@@ -55,7 +55,8 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: uknLoZ9X
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: N8BJX7Ns
 --- !u!114 &-452444736517348360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +124,7 @@ MonoBehaviour:
   <QuestState>k__BackingField: 0
   <ID>k__BackingField: RvR7GEr2
   <DialogueVariableType>k__BackingField: 0
+  <InfluenceType>k__BackingField: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,4 +228,5 @@ MonoBehaviour:
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  _nodeId: I4ddGWpn
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: siuLw5Pv

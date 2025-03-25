@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DialogueSystem.DialogueEditor
 {
@@ -16,6 +17,12 @@ namespace DialogueSystem.DialogueEditor
                 else
                     return "The target node has been deleted! This jumper no longer works.";
             }
+        }
+
+        internal bool TryGetSpeakerNode(out SpeakerNode speakerNode)
+        {
+            speakerNode = TargetNode;
+            return TargetNode != null;
         }
     }
 }

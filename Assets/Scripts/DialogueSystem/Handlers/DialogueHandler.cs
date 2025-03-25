@@ -5,6 +5,7 @@ using InventorySystem;
 using Player;
 using QuestSystem;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using XNode;
 
@@ -105,9 +106,9 @@ namespace DialogueSystem
             {
                 Debug.Log("Dialogue Variable ID for checking status is not specified!");
             }
-            else
+            else if (_dialogueModel.DialogueVariablesRepository.TryGetDialogueVariable(conditionCheckNode.ID, out DialogueVariableData dialogueVariable))
             {
-                DialogueVariableData dialogueVariable = _dialogueModel.DialogueVariablesRepository.GetDialogueVariable(conditionCheckNode.ID);
+                Debug.Log($"dialogueVariable = {dialogueVariable}; IsTrue = {dialogueVariable.IsTrue}; DialogueVariableType + {conditionCheckNode.DialogueVariableType}");
 
                 if (conditionCheckNode.DialogueVariableType == EDialogueVariableType.Bool)
                     return dialogueVariable.IsTrue;
@@ -222,6 +223,13 @@ namespace DialogueSystem
         {
             if (node is SpeakerNode speakerNode)
                 _dialogueModel.CurrentNode.Value = speakerNode;
+            else if (node is SpeakerNodeJumper speakerNodeJumper)
+            {
+                if (speakerNodeJumper.TryGetSpeakerNode(out SpeakerNode nextSpeakerNode))
+                {
+                    _dialogueModel.CurrentNode.Value = nextSpeakerNode;
+                }
+            }
             else if (node is ConditionCheckNode nextConditionCheckNode)
                 HandleConditionCheck(nextConditionCheckNode);
             else if (node is DialogueEventNode eventNode)
@@ -244,9 +252,30 @@ namespace DialogueSystem
             return npcData;
         }
 
-        internal bool TryGetNextResponseNode(ConditionCheckNode conditionCheckNode, out List<PlayerResponseNode> resultResponses)
+        internal bool TryGetNextResponses(ConditionCheckNode conditionCheckNode, out List<PlayerResponseNode> resultResponses)
         {
-            throw new System.NotImplementedException();
+            List<PlayerResponseNode> list = new List<PlayerResponseNode>();
+            bool metsCondition = MetsCondition(conditionCheckNode);
+            List<Node> connectedNodes = conditionCheckNode.GetBoolConnections(metsCondition);
+
+            foreach (Node node in connectedNodes)
+            {
+                if (node is PlayerResponseNode responseNode)
+                {
+                    list.Add(responseNode);
+                }
+
+                else if (node is ConditionCheckNode oneMoreConditionCheckNode)
+                {
+                    if (TryGetNextResponses(conditionCheckNode, out List<PlayerResponseNode> results))
+                    {
+                        list.AddRange(results);
+                    }
+                }
+            }
+
+            resultResponses = list;
+            return list.Count > 0;
         }
     }
 }

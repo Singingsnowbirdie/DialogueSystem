@@ -43,6 +43,13 @@ namespace DialogueSystem
             return false;
         }
 
+        internal string GetEndDialogueLine()
+        {
+            // TODO: Add language selection here!
+
+            return "End dialogue";
+        }
+
         private DialogueDataWrapper GetDialogueJsonData(string dialogueKey)
         {
             string jsonFilePath = Path.Combine(Application.dataPath, "Resources", "JSON", $"{dialogueKey}.json");

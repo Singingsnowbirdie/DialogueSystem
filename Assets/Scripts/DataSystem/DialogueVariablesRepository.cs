@@ -1,5 +1,4 @@
 ﻿using DataSystem;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -34,7 +33,6 @@ namespace DialogueSystem
             {
                 string json = File.ReadAllText(JsonFilePath);
                 dialogueVariables = JsonUtility.FromJson<DialogueVariablesWrapper>(json).Variables;
-                Debug.Log("Characters data loaded from JSON.");
             }
 
             return dialogueVariables;
@@ -47,28 +45,9 @@ namespace DialogueSystem
 
         public void SaveData(List<DialogueVariableData> dialogueVariables)
         {
-            if (dialogueVariables == null)
-            {
-                Debug.LogWarning("Dialogue variables list is null. Nothing to save.");
-                return;
-            }
-
-            try
-            {
-                DialogueVariablesWrapper wrapper = new()
-                {
-                    Variables = dialogueVariables
-                };
-
-                string json = JsonUtility.ToJson(wrapper, true);
-
-                File.WriteAllText(JsonFilePath, json);
-                Debug.Log("Dialogue variables data saved to JSON.");
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Failed to save dialogue variables: {ex.Message}");
-            }
+            DialogueVariablesWrapper wrapper = new DialogueVariablesWrapper { Variables = dialogueVariables };
+            string json = JsonUtility.ToJson(wrapper, true);
+            File.WriteAllText(JsonFilePath, json);
         }
 
         public void ResetData()
@@ -80,28 +59,33 @@ namespace DialogueSystem
             }
         }
 
-        internal DialogueVariableData GetDialogueVariable(string id)
+        internal bool TryGetDialogueVariable(string id, out DialogueVariableData variableData)
         {
-            DialogueVariableData variableData = _dialogueVariables.Find(variable => variable.VariableID == id);
-
-            variableData ??= new DialogueVariableData(id);
-
-            return variableData;
+            variableData = _dialogueVariables.Find(variable => variable.VariableID == id);
+            return variableData != null;
         }
 
-        [Serializable]
+        public void AddDialogueVariable(string variableID, bool isTrue, int amount)
+        {
+            DialogueVariableData variableData = new DialogueVariableData(variableID, isTrue, amount);
+            _dialogueVariables.Add(variableData);
+        }
+
+        [System.Serializable]
         private class DialogueVariablesWrapper
         {
             public List<DialogueVariableData> Variables;
         }
     }
+
+    [System.Serializable]
     public class DialogueVariableData
     {
         public string VariableID { get; }
         public bool IsTrue { get; set; }
         public int Amount { get; set; }
 
-        public DialogueVariableData(string dialogueVariableID, bool isTrue = false, int amount = 0)
+        public DialogueVariableData(string dialogueVariableID, bool isTrue, int amount)
         {
             VariableID = dialogueVariableID;
             IsTrue = isTrue;

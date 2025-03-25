@@ -21,6 +21,12 @@ namespace DialogueSystem.DialogueEditor
             }
         }
 
+        internal bool TryGetPlayerResponseNode(out PlayerResponseNode relatedPlayerResponseNode)
+        {
+            relatedPlayerResponseNode = TargetNode;
+            return TargetNode != null;
+        }
+
         public string GetResponseOrder()
         {
             string str = "Response Order: ";
@@ -51,8 +57,5 @@ namespace DialogueSystem.DialogueEditor
 
             return str + order;
         }
-
     }
-
-
 }

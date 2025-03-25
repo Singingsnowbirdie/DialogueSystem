@@ -72,9 +72,16 @@ namespace DialogueSystem
 
         private void SetVariableValues(SetVariableData data)
         {
-            DialogueVariableData variable = _dialogueModel.DialogueVariablesRepository.GetDialogueVariable(data.VariableID);
-            variable.IsTrue = data.IsTrue;
-            variable.Amount = data.Amount;
+            if (_dialogueModel.DialogueVariablesRepository.TryGetDialogueVariable(data.VariableID, out DialogueVariableData variable))
+            {
+                variable.IsTrue = data.IsTrue;
+                variable.Amount = data.Amount;
+            }
+            else
+            {
+                _dialogueModel.DialogueVariablesRepository.AddDialogueVariable(data.VariableID, data.IsTrue, data.Amount);
+            }
+
             _dialogueModel.DialogueVariablesRepository.SaveData();
         }
 
@@ -121,8 +128,18 @@ namespace DialogueSystem
 
             if (currentNode is StartNode startNode)
                 DialogueHandler.HandleStartNode(startNode, _dialogueModel.SpeakerID);
+            else if (currentNode is SpeakerNodeJumper speakerNodeJumper)
+            {
+                if (speakerNodeJumper.TryGetSpeakerNode(out SpeakerNode speakerNode))
+                {
+                    _dialogueModel.CurrentNode.Value = speakerNode;
+                }
+                else
+                {
+                    EndDialogue();
+                }
+            }
             else if (currentNode is SpeakerNode speakerNode)
-
             {
                 if (_dialogueModel.IsDialogueOccurs.Value == false)
                 {
@@ -152,9 +169,16 @@ namespace DialogueSystem
                 if (speakerNode.TryGetConnectedNodes(out List<DialogueNode> dialogueNodes) &&
                     PlayerResponsesHandler.HasPlayerResponses(dialogueNodes, out List<PlayerResponseNode> responses))
                 {
-                    foreach (PlayerResponseNode response in responses)
+                    foreach (PlayerResponseNode responseNode in responses)
                     {
-                        PlayerResponseModel responseModel = new(response);
+                        string responseDialogueLine = responseNode.DialogueLine;
+
+                        if (_dialogueLocalizationHandler.TryGetDialogueLine(_dialogueModel.Graph.StartNode.DialogueId, responseNode.NodeId, out string response))
+                        {
+                            dialogueLine = response;
+                        }
+
+                        PlayerResponseModel responseModel = new(responseNode, responseDialogueLine);
 
                         _dialogueModel.DialogueUIModel.Value.PlayerResponses.Add(responseModel);
 
@@ -174,7 +198,7 @@ namespace DialogueSystem
 
         private void ShowEndDialogueOption()
         {
-            PlayerResponseModel responseModel = new PlayerResponseModel(null);
+            PlayerResponseModel responseModel = new PlayerResponseModel(null, _dialogueLocalizationHandler.GetEndDialogueLine());
             _dialogueModel.DialogueUIModel.Value.PlayerResponses.Add(responseModel);
 
             IDisposable disposable = responseModel.PlayerResponseSelected
@@ -204,9 +228,24 @@ namespace DialogueSystem
                 if (responseNode.TryGetConnectedNode(out DialogueNode node))
                 {
                     if (node is SpeakerNode)
+                    {
                         _dialogueModel.CurrentNode.Value = node;
+                    }
+                    else if (node is SpeakerNodeJumper speakerNodeJumper)
+                    {
+                        if (speakerNodeJumper.TryGetSpeakerNode(out SpeakerNode speakerNode))
+                        {
+                            _dialogueModel.CurrentNode.Value = speakerNode;
+                        }
+                        else
+                        {
+                            EndDialogue();
+                        }
+                    }
                     else if (node is ConditionCheckNode conditionNode)
+                    {
                         DialogueHandler.HandleConditionCheck(conditionNode);
+                    }
                 }
                 else
                 {

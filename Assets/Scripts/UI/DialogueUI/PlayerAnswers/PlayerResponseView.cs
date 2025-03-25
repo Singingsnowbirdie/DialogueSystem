@@ -57,14 +57,10 @@ namespace UI.DialogueUI
 
     public class PlayerResponseModel
     {
-        public PlayerResponseModel(PlayerResponseNode response)
+        public PlayerResponseModel(PlayerResponseNode response, string responseDialogueLine)
         {
             ResponseNode = response;
-
-            if (response != null)
-                PlayerAnswerText.Value = response.DialogueLine; // TODO: add localization
-            else
-                PlayerAnswerText.Value = "End dialogue.";
+            PlayerAnswerText.Value = responseDialogueLine;
         }
 
         public StringReactiveProperty PlayerAnswerText { get; } = new StringReactiveProperty();

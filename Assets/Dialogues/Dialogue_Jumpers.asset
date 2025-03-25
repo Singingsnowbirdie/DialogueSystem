@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8421314508002159553
+--- !u!114 &-8480432003109260330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,96 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
-  m_Name: Dialogue Event
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 728, y: -1224}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: -8421314508002159553}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Events>k__BackingField
-        node: {fileID: 2863555705318836798}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  InvolvedNpcs: 
-  <Input>k__BackingField: {fileID: 0}
-  <EventType>k__BackingField: 5
-  <Notes>k__BackingField: 
-  <Amount>k__BackingField: 1
-  <ID>k__BackingField: Amulet_01
-  <GiveTakeEventType>k__BackingField: 1
-  <QuestState>k__BackingField: 0
-  <DialogueVariableType>k__BackingField: 0
-  <Faction>k__BackingField: 0
-  <IsTrue>k__BackingField: 0
-  <IsThisNPC>k__BackingField: 1
---- !u!114 &-7108331160203067207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
-  m_Name: Dialogue Event
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1256, y: -280}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: -7108331160203067207}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Events>k__BackingField
-        node: {fileID: -1087100728483183270}
-        reroutePoints: []
-      - fieldName: <Events>k__BackingField
-        node: {fileID: 3982372819649979414}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  InvolvedNpcs: 
-  <Input>k__BackingField: {fileID: 0}
-  <EventType>k__BackingField: 5
-  <Notes>k__BackingField: 
-  <Amount>k__BackingField: 1
-  <ID>k__BackingField: Amulet_01
-  <GiveTakeEventType>k__BackingField: 0
-  <QuestState>k__BackingField: 0
-  <DialogueVariableType>k__BackingField: 0
-  <Faction>k__BackingField: 0
-  <IsTrue>k__BackingField: 0
-  <IsThisNPC>k__BackingField: 1
---- !u!114 &-4564370962760717694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
-  m_Name: Speaker
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 72, y: -600}
+  position: {x: 696, y: -312}
   ports:
     keys:
     - <Input>k__BackingField
@@ -106,29 +21,29 @@ MonoBehaviour:
     - <Events>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: -4564370962760717694}
+      _node: {fileID: -8480432003109260330}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: <True>k__BackingField
-        node: {fileID: -2788500161798348063}
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 6150975981683832630}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Output>k__BackingField
-      _node: {fileID: -4564370962760717694}
+      _node: {fileID: -8480432003109260330}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: -2455848825988686588}
+        node: {fileID: 5797381772490863134}
         reroutePoints: []
       _direction: 1
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Events>k__BackingField
-      _node: {fileID: -4564370962760717694}
+      _node: {fileID: -8480432003109260330}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 1
@@ -138,17 +53,11 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: "Ah, you\u2019ve returned, my young friend! I sense
-    that within you lies the power to change the fate of this world. But remember,
-    strength is not just about swords and spells. Sometimes wisdom and patience are
-    your greatest allies. What brings you to me this time?"
-  <ConnectedJumpers>k__BackingField: []
-  <SelectedIndex>k__BackingField: 0
-  <SpeakerKey>k__BackingField: 0
-  <IsExpanded>k__BackingField: 0
-  <TextAreaHeight>k__BackingField: 160
-  _nodeId: CmxO3Y2Y
---- !u!114 &-4468779022799561342
+  <DialogueLine>k__BackingField: ...
+  <ConnectedJumpers>k__BackingField:
+  - {fileID: 6931623895701457679}
+  _nodeId: egljJUSo
+--- !u!114 &-7659507084325117210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,66 +66,180 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994a226d5cac2034897cf49c89a7c1d4, type: 3}
-  m_Name: Condition Check
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -24, y: -1016}
+  position: {x: 120, y: 72}
   ports:
     keys:
     - <Input>k__BackingField
-    - <True>k__BackingField
-    - <False>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: -4468779022799561342}
+      _node: {fileID: -7659507084325117210}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Output>k__BackingField
-        node: {fileID: 5950559182327667480}
+        node: {fileID: 4414248013974369961}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: <True>k__BackingField
-      _node: {fileID: -4468779022799561342}
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: -7659507084325117210}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: 2863555705318836798}
+        node: {fileID: 6027537630122509525}
         reroutePoints: []
       _direction: 1
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: <False>k__BackingField
-      _node: {fileID: -4468779022799561342}
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: -7659507084325117210}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: 4896445474821103582}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   <Input>k__BackingField: {fileID: 0}
-  <True>k__BackingField: {fileID: 0}
-  <False>k__BackingField: {fileID: 0}
-  <Condition>k__BackingField: 4
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: What difference does it make to you?
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: NSkQmsEv
+--- !u!114 &-4561359510224059599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1816, y: -520}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -4561359510224059599}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 4930145842317775548}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: -4561359510224059599}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: -4561359510224059599}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: Thanks for the warning.
+  <ConnectedJumpers>k__BackingField:
+  - {fileID: 6931623895701457679}
+  _nodeId: egljJUSo
+--- !u!114 &-2095809242587785228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b333c95f94ca14bb7b57828ec5a76e, type: 3}
+  m_Name: Dialogue Jumper
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 440, y: -504}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -2095809242587785228}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 1314151277408663052}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <TargetNode>k__BackingField: {fileID: 6150975981683832630}
+--- !u!114 &-1664361417577401728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
+  m_Name: Dialogue Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 440, y: 8}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: -1664361417577401728}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Events>k__BackingField
+        node: {fileID: 4271403125372047565}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  InvolvedNpcs: 
+  <Input>k__BackingField: {fileID: 0}
+  <EventType>k__BackingField: 4
   <Notes>k__BackingField: 
-  <ComparisonType>k__BackingField: 0
   <Amount>k__BackingField: 1
-  <IsThisNPC>k__BackingField: 1
-  <Faction>k__BackingField: 0
-  <PlayerGender>k__BackingField: 0
-  <PlayerRace>k__BackingField: 0
-  <QuestState>k__BackingField: 3
-  <ID>k__BackingField: Amulet_01
+  <ID>k__BackingField: WasRude
+  <GiveTakeEventType>k__BackingField: 0
+  <QuestState>k__BackingField: 0
   <DialogueVariableType>k__BackingField: 0
-  <InfluenceType>k__BackingField: 0
---- !u!114 &-3378726167792555083
+  <Faction>k__BackingField: 0
+  <IsTrue>k__BackingField: 1
+  <IsThisNPC>k__BackingField: 1
+--- !u!114 &-1432948507253106899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,194 +252,25 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1048, y: -728}
+  position: {x: -712, y: -248}
   ports:
     keys:
     - <Output>k__BackingField
     values:
     - _fieldName: <Output>k__BackingField
-      _node: {fileID: -3378726167792555083}
+      _node: {fileID: -1432948507253106899}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: 6741336748498054009}
+        node: {fileID: 4414248013974369961}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
   <Output>k__BackingField: {fileID: 0}
-  _dialogueID: WEV6NBnv
---- !u!114 &-2788500161798348063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994a226d5cac2034897cf49c89a7c1d4, type: 3}
-  m_Name: Condition Check
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -296, y: -328}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    - <True>k__BackingField
-    - <False>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: -2788500161798348063}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <False>k__BackingField
-        node: {fileID: 6741336748498054009}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <True>k__BackingField
-      _node: {fileID: -2788500161798348063}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: -4564370962760717694}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <False>k__BackingField
-      _node: {fileID: -2788500161798348063}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: 466085989364342784}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  <Input>k__BackingField: {fileID: 0}
-  <True>k__BackingField: {fileID: 0}
-  <False>k__BackingField: {fileID: 0}
-  <Condition>k__BackingField: 0
-  <Notes>k__BackingField: 
-  <ComparisonType>k__BackingField: 0
-  <Amount>k__BackingField: 0
-  <IsThisNPC>k__BackingField: 1
-  <Faction>k__BackingField: 0
-  <PlayerGender>k__BackingField: 0
-  <PlayerRace>k__BackingField: 0
-  <QuestState>k__BackingField: 0
-  <ID>k__BackingField: 
-  <DialogueVariableType>k__BackingField: 0
-  <InfluenceType>k__BackingField: 0
---- !u!114 &-2455848825988686588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
-  m_Name: Player Response
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 360, y: -312}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    - <Output>k__BackingField
-    - <Events>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: -2455848825988686588}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Output>k__BackingField
-        node: {fileID: -4564370962760717694}
-        reroutePoints: []
-      - fieldName: <Output>k__BackingField
-        node: {fileID: 466085989364342784}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Output>k__BackingField
-      _node: {fileID: -2455848825988686588}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: 5926942261738888375}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Events>k__BackingField
-      _node: {fileID: -2455848825988686588}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  <Input>k__BackingField: {fileID: 0}
-  <Output>k__BackingField: {fileID: 0}
-  <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: "I\u2019m looking for a way to defeat an ancient
-    dragon that\u2019s ravaging the villages."
-  <ConnectedJumpers>k__BackingField: []
-  _nodeId: 3g1d1Gk1
---- !u!114 &-2446665172329083063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72eb89666acf0441972052b9f88547e, type: 3}
-  m_Name: Dialogue Event
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 728, y: -920}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: -2446665172329083063}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Events>k__BackingField
-        node: {fileID: 4896445474821103582}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  InvolvedNpcs: 
-  <Input>k__BackingField: {fileID: 0}
-  <EventType>k__BackingField: 1
-  <Notes>k__BackingField: 
-  <Amount>k__BackingField: 1
-  <ID>k__BackingField: Amulet_01
-  <GiveTakeEventType>k__BackingField: 0
-  <QuestState>k__BackingField: 3
-  <DialogueVariableType>k__BackingField: 0
-  <Faction>k__BackingField: 0
-  <IsTrue>k__BackingField: 0
-  <IsThisNPC>k__BackingField: 1
---- !u!114 &-1087100728483183270
+  _dialogueID: OlucP2Jb
+--- !u!114 &-702054080837613426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,7 +283,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 888, y: -616}
+  position: {x: 1496, y: -184}
   ports:
     keys:
     - <Input>k__BackingField
@@ -437,31 +291,31 @@ MonoBehaviour:
     - <Events>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: -1087100728483183270}
+      _node: {fileID: -702054080837613426}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: <True>k__BackingField
-        node: {fileID: 5926942261738888375}
+      - fieldName: <False>k__BackingField
+        node: {fileID: 5797381772490863134}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Output>k__BackingField
-      _node: {fileID: -1087100728483183270}
+      _node: {fileID: -702054080837613426}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 6931623895701457679}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Events>k__BackingField
-      _node: {fileID: -1087100728483183270}
+      _node: {fileID: -702054080837613426}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: -7108331160203067207}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -469,16 +323,15 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: "Ha! You\u2019re as brave as a warrior should be.
-    But a dragon is not just a beast\u2014it\u2019s a test of your spirit. Take this
-    amulet; it will protect you from its flames. But beware, the true battle will
-    not be with the dragon, but with yourself."
-  <ConnectedJumpers>k__BackingField: []
+  <DialogueLine>k__BackingField: By the way, there's unrest in the capital right
+    now. Be careful.
+  <ConnectedJumpers>k__BackingField:
+  - {fileID: -2095809242587785228}
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  <TextAreaHeight>k__BackingField: 140
-  _nodeId: zi6l6NMD
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: 5qvCLT6S
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,89 +342,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecaeb1ce92f8d7248994a86cf0b334b9, type: 3}
-  m_Name: Dialogue_Sage
+  m_Name: Dialogue_Jumpers
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -3378726167792555083}
-  - {fileID: -2788500161798348063}
-  - {fileID: -4564370962760717694}
-  - {fileID: 466085989364342784}
-  - {fileID: -2455848825988686588}
-  - {fileID: 5926942261738888375}
-  - {fileID: -1087100728483183270}
-  - {fileID: 3982372819649979414}
-  - {fileID: -7108331160203067207}
-  - {fileID: 6741336748498054009}
-  - {fileID: 5950559182327667480}
-  - {fileID: 2863555705318836798}
-  - {fileID: -8421314508002159553}
-  - {fileID: 4896445474821103582}
-  - {fileID: -4468779022799561342}
-  - {fileID: -2446665172329083063}
---- !u!114 &466085989364342784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
-  m_Name: Speaker
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 72, y: -200}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    - <Output>k__BackingField
-    - <Events>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: 466085989364342784}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <False>k__BackingField
-        node: {fileID: -2788500161798348063}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Output>k__BackingField
-      _node: {fileID: 466085989364342784}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: -2455848825988686588}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Events>k__BackingField
-      _node: {fileID: 466085989364342784}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  <Input>k__BackingField: {fileID: 0}
-  <Output>k__BackingField: {fileID: 0}
-  <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: "Ah, you\u2019ve returned, my dear! I see your spirit
-    shining like a star in the night sky. You possess the wisdom that can bring harmony
-    to this world. But remember, true strength often lies in gentleness and resolve.
-    What brings you to me this time?"
-  <ConnectedJumpers>k__BackingField: []
-  <SelectedIndex>k__BackingField: 0
-  <SpeakerKey>k__BackingField: 0
-  <IsExpanded>k__BackingField: 0
-  <TextAreaHeight>k__BackingField: 140
-  _nodeId: mt1LmyyT
---- !u!114 &2863555705318836798
+  - {fileID: -1432948507253106899}
+  - {fileID: 4414248013974369961}
+  - {fileID: 1314151277408663052}
+  - {fileID: 4271403125372047565}
+  - {fileID: -7659507084325117210}
+  - {fileID: 6150975981683832630}
+  - {fileID: -2095809242587785228}
+  - {fileID: 6027537630122509525}
+  - {fileID: -1664361417577401728}
+  - {fileID: 5797381772490863134}
+  - {fileID: 4930145842317775548}
+  - {fileID: -702054080837613426}
+  - {fileID: -4561359510224059599}
+  - {fileID: 6931623895701457679}
+  - {fileID: -8480432003109260330}
+--- !u!114 &1314151277408663052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -584,7 +373,7 @@ MonoBehaviour:
   m_Name: Player Response
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -1224}
+  position: {x: 120, y: -504}
   ports:
     keys:
     - <Input>k__BackingField
@@ -592,31 +381,212 @@ MonoBehaviour:
     - <Events>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: 2863555705318836798}
+      _node: {fileID: 1314151277408663052}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 4414248013974369961}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 1314151277408663052}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -2095809242587785228}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 1314151277408663052}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: To the capital. The king has business.
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: egljJUSo
+--- !u!114 &4271403125372047565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
+  m_Name: Player Response
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 120, y: -216}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 4271403125372047565}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 4414248013974369961}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 4271403125372047565}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 6150975981683832630}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 4271403125372047565}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -1664361417577401728}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: Move on, guard. None of your business.
+  <ConnectedJumpers>k__BackingField: []
+  _nodeId: egljJUSo
+--- !u!114 &4414248013974369961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: -328}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 4414248013974369961}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: -1432948507253106899}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Output>k__BackingField
+      _node: {fileID: 4414248013974369961}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 1314151277408663052}
+        reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: 4271403125372047565}
+        reroutePoints: []
+      - fieldName: <Input>k__BackingField
+        node: {fileID: -7659507084325117210}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 4414248013974369961}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <Output>k__BackingField: {fileID: 0}
+  <Events>k__BackingField: {fileID: 0}
+  <DialogueLine>k__BackingField: Greetings, traveler. Where are you headed?
+  <ConnectedJumpers>k__BackingField: []
+  <SelectedIndex>k__BackingField: 0
+  <SpeakerKey>k__BackingField: 0
+  <IsExpanded>k__BackingField: 0
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: pEYb5TMK
+--- !u!114 &4930145842317775548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1496, y: -504}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    - <Output>k__BackingField
+    - <Events>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 4930145842317775548}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <True>k__BackingField
-        node: {fileID: -4468779022799561342}
+        node: {fileID: 5797381772490863134}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Output>k__BackingField
-      _node: {fileID: 2863555705318836798}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Events>k__BackingField
-      _node: {fileID: 2863555705318836798}
+      _node: {fileID: 4930145842317775548}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: -8421314508002159553}
+        node: {fileID: -4561359510224059599}
         reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: <Events>k__BackingField
+      _node: {fileID: 4930145842317775548}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -624,130 +594,16 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: Yes, thank you. I'm returning it to you.
-  <ConnectedJumpers>k__BackingField: []
-  _nodeId: 3g1d1Gk1
---- !u!114 &3982372819649979414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816fb63a0cb512447afb05a8a73ca823, type: 3}
-  m_Name: Speaker
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 888, y: -216}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    - <Output>k__BackingField
-    - <Events>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: 3982372819649979414}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <False>k__BackingField
-        node: {fileID: 5926942261738888375}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Output>k__BackingField
-      _node: {fileID: 3982372819649979414}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Events>k__BackingField
-      _node: {fileID: 3982372819649979414}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: -7108331160203067207}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  <Input>k__BackingField: {fileID: 0}
-  <Output>k__BackingField: {fileID: 0}
-  <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: "You are wise, as befits one who carries the light
-    within. A dragon is not just a monster\u2014it\u2019s a symbol of chaos that
-    you can tame. Take this amulet; it will protect you from its flames. But remember,
-    the true victory lies not in strength, but in your ability to understand and
-    transform."
-  <ConnectedJumpers>k__BackingField: []
+  <DialogueLine>k__BackingField: Just make sure you don't get thrown back out - I
+    don't recommend causing trouble.
+  <ConnectedJumpers>k__BackingField:
+  - {fileID: -2095809242587785228}
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  <TextAreaHeight>k__BackingField: 180
-  _nodeId: pa6pOcT6
---- !u!114 &4896445474821103582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d94dedcfa15811459fd6ab926ad5ee6, type: 3}
-  m_Name: Player Response
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 440, y: -920}
-  ports:
-    keys:
-    - <Input>k__BackingField
-    - <Output>k__BackingField
-    - <Events>k__BackingField
-    values:
-    - _fieldName: <Input>k__BackingField
-      _node: {fileID: 4896445474821103582}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <False>k__BackingField
-        node: {fileID: -4468779022799561342}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Output>k__BackingField
-      _node: {fileID: 4896445474821103582}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <Events>k__BackingField
-      _node: {fileID: 4896445474821103582}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: -2446665172329083063}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  <Input>k__BackingField: {fileID: 0}
-  <Output>k__BackingField: {fileID: 0}
-  <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: I still need this.
-  <ConnectedJumpers>k__BackingField: []
-  _nodeId: 3g1d1Gk1
---- !u!114 &5926942261738888375
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: vewo3GJU
+--- !u!114 &5797381772490863134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -760,7 +616,7 @@ MonoBehaviour:
   m_Name: Condition Check
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 616, y: -312}
+  position: {x: 952, y: -312}
   ports:
     keys:
     - <Input>k__BackingField
@@ -768,33 +624,33 @@ MonoBehaviour:
     - <False>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: 5926942261738888375}
+      _node: {fileID: 5797381772490863134}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Output>k__BackingField
-        node: {fileID: -2455848825988686588}
+        node: {fileID: -8480432003109260330}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <True>k__BackingField
-      _node: {fileID: 5926942261738888375}
+      _node: {fileID: 5797381772490863134}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: -1087100728483183270}
+        node: {fileID: 4930145842317775548}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <False>k__BackingField
-      _node: {fileID: 5926942261738888375}
+      _node: {fileID: 5797381772490863134}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: 3982372819649979414}
+        node: {fileID: -702054080837613426}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -803,7 +659,7 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <True>k__BackingField: {fileID: 0}
   <False>k__BackingField: {fileID: 0}
-  <Condition>k__BackingField: 0
+  <Condition>k__BackingField: 7
   <Notes>k__BackingField: 
   <ComparisonType>k__BackingField: 0
   <Amount>k__BackingField: 0
@@ -812,10 +668,41 @@ MonoBehaviour:
   <PlayerGender>k__BackingField: 0
   <PlayerRace>k__BackingField: 0
   <QuestState>k__BackingField: 0
-  <ID>k__BackingField: 
+  <ID>k__BackingField: WasRude
   <DialogueVariableType>k__BackingField: 0
   <InfluenceType>k__BackingField: 0
---- !u!114 &5950559182327667480
+--- !u!114 &6027537630122509525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b333c95f94ca14bb7b57828ec5a76e, type: 3}
+  m_Name: Dialogue Jumper
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 440, y: 296}
+  ports:
+    keys:
+    - <Input>k__BackingField
+    values:
+    - _fieldName: <Input>k__BackingField
+      _node: {fileID: 6027537630122509525}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: <Output>k__BackingField
+        node: {fileID: -7659507084325117210}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  <Input>k__BackingField: {fileID: 0}
+  <TargetNode>k__BackingField: {fileID: 6150975981683832630}
+--- !u!114 &6150975981683832630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -828,7 +715,7 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: -1016}
+  position: {x: 440, y: -312}
   ports:
     keys:
     - <Input>k__BackingField
@@ -836,29 +723,29 @@ MonoBehaviour:
     - <Events>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: 5950559182327667480}
+      _node: {fileID: 6150975981683832630}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: <True>k__BackingField
-        node: {fileID: 6741336748498054009}
+      - fieldName: <Output>k__BackingField
+        node: {fileID: 4271403125372047565}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Output>k__BackingField
-      _node: {fileID: 5950559182327667480}
+      _node: {fileID: 6150975981683832630}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Input>k__BackingField
-        node: {fileID: -4468779022799561342}
+        node: {fileID: -8480432003109260330}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: <Events>k__BackingField
-      _node: {fileID: 5950559182327667480}
+      _node: {fileID: 6150975981683832630}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 1
@@ -868,15 +755,16 @@ MonoBehaviour:
   <Input>k__BackingField: {fileID: 0}
   <Output>k__BackingField: {fileID: 0}
   <Events>k__BackingField: {fileID: 0}
-  <DialogueLine>k__BackingField: Hello, hello. Well, did you find that amulet I gave
-    you useful?
-  <ConnectedJumpers>k__BackingField: []
+  <DialogueLine>k__BackingField: Ha! Everyone through these gates is either going
+    to the capital or running away from it. Fine, go on.
+  <ConnectedJumpers>k__BackingField:
+  - {fileID: -2095809242587785228}
   <SelectedIndex>k__BackingField: 0
   <SpeakerKey>k__BackingField: 0
   <IsExpanded>k__BackingField: 0
-  <TextAreaHeight>k__BackingField: 60
-  _nodeId: z3iwZd9c
---- !u!114 &6741336748498054009
+  <TextAreaHeight>k__BackingField: 100
+  _nodeId: J0jgqJrc
+--- !u!114 &6931623895701457679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -885,62 +773,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994a226d5cac2034897cf49c89a7c1d4, type: 3}
-  m_Name: Condition Check
+  m_Script: {fileID: 11500000, guid: b278a421716a653499240c230771b8cd, type: 3}
+  m_Name: Player Response Jumper
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -568, y: -728}
+  position: {x: 1816, y: -184}
   ports:
     keys:
     - <Input>k__BackingField
-    - <True>k__BackingField
-    - <False>k__BackingField
     values:
     - _fieldName: <Input>k__BackingField
-      _node: {fileID: 6741336748498054009}
+      _node: {fileID: 6931623895701457679}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: <Output>k__BackingField
-        node: {fileID: -3378726167792555083}
+        node: {fileID: -702054080837613426}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: <True>k__BackingField
-      _node: {fileID: 6741336748498054009}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: 5950559182327667480}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: <False>k__BackingField
-      _node: {fileID: 6741336748498054009}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: <Input>k__BackingField
-        node: {fileID: -2788500161798348063}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
   <Input>k__BackingField: {fileID: 0}
-  <True>k__BackingField: {fileID: 0}
-  <False>k__BackingField: {fileID: 0}
-  <Condition>k__BackingField: 5
-  <Notes>k__BackingField: 
-  <ComparisonType>k__BackingField: 0
-  <Amount>k__BackingField: 1
-  <IsThisNPC>k__BackingField: 1
-  <Faction>k__BackingField: 0
-  <PlayerGender>k__BackingField: 0
-  <PlayerRace>k__BackingField: 0
-  <QuestState>k__BackingField: 0
-  <ID>k__BackingField: Amulet_01
-  <DialogueVariableType>k__BackingField: 0
-  <InfluenceType>k__BackingField: 0
+  <TargetNode>k__BackingField: {fileID: -4561359510224059599}

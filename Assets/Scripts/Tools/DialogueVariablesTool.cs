@@ -42,7 +42,7 @@ namespace GM_Tools
 
             if (variable == null)
             {
-                variable = new DialogueVariableData(variableId);
+                variable = new DialogueVariableData(variableId, false, 0);
                 variables.Add(variable);
             }
 

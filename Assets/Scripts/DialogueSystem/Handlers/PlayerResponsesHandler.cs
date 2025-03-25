@@ -23,9 +23,16 @@ namespace DialogueSystem
                 {
                     responses.Add(responseNode);
                 }
+                else if (node is PlayerResponseNodeJumper jumper)
+                {
+                    if (jumper.TryGetPlayerResponseNode(out PlayerResponseNode relatedPlayerResponseNode))
+                    {
+                        responses.Add(relatedPlayerResponseNode);
+                    }
+                }
                 else if (node is ConditionCheckNode conditionCheckNode)
                 {
-                    if (_dialogueHandler.TryGetNextResponseNode(conditionCheckNode, out List<PlayerResponseNode> results))
+                    if (_dialogueHandler.TryGetNextResponses(conditionCheckNode, out List<PlayerResponseNode> results))
                     {
                         foreach (PlayerResponseNode response in results)
                         {
