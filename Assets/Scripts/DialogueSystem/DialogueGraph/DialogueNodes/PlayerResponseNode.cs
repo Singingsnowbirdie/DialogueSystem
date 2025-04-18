@@ -7,12 +7,12 @@ namespace DialogueSystem.DialogueEditor
 {
     [NodeTint("#502e0e")]
     [CreateNodeMenu("Dialogue Node/Player Response", 0)]
-    public class PlayerResponseNode : DialogueNode
+    public class PlayerResponseNode : DialogueNode, ISerializationCallbackReceiver
     {
         [field: SerializeField, Input(backingValue = ShowBackingValue.Never)] public Node Input { get; set; }
         [field: SerializeField, Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)] public Node Output { get; set; }
         [field: SerializeField, Output(backingValue = ShowBackingValue.Never), HideInInspector] public Node Events { get; set; }
-        [field: SerializeField, TextArea(5, 10)] public string DialogueLine { get; set; }
+        [field: SerializeField, TextArea(5, 10)] public string DialogueLine { get; set; } = "";
         [field: SerializeField, HideInInspector] public List<PlayerResponseNodeJumper> ConnectedJumpers { get; set; } = new List<PlayerResponseNodeJumper>();
 
         [SerializeField, HideInInspector] private string _nodeId;
@@ -65,6 +65,15 @@ namespace DialogueSystem.DialogueEditor
         {
             events = EventPortConnections;
             return EventPortConnections.Count > 0;
+        }
+
+        public void OnBeforeSerialize()
+        {
+        }
+
+        public void OnAfterDeserialize()
+        {
+            _nodeId = IdGenerator.GenerateId();
         }
 
         private List<Node> EventPortConnections
